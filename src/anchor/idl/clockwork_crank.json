@@ -348,7 +348,7 @@
           {
             "name": "slot",
             "type": {
-              "defined": "Slot"
+              "defined": "u64"
             }
           },
           {

@@ -347,27 +347,21 @@ export type ClockworkCrank = {
         "fields": [
           {
             "name": "slot",
-            "type": {
-              "defined": "Slot"
-            }
+            "type": "u64"
           },
           {
             "name": "epochStartTimestamp",
             "docs": [
               "the timestamp of the first Slot in this Epoch"
             ],
-            "type": {
-              "defined": "UnixTimestamp"
-            }
+            "type": "i64"
           },
           {
             "name": "epoch",
             "docs": [
               "the bank Epoch"
             ],
-            "type": {
-              "defined": "Epoch"
-            }
+            "type": "u64"
           },
           {
             "name": "leaderScheduleEpoch",
@@ -375,9 +369,7 @@ export type ClockworkCrank = {
               "the future Epoch for which the leader schedule has",
               "most recently been calculated"
             ],
-            "type": {
-              "defined": "Epoch"
-            }
+            "type": "u64"
           },
           {
             "name": "unixTimestamp",
@@ -386,9 +378,7 @@ export type ClockworkCrank = {
               "in slots (drifty); corrected using validator timestamp oracle as of",
               "timestamp_correction and timestamp_bounding features"
             ],
-            "type": {
-              "defined": "UnixTimestamp"
-            }
+            "type": "i64"
           }
         ]
       }
@@ -924,27 +914,21 @@ export const IDL: ClockworkCrank = {
         "fields": [
           {
             "name": "slot",
-            "type": {
-              "defined": "Slot"
-            }
+            "type": "u64"
           },
           {
             "name": "epochStartTimestamp",
             "docs": [
               "the timestamp of the first Slot in this Epoch"
             ],
-            "type": {
-              "defined": "UnixTimestamp"
-            }
+            "type": "i64"
           },
           {
             "name": "epoch",
             "docs": [
               "the bank Epoch"
             ],
-            "type": {
-              "defined": "Epoch"
-            }
+            "type": "u64"
           },
           {
             "name": "leaderScheduleEpoch",
@@ -952,9 +936,7 @@ export const IDL: ClockworkCrank = {
               "the future Epoch for which the leader schedule has",
               "most recently been calculated"
             ],
-            "type": {
-              "defined": "Epoch"
-            }
+            "type": "u64"
           },
           {
             "name": "unixTimestamp",
@@ -963,9 +945,7 @@ export const IDL: ClockworkCrank = {
               "in slots (drifty); corrected using validator timestamp oracle as of",
               "timestamp_correction and timestamp_bounding features"
             ],
-            "type": {
-              "defined": "UnixTimestamp"
-            }
+            "type": "i64"
           }
         ]
       }

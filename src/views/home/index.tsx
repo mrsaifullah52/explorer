@@ -7,6 +7,7 @@ import { useWallet, useConnection } from '@solana/wallet-adapter-react';
 
 // Components
 import { RequestAirdrop } from '../../components/RequestAirdrop';
+import { Queues } from 'components/Queues';
 import pkg from '../../../package.json';
 
 // Store
@@ -44,6 +45,7 @@ export const HomeView: FC = ({ }) => {
         </div>        
           <div className="text-center">
           <RequestAirdrop />
+          <Queues />
           {/* {wallet.publicKey && <p>Public Key: {wallet.publicKey.toBase58()}</p>} */}
           {wallet && <p>SOL Balance: {(balance || 0).toLocaleString()}</p>}
         </div>

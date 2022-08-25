@@ -10,6 +10,9 @@ export const AnchorProviderProvider: React.FC = ({ children }) => {
   const connection = useConnection();
   const wallet = useAnchorWallet();
   const provider = React.useMemo(() => {
+    if (!connection) {
+      return undefined
+    }
     if (!wallet) {
       // @ts-ignore
       return new AnchorProvider(connection.connection, Keypair.generate(), {});
