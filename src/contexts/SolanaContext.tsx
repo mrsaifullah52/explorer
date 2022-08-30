@@ -87,10 +87,6 @@ export const isActiveCluster = (
 
 export const SolanaProvider = ({ children }: SolanaProviderProps) => {
   const router = useRouter();
-
-  const routerNetwork = router.query.network;
-  console.log("routerNetwork", routerNetwork);
-
   const [cluster, _setCluster] = useState(CLUSTERS[0]);
   const [customEndpoint, _setCustomEndpoint] = useState(LOCALNET_URL);
 

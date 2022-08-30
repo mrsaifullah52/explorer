@@ -7,8 +7,8 @@ import {
   DataTableRow,
   DataTableRowExpandable,
   DataTableRowInline,
-} from "../common/DataTable";
-import { SkeletonBox } from "../common/Skeleton";
+} from "../DataTable";
+import { SkeletonBox } from "../Skeleton";
 import { format } from "date-fns";
 import {
   formatExecCtx,
@@ -67,6 +67,7 @@ export const Queue = ({ q }) => {
               ({ isSigner, isWritable, pubkey }, i) => {
                 return (
                   <DataTableRowInline
+                    key={`account-${i}`}
                     label={`Account ${i}`}
                     value={pubkey.toBase58()}
                     link={getExplorerAccountLink(
@@ -95,6 +96,7 @@ export const Queue = ({ q }) => {
               ({ isSigner, isWritable, pubkey }, i) => {
                 return (
                   <DataTableRowInline
+                    key={`account-${i}`}
                     label={`Account ${i}`}
                     value={pubkey.toBase58()}
                     link={getExplorerAccountLink(

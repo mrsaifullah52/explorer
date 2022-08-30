@@ -1,21 +1,12 @@
 import React, { useCallback, useState } from "react";
 import Link from "next/link";
 import { useQueues } from "hooks/useQueues";
-// import { useQueuesSWR } from "hooks/useQueuesSWR";
-
-import {
-  DataTable,
-  DataTableRow,
-  DataTableRowExpandable,
-} from "./common/DataTable";
-import { SkeletonBox } from "./common/Skeleton";
-import { format } from "date-fns";
+import { SkeletonBox } from "../Skeleton";
 import { usePagination } from "hooks/usePagination";
 import { useRouter } from "next/router";
-import { PaginationButton } from "./common/Pagination/PaginationButton";
+import { PaginationButton } from "../Pagination/PaginationButton";
 
 export const Queues = () => {
-  // const { data, error, loading } = useQueues();
   const router = useRouter();
   const { data, error, loading } = useQueues();
 

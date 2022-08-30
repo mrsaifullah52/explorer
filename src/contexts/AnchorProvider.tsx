@@ -11,7 +11,6 @@ export const AnchorProviderProvider: React.FC = ({ children }) => {
   const { cluster } = useSolana();
   const wallet = useAnchorWallet();
   const provider = React.useMemo(() => {
-    console.log('cluster', cluster);
     if (!wallet) {
       // @ts-ignore
       return new AnchorProvider(new Connection(cluster.endpoint), Keypair.generate(), {});

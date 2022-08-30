@@ -1,12 +1,12 @@
 import { ChevronDownIcon } from "@heroicons/react/outline";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 
 export const DataTableRowExpandable = ({
   label,
   children,
 }: {
   label: string;
-  children?: JSX.Element;
+  children?: ReactNode;
 }) => {
   const [expanded, setExpanded] = useState(false);
 

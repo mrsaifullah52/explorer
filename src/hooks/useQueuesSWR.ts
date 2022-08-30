@@ -1,16 +1,6 @@
 import { useConnection } from "@solana/wallet-adapter-react";
-// import { Connection, PublicKey } from "@solana/web3.js";
-// import { useEffect, useState } from "react";
 import useSWR from "swr";
-// import { useClockworks } from "../contexts/ClockworksContext";
-// import { useSolana } from "../contexts/SolanaContext";
-// import {
-//   CLOCKWORKS_CRANK_PROGRAM_ID,
-// } from "../utils/constants";
-// import axios from "axios";
 import { useCrankProgram } from "contexts/CrankProgramProvider";
-// import { Program } from "@project-serum/anchor";
-// import { ClockworkCrank } from "anchor/types/clockwork_crank";
 import { Queue, CrankProgram } from "models/types";
 
 const isLocalhost = (url: string) => {
@@ -23,45 +13,11 @@ const fetcher = async (
 ): Promise<Queue[]> => {
   try {
     const queues = await program.account.queue.all();
-
-    console.log({ queues });
   
     return queues;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
-
-
-  // if (isLocalhost) {
-  //   const markets = await connection.getParsedProgramAccounts(programID, {
-  //     filters: [
-  //       {
-  //         memcmp: {
-  //           offset: 5,
-  //           bytes: MARKET_ACCOUNT_FLAGS_B58_ENCODED,
-  //         },
-  //       },
-  //     ],
-  //   });
-  //   serumMarkets = markets.map((m) => ({ address: m.pubkey }));
-  // } else {
-  //   const { data } = await axios.get<{
-  //     tvl: number;
-  //     total_vol_1d: number;
-  //     markets: {
-  //       market_address: string;
-  //       base_symbol: string;
-  //       quote_symbol: string;
-  //     }[];
-  //   }>("https://serum-volume-tracker.vercel.app/api");
-  //   serumMarkets = data.markets.map((m) => ({
-  //     address: new PublicKey(m.market_address),
-  //     baseSymbol: m.base_symbol,
-  //     quoteSymbol: m.quote_symbol,
-  //   }));
-  // }
-
-  // return serumMarkets;
 };
 
 /**

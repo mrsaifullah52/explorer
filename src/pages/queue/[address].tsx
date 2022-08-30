@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { ReactNode, useState } from "react";
 import { getLayout } from "../../components/layouts/SiteLayout";
 import { useQueue } from "hooks/useQueue";
-import { Queue } from "components/Queue";
+import { Queue } from "components/common/Queue";
 
 const MarketPage = () => {
   const router = useRouter();

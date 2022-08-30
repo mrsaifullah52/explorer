@@ -23,7 +23,6 @@ export const useQueue = (address: string) => {
     try {
       const account = await program.account.queue.fetch(address);
       const queue = { publicKey: new PublicKey(address), account: account };
-      console.log(queue);
       setQueuesState((prev) => ({
         ...prev,
         data: queue,

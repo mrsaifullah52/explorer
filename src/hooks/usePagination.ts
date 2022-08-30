@@ -43,8 +43,6 @@ export const usePagination = <T>(
     setPageNumber(pageNumber - 1);
   };
 
-  console.log('pageData', pageData);
-
   if (!data) {
     return {
       pageData: [],
