@@ -1,5 +1,6 @@
 export const queueFilter = (regexp: RegExp, row: any) =>
-  row.publicKey.toString().match(regexp);
+  row.publicKey.toString().match(regexp) ||
+  row.account.name.match(regexp);
 // ||
 // (row.baseSymbol &&
 //   row.quoteSymbol &&
