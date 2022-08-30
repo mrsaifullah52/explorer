@@ -347,27 +347,21 @@
         "fields": [
           {
             "name": "slot",
-            "type": {
-              "defined": "u64"
-            }
+            "type": "u64"
           },
           {
             "name": "epochStartTimestamp",
             "docs": [
               "the timestamp of the first Slot in this Epoch"
             ],
-            "type": {
-              "defined": "UnixTimestamp"
-            }
+            "type": "i64"
           },
           {
             "name": "epoch",
             "docs": [
               "the bank Epoch"
             ],
-            "type": {
-              "defined": "Epoch"
-            }
+            "type": "u64"
           },
           {
             "name": "leaderScheduleEpoch",
@@ -375,9 +369,7 @@
               "the future Epoch for which the leader schedule has",
               "most recently been calculated"
             ],
-            "type": {
-              "defined": "Epoch"
-            }
+            "type": "u64"
           },
           {
             "name": "unixTimestamp",
@@ -386,9 +378,7 @@
               "in slots (drifty); corrected using validator timestamp oracle as of",
               "timestamp_correction and timestamp_bounding features"
             ],
-            "type": {
-              "defined": "UnixTimestamp"
-            }
+            "type": "i64"
           }
         ]
       }

@@ -18,11 +18,12 @@ import { FC, ReactNode, useCallback, useMemo } from "react";
 import { AutoConnectProvider, useAutoConnect } from "./AutoConnectProvider";
 import { notify } from "../utils/notifications";
 import {
-  NetworkConfigurationProvider,
   useNetworkConfiguration,
 } from "./NetworkConfigurationProvider";
 import { AnchorProviderProvider } from "./AnchorProvider";
 import { CrankProgramProvider } from "./CrankProgramProvider";
+import { ClockworksProvider } from "./ClockworksContext";
+import { SolanaProvider } from "./SolanaContext";
 
 const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const { autoConnect } = useAutoConnect();
@@ -70,15 +71,17 @@ const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
 export const ContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <>
-      <NetworkConfigurationProvider>
-        <AutoConnectProvider>
-          <WalletContextProvider>
-            <AnchorProviderProvider>
-              <CrankProgramProvider>{children}</CrankProgramProvider>
-            </AnchorProviderProvider>
-          </WalletContextProvider>
-        </AutoConnectProvider>
-      </NetworkConfigurationProvider>
+        <SolanaProvider>
+          <AutoConnectProvider>
+            {/* <WalletContextProvider> */}
+              <AnchorProviderProvider>
+                <ClockworksProvider>
+                  <CrankProgramProvider>{children}</CrankProgramProvider>
+                </ClockworksProvider>
+              </AnchorProviderProvider>
+            {/* </WalletContextProvider> */}
+          </AutoConnectProvider>
+        </SolanaProvider>
     </>
   );
 };

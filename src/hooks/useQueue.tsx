@@ -1,26 +1,32 @@
 import { useCrankProgram } from "contexts/CrankProgramProvider";
 import { useCallback, useEffect, useState } from "react";
 import { Queue } from "models/types";
+import { PublicKey } from "@solana/web3.js";
 
 export type QueuesHookState = {
-  data: Queue[];
+  data: Queue;
   error?: Error;
   loading?: boolean;
   refetch: () => void;
 };
 
-export const useQueues = () => {
+export const useQueue = (address: string) => {
   const program = useCrankProgram();
 
   const fetchQueuesCallback = useCallback(async () => {
-    console.log('fetching');
-    setQueuesState((prev) => ({ ...prev, loading: true, error: undefined }));
+    setQueuesState((prev) => ({
+      ...prev,
+      data: undefined,
+      loading: true,
+      error: undefined,
+    }));
     try {
-      const queues = await program.account.queue.all();
-      console.log(queues)
+      const account = await program.account.queue.fetch(address);
+      const queue = { publicKey: new PublicKey(address), account: account };
+      console.log(queue);
       setQueuesState((prev) => ({
         ...prev,
-        data: queues,
+        data: queue,
         error: undefined,
         loading: false,
       }));
@@ -31,16 +37,16 @@ export const useQueues = () => {
         loading: false,
       }));
     }
-  }, [program]);
+  }, [program, address]);
 
   const [queuesState, setQueuesState] = useState<QueuesHookState>({
-    data: [],
+    data: undefined,
     refetch: fetchQueuesCallback,
   });
 
   useEffect(() => {
     fetchQueuesCallback();
-  }, [program]);
+  }, [program, address]);
 
   return queuesState;
 };

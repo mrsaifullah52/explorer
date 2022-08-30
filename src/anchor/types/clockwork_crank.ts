@@ -314,10 +314,6 @@ export type ClockworkCrank = {
             }
           },
           {
-            "name": "isPaused",
-            "type": "bool"
-          },
-          {
             "name": "name",
             "type": "string"
           },
@@ -879,10 +875,6 @@ export const IDL: ClockworkCrank = {
             "type": {
               "defined": "InstructionData"
             }
-          },
-          {
-            "name": "isPaused",
-            "type": "bool"
           },
           {
             "name": "name",
