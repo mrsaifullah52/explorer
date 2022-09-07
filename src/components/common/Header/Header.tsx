@@ -2,13 +2,15 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
 import { FC } from "react";
-import { useSolana } from "../../contexts/SolanaContext";
-import { SettingsButton } from "./SettingsButton";
-import { WalletButton } from "./WalletButton";
+import { useSolana } from "contexts/SolanaContext";
+import { SettingsButton } from "../SettingsButton";
+import { WalletButton } from "../WalletButton";
+import Image from "next/image";
+import { HeadingVector } from "./HeadingVector";
 
 type HeaderProps = {};
 
-const Header: FC<HeaderProps> = () => {
+export const Header: FC<HeaderProps> = () => {
   const router = useRouter();
   const { cluster } = useSolana();
 
@@ -27,7 +29,7 @@ const Header: FC<HeaderProps> = () => {
           router.push({ pathname: "/", query: sanitizeQuery(router.query) })
         }
       >
-        Clockwork Explorer
+        <HeadingVector />
       </button>
       <div className="flex items-center space-x-4">
         <p className="text-sm text-cyan-500 text-right">{cluster.label}</p>
