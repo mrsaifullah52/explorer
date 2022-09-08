@@ -5,7 +5,6 @@ import { FC } from "react";
 import { useSolana } from "contexts/SolanaContext";
 import { SettingsButton } from "../SettingsButton";
 import { WalletButton } from "../WalletButton";
-import Image from "next/image";
 import { HeadingVector } from "./HeadingVector";
 
 type HeaderProps = {};
@@ -22,7 +21,7 @@ export const Header: FC<HeaderProps> = () => {
   };
 
   return (
-    <div className="w-full py-4 px-4 md:px-0 flex items-center justify-between border-b-2 border-b-cyan-900 mb-4">
+    <div className="w-full py-4 px-4 md:px-4 flex items-center justify-between border-b border-[#E7EAED] mb-4">
       <button
         className="font-bold text-2xl text-white no-underline text-left"
         onClick={() =>
@@ -32,7 +31,7 @@ export const Header: FC<HeaderProps> = () => {
         <HeadingVector />
       </button>
       <div className="flex items-center space-x-4">
-        <p className="text-sm text-cyan-500 text-right">{cluster.label}</p>
+        <p className="text-sm text-[#979797] text-right">{cluster.label}</p>
         <SettingsButton />
         <WalletButton />
       </div>
