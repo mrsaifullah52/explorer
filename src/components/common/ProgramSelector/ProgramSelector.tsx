@@ -19,7 +19,7 @@ export const ProgramSelector = () => {
   }, [programID, setCustomProgramID]);
 
   return (
-    <div className="w-full p-4 bg-cyan-700 rounded">
+    <div className="w-full p-4 bg-[#2C2B2B] rounded-lg">
       <h2 className="text-md font-bold">Program Address</h2>
       {!isChanging ? (
         <div className="flex items-center space-x-4">
@@ -36,27 +36,27 @@ export const ProgramSelector = () => {
           </button>
         </div>
       ) : (
-        <form onSubmit={handleProgramChange} className="mt-2 space-y-2">
+        <form onSubmit={handleProgramChange} className="mt-2 space-y-4">
           <input
             type="text"
             value={customProgramID}
             onChange={(e) => setCustomProgramID(e.target.value)}
             placeholder="Queue Address"
-            className="px-4 py-2 w-full rounded bg-transparent border-2 border-cyan-500 focus:outline-none"
+            className="px-4 py-2 w-full rounded-lg bg-transparent border-2 border-[#E7EAED] focus:outline-none"
           />
           {Object.entries(CLOCKWORKS_PROGRAMS).map(([programID, programLabel]) => (
             <div
               key={programID}
-              className="bg-cyan-800 hover:bg-cyan-900 transition-colors py-2 px-4 rounded flex items-center justify-between cursor-pointer"
+              className="bg-white hover:bg-[#E7EAED] transition-colors py-2 px-4 rounded-lg flex items-center justify-between cursor-pointer"
               onClick={() => setCustomProgramID(programID)}
             >
-              <p className="text-sm font-medium">{programLabel}</p>
-              <p className="text-sm font-light">{programID.slice(0, 16)}...</p>
+              <p className="text-sm text-[#0E1114] font-medium">{programLabel}</p>
+              <p className="text-sm text-[#0E1114] font-light">{programID}</p>
             </div>
           ))}
           <button
             type="submit"
-            className="px-4 py-2 w-full rounded bg-cyan-500 hover:bg-cyan-600 text-white"
+            className="px-4 py-2 w-full rounded-lg bg-white hover:bg-[#E7EAED] text-black"
           >
             Confirm
           </button>

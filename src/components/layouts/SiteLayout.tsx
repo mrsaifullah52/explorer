@@ -35,27 +35,29 @@ export const SiteLayout: FC<SiteLayoutProps> = ({
         </title>
       </Head>
       <div className="w-full h-screen overflow-y-auto flex flex-col space-y-4 justify-between">
-        <div className="max-w-4xl w-full mx-auto">
+        <div className="w-full mx-auto">
           <Header />
-          <div className="flex flex-col space-y-4 items-stretch mb-4 px-4 md:px-0">
-            <ProgramSelector />
-            <form
-              className="flex items-center space-x-4 rounded border-2 border-cyan-500"
-              onSubmit={handleSubmit}
-            >
-              <input
-                type="text"
-                value={marketAddress}
-                onChange={(e) => setMarketAddress(e.target.value)}
-                placeholder="Queue Address"
-                className="px-4 py-2 w-full bg-transparent focus:outline-none flex-1"
-              />
-              <button type="submit" className="px-4 py-2">
-                <SearchIcon className="h-5 w-5 text-cyan-500" />
-              </button>
-            </form>
+          <div className="max-w-4xl w-full mx-auto">
+            <div className="flex flex-col space-y-4 items-stretch mb-4 px-4">
+              <ProgramSelector />
+              <form
+                className="flex items-center space-x-4 rounded-lg border text-[#979797] border-[#E7EAED]"
+                onSubmit={handleSubmit}
+              >
+                <input
+                  type="text"
+                  value={marketAddress}
+                  onChange={(e) => setMarketAddress(e.target.value)}
+                  placeholder="Queue Address"
+                  className="px-4 py-2 w-full bg-transparent focus:outline-none text-[#979797] flex-1"
+                />
+                <button type="submit" className="px-4 py-2">
+                  <SearchIcon className="h-5 w-5 text-[#979797]" />
+                </button>
+              </form>
+            </div>
+            <div className="px-4">{children}</div>
           </div>
-          <div className="px-4 md:px-0">{children}</div>
         </div>
         <div className="pb-4 flex items-center justify-center">
           <a

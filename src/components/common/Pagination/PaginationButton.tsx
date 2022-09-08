@@ -5,7 +5,7 @@ interface PaginationButtonProps
 
 export const PaginationButton = ({ type, ...props }: PaginationButtonProps) => {
   return (
-    <button className="py-2 px-4 bg-cyan-500 rounded" {...props}>
+    <button className="py-2.5 px-6 bg-[#E7EAED] hover:bg-[#D7DCE1] text-[#0E1114] text-sm rounded-lg" {...props}>
       {type === "prev" ? "Prev" : "Next"}
     </button>
   );

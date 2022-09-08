@@ -30,7 +30,7 @@ export const WalletButton: FC<WalletButtonProps> = () => {
               }
             : () => setVisible(!visible)
         }
-        className="bg-cyan-500 hover:bg-cyan-600 text-white font-bold rounded"
+        className="border text-[#0E1114] font-bold"
       >
         <div className="md:block hidden py-2 px-4">
           {wallet.connected
@@ -44,17 +44,17 @@ export const WalletButton: FC<WalletButtonProps> = () => {
       <ul
         className={`${
           showDropdown ? "block" : "hidden"
-        } absolute top-full w-64 my-2 py-2 bg-cyan-900 rounded flex flex-col space-y-1`}
+        } absolute top-full w-64 my-2 py-2 bg-[#F8F9F9] rounded-lg flex flex-col space-y-1`}
       >
         <li
-          className={`hover:bg-cyan-800 p-2 cursor-pointer`}
+          className={`hover:bg-[#E7EAED] p-2 cursor-pointer`}
           onClick={() => {
             wallet.disconnect();
             setShowDropdown(false);
           }}
         >
           <div>
-            <h2 className="font-medium">Disconnect</h2>
+            <h2 className="font-medium text-[#0E1114]">Disconnect</h2>
           </div>
         </li>
       </ul>

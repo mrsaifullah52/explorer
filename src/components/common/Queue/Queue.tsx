@@ -21,8 +21,8 @@ import { useSolana } from "contexts/SolanaContext";
 export const Queue = ({ q }) => {
   const { cluster } = useSolana();
   return (
-    <div className="bg-cyan-800 rounded w-full">
-      <div className="w-full p-4 md:px-8 border-b-2 border-b-cyan-600">
+    <div className="bg-[#F8F9F9] rounded-lg w-full">
+      <div className="w-full p-4 md:px-8">
         <h3 className="font-medium text-lg">Overview</h3>
         <DataTable>
           <DataTableRow

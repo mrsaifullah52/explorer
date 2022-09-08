@@ -13,12 +13,12 @@ export const DataTableRowExpandable = ({
   return (
     <>
       <tr>
-        <td className="text-sm font-medium p-4 md:px-8 whitespace-nowrap">
+        <td className="text-sm text-[#0E1114] font-medium p-4 md:px-8 whitespace-nowrap">
           {label}
         </td>
-        <td className="text-sm font-light p-4 md:px-8 whitespace-nowrap flex justify-end items-center space-x-2">
+        <td className="text-sm text-[#0E1114] font-light p-4 md:px-8 whitespace-nowrap flex justify-end items-center space-x-2">
           <ChevronDownIcon
-            className={`h-4 w-4 cursor-pointer ${expanded ? "rotate-180" : ""}`}
+            className={`h-4 w-4 cursor-pointer  text-[#979797] ${expanded ? "rotate-180" : ""}`}
             onClick={() => setExpanded((prev) => !prev)}
           />
         </td>
