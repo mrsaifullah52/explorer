@@ -2,11 +2,6 @@ import { AppProps } from "next/app";
 import Head from "next/head";
 import { FC } from "react";
 import { ContextProvider } from "../contexts/ContextProvider";
-import { AppBar } from "../components/AppBar";
-import { ContentContainer } from "../components/ContentContainer";
-import { Footer } from "../components/Footer";
-import Notifications from "../components/Notification";
-import { ToastContainer } from "react-toastify";
 import { getLayout } from "components/layouts/SiteLayout";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
