@@ -4,8 +4,8 @@ import {
   CLUSTERS,
   CUSTOM_RPC_CLUSTER,
   useSolana,
-} from "../../../contexts/SolanaContext";
-import { useOutsideAlerter } from "../../../hooks/useOutsideAlerter";
+} from "contexts/SolanaContext";
+import { useOutsideAlerter } from "hooks/useOutsideAlerter";
 import { toast } from "react-toastify";
 
 type SettingButtonProps = {};
@@ -74,7 +74,9 @@ export const SettingsButton: FC<SettingButtonProps> = () => {
         })}
         <li
           className={`${
-            isActiveCluster(CUSTOM_RPC_CLUSTER) ? "bg-[#E7EAED]" : "bg-[#F8F9F9]"
+            isActiveCluster(CUSTOM_RPC_CLUSTER)
+              ? "bg-[#E7EAED]"
+              : "bg-[#F8F9F9]"
           } hover:bg-[#E7EAED] p-2 cursor-pointer`}
           onClick={() => setCluster(CUSTOM_RPC_CLUSTER)}
         >

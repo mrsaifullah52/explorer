@@ -1,13 +1,8 @@
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { useWallet } from "@solana/wallet-adapter-react";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useRef, useState } from "react";
 import { KeyIcon } from "@heroicons/react/outline";
-import {
-  CLUSTERS,
-  CUSTOM_RPC_CLUSTER,
-  useSolana,
-} from "../../../contexts/SolanaContext";
-import { useOutsideAlerter } from "../../../hooks/useOutsideAlerter";
+import { useOutsideAlerter } from "hooks/useOutsideAlerter";
 
 type WalletButtonProps = {};
 

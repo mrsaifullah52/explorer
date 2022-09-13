@@ -1,15 +1,10 @@
-import React, { useCallback } from "react";
-import { useQueues } from "hooks/useQueues";
-// import { useQueuesSWR } from "hooks/useQueuesSWR";
-
+import React from "react";
 import {
   DataTable,
   DataTableRow,
   DataTableRowExpandable,
   DataTableRowInline,
 } from "../DataTable";
-import { SkeletonBox } from "../Skeleton";
-import { format } from "date-fns";
 import {
   formatExecCtx,
   formatTrigger,
@@ -23,7 +18,9 @@ export const Queue = ({ q }) => {
   return (
     <div className="bg-[#F8F9F9] rounded-lg w-full">
       <div className="w-full px-4 py-6">
-        <h3 className="font-semibold text-2xl text-[#0E1114] font-['Inter'] leading-5 mb-6">Overview</h3>
+        <h3 className="font-semibold text-2xl text-[#0E1114] font-['Inter'] leading-5 mb-6">
+          Overview
+        </h3>
         <DataTable>
           <DataTableRow
             label="Queue"
