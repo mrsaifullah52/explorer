@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
 import { FC } from "react";
@@ -31,7 +30,9 @@ export const Header: FC<HeaderProps> = () => {
         <HeadingVector />
       </button>
       <div className="flex items-center">
-        <p className="text-sm text-[#0E1114] text-right lg:mr-8">{cluster.label}</p>
+        <p className="text-sm text-[#0E1114] text-right lg:mr-8">
+          {cluster.label}
+        </p>
         <SettingsButton />
         <WalletButton />
       </div>

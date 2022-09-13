@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useQueues } from "hooks/useQueues";
 import { SkeletonBox } from "../Skeleton";
@@ -25,12 +25,16 @@ export const Queues = () => {
       <div className="hover:bg-[#E7EAED] transition-colors py-2 rounded-lg flex items-center justify-between border border-[#D7DCE1]">
         <div className="flex flex-col border-r pl-6 w-60">
           <h3 className="text-xs text-[#979797] mb-2.5">Name</h3>
-          <p className="font-normal leading-relaxed text-sm text-[#0E1114]">{queue.account.name}</p>
+          <p className="font-normal leading-relaxed text-sm text-[#0E1114]">
+            {queue.account.name}
+          </p>
         </div>
 
         <div className="flex-1 pl-6 flex-col">
           <h3 className="text-xs text-[#979797] mb-2.5">Address</h3>
-          <p className="font-normal leading-relaxed text-sm text-[#0E1114]">{queue.publicKey.toString()}</p>
+          <p className="font-normal leading-relaxed text-sm text-[#0E1114]">
+            {queue.publicKey.toString()}
+          </p>
         </div>
       </div>
     );
@@ -40,7 +44,9 @@ export const Queues = () => {
     <div className="flex flex-col space-y-4 items-stretch">
       <div className="flex flex-col">
         <div className="bg-[#F8F9F9] px-4 py-6 rounded-lg flex flex-col space-y-6">
-          <h2 className="text-2xl text-[#0E1114] font-semibold font-['Inter'] leading-5">Queues</h2>
+          <h2 className="text-2xl text-[#0E1114] font-semibold font-['Inter'] leading-5">
+            Queues
+          </h2>
 
           {loading ? (
             <div className="flex flex-col space-y-4">

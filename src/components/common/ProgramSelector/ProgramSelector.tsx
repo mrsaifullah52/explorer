@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
-import { useClockworks } from "../../../contexts/ClockworksContext";
-import { CLOCKWORKS_PROGRAMS } from "../../../utils/constants";
+import { useClockworks } from "contexts/ClockworksContext";
+import { CLOCKWORKS_PROGRAMS } from "utils/constants";
 
 export const ProgramSelector = () => {
   const { programID, setProgramID } = useClockworks();
@@ -44,16 +44,18 @@ export const ProgramSelector = () => {
             placeholder="Queue Address"
             className="px-4 py-2 w-full text-white rounded-lg bg-transparent border border-[#E7EAED] focus:outline-none"
           />
-          {Object.entries(CLOCKWORKS_PROGRAMS).map(([programID, programLabel]) => (
-            <div
-              key={programID}
-              className="bg-[#4F4C4C] transition-colors py-2 px-4 rounded-lg flex items-center justify-between cursor-pointer"
-              onClick={() => setCustomProgramID(programID)}
-            >
-              <p className="text-sm text-white">{programLabel}</p>
-              <p className="text-sm text-white font-light">{programID}</p>
-            </div>
-          ))}
+          {Object.entries(CLOCKWORKS_PROGRAMS).map(
+            ([programID, programLabel]) => (
+              <div
+                key={programID}
+                className="bg-[#4F4C4C] transition-colors py-2 px-4 rounded-lg flex items-center justify-between cursor-pointer"
+                onClick={() => setCustomProgramID(programID)}
+              >
+                <p className="text-sm text-white">{programLabel}</p>
+                <p className="text-sm text-white font-light">{programID}</p>
+              </div>
+            )
+          )}
           <button
             type="submit"
             className="px-4 py-2 w-full rounded-lg bg-white hover:bg-[#E7EAED] text-black"

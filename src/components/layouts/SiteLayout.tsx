@@ -1,11 +1,10 @@
 import { SearchIcon } from "@heroicons/react/outline";
 import Head from "next/head";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { FC, FormEvent, ReactNode, useState } from "react";
 import Header from "../common/Header";
 import { ProgramSelector } from "components/common/ProgramSelector";
-import { Footer } from "components/Footer";
+import { Footer } from "components/common/Footer/Footer";
 
 type SiteLayoutProps = {
   title?: string;

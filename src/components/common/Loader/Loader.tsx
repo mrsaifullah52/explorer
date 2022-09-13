@@ -1,4 +1,4 @@
-export default function Loader() {
+export const Loader = () => {
   return (
     <svg
       className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
@@ -21,4 +21,6 @@ export default function Loader() {
       ></path>
     </svg>
   );
-}
+};
+
+export default Loader;

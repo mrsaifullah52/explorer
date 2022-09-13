@@ -1,7 +1,6 @@
 import { ExternalLinkIcon } from "@heroicons/react/outline";
 
-export const DataTableRowInline
- = ({
+export const DataTableRowInline = ({
   label,
   value,
   link,
