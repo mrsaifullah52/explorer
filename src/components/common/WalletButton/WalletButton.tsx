@@ -30,9 +30,9 @@ export const WalletButton: FC<WalletButtonProps> = () => {
               }
             : () => setVisible(!visible)
         }
-        className="border text-[#0E1114] font-bold"
+        className="border border-[#0E1114] text-sm text-[#0E1114] align-middle justify-center"
       >
-        <div className="md:block hidden py-2 px-4">
+        <div className="md:block hidden px-10 py-3">
           {wallet.connected
             ? `${wallet.publicKey!.toString().slice(0, 6)}...`
             : "Connect"}

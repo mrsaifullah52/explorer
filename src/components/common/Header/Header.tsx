@@ -21,7 +21,7 @@ export const Header: FC<HeaderProps> = () => {
   };
 
   return (
-    <div className="w-full py-4 px-4 md:px-4 flex items-center justify-between border-b border-[#E7EAED] mb-4">
+    <div className="h-[86px] w-full py-4 px-4 lg:px-10 flex items-center justify-between border-b border-[#E7EAED] mb-10">
       <button
         className="font-bold text-2xl text-white no-underline text-left"
         onClick={() =>
@@ -30,8 +30,8 @@ export const Header: FC<HeaderProps> = () => {
       >
         <HeadingVector />
       </button>
-      <div className="flex items-center space-x-4">
-        <p className="text-sm text-[#979797] text-right">{cluster.label}</p>
+      <div className="flex items-center">
+        <p className="text-sm text-[#0E1114] text-right lg:mr-8">{cluster.label}</p>
         <SettingsButton />
         <WalletButton />
       </div>

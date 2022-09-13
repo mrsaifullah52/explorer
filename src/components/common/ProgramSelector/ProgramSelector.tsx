@@ -19,17 +19,17 @@ export const ProgramSelector = () => {
   }, [programID, setCustomProgramID]);
 
   return (
-    <div className="w-full p-4 bg-[#2C2B2B] rounded-lg">
-      <h2 className="text-md font-bold">Program Address</h2>
+    <div className="w-full px-10 py-4 bg-[#2C2B2B] rounded-lg">
+      <h2 className="text-sm text-white font-medium mb-2.5">Program Address</h2>
       {!isChanging ? (
-        <div className="flex items-center space-x-4">
-          <p className="text-sm">
+        <div className="flex items-center space-x-2.5">
+          <p className="text-sm text-white font-normal">
             {CLOCKWORKS_PROGRAMS[programID.toString()]
               ? CLOCKWORKS_PROGRAMS[programID.toString()]
               : `${programID.toString().slice(0, 18)}...`}
           </p>
           <button
-            className="text-sm underline"
+            className="text-sm text-white font-normal underline"
             onClick={() => setIsChanging(true)}
           >
             Change
@@ -42,16 +42,16 @@ export const ProgramSelector = () => {
             value={customProgramID}
             onChange={(e) => setCustomProgramID(e.target.value)}
             placeholder="Queue Address"
-            className="px-4 py-2 w-full rounded-lg bg-transparent border-2 border-[#E7EAED] focus:outline-none"
+            className="px-4 py-2 w-full text-white rounded-lg bg-transparent border border-[#E7EAED] focus:outline-none"
           />
           {Object.entries(CLOCKWORKS_PROGRAMS).map(([programID, programLabel]) => (
             <div
               key={programID}
-              className="bg-white hover:bg-[#E7EAED] transition-colors py-2 px-4 rounded-lg flex items-center justify-between cursor-pointer"
+              className="bg-[#4F4C4C] transition-colors py-2 px-4 rounded-lg flex items-center justify-between cursor-pointer"
               onClick={() => setCustomProgramID(programID)}
             >
-              <p className="text-sm text-[#0E1114] font-medium">{programLabel}</p>
-              <p className="text-sm text-[#0E1114] font-light">{programID}</p>
+              <p className="text-sm text-white">{programLabel}</p>
+              <p className="text-sm text-white font-light">{programID}</p>
             </div>
           ))}
           <button

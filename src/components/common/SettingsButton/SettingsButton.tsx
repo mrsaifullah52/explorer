@@ -46,7 +46,7 @@ export const SettingsButton: FC<SettingButtonProps> = () => {
     <div className="relative flex justify-end" ref={dropdownRef}>
       <div
         onClick={() => setShowDropdown(!showDropdown)}
-        className="cursor-pointer"
+        className="cursor-pointer m-6"
       >
         <CogIcon className="h-6 w-6 text-[#979797]" />
       </div>

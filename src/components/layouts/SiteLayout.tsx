@@ -39,7 +39,7 @@ export const SiteLayout: FC<SiteLayoutProps> = ({
         <div className="w-full mx-auto">
           <Header />
           <div className="max-w-4xl w-full mx-auto">
-            <div className="flex flex-col space-y-4 items-stretch mb-4 px-4">
+            <div className="flex flex-col space-y-10 items-stretch mb-[30px] px-4">
               <ProgramSelector />
               <form
                 className="flex items-center space-x-4 rounded-lg border text-[#979797] border-[#E7EAED]"
@@ -50,7 +50,7 @@ export const SiteLayout: FC<SiteLayoutProps> = ({
                   value={marketAddress}
                   onChange={(e) => setMarketAddress(e.target.value)}
                   placeholder="Queue Address"
-                  className="px-4 py-2 w-full bg-transparent focus:outline-none text-[#979797] flex-1"
+                  className="px-3 py-2 w-full bg-transparent focus:outline-none text-[#979797] flex-1"
                 />
                 <button type="submit" className="px-4 py-2">
                   <SearchIcon className="h-5 w-5 text-[#979797]" />
