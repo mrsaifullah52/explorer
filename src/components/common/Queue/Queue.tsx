@@ -22,8 +22,8 @@ export const Queue = ({ q }) => {
   const { cluster } = useSolana();
   return (
     <div className="bg-[#F8F9F9] rounded-lg w-full">
-      <div className="w-full p-4 md:px-8">
-        <h3 className="font-medium text-lg">Overview</h3>
+      <div className="w-full px-4 py-6">
+        <h3 className="font-semibold text-2xl text-[#0E1114] font-['Inter'] leading-5 mb-6">Overview</h3>
         <DataTable>
           <DataTableRow
             label="Queue"
