@@ -19,7 +19,7 @@ export const ProgramSelector = () => {
   }, [programID, setCustomProgramID]);
 
   return (
-    <div className="w-full px-10 py-4 bg-[#2C2B2B] rounded-lg">
+    <div className="w-full px-10 py-4 bg-[#2C2B2B] dark:bg-[#5A5A5A] rounded-lg">
       <h2 className="text-sm text-white font-medium mb-2.5">Program Address</h2>
       {!isChanging ? (
         <div className="flex items-center space-x-2.5">
@@ -48,7 +48,7 @@ export const ProgramSelector = () => {
             ([programID, programLabel]) => (
               <div
                 key={programID}
-                className="bg-[#4F4C4C] transition-colors py-2 px-4 rounded-lg flex items-center justify-between cursor-pointer"
+                className="bg-[#4F4C4C] dark:bg-[#2C2B2B] transition-colors py-2 px-4 rounded-lg flex items-center justify-between cursor-pointer"
                 onClick={() => setCustomProgramID(programID)}
               >
                 <p className="text-sm text-white">{programLabel}</p>
