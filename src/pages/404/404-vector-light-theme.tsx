@@ -1675,3 +1675,5 @@ export const Vector404LightTheme = () => (
     </defs>
   </svg>
 );
+
+export default Vector404LightTheme;
