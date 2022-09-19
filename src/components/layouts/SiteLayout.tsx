@@ -22,6 +22,10 @@ export const SiteLayout: FC<SiteLayoutProps> = ({
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
+    if (marketAddress.length === 0) {
+      return;
+    }
+
     // NOTE: If not deleted, extra ?address=xyz is added
     delete router.query.address;
 
@@ -37,7 +41,7 @@ export const SiteLayout: FC<SiteLayoutProps> = ({
       <div className="w-full h-screen overflow-y-auto flex flex-col space-y-4 justify-between">
         <div className="w-full mx-auto">
           <Header />
-          <div className="max-w-4xl w-full mx-auto">
+          <div className="max-w-6xl w-full mx-auto">
             <div className="flex flex-col space-y-10 items-stretch mb-[30px] px-4">
               <ProgramSelector />
               <form

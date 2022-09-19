@@ -31,10 +31,10 @@ export const Header: FC<HeaderProps> = () => {
           router.push({ pathname: "/", query: sanitizeQuery(router.query) })
         }
       >
-        {theme === "light" ? <HeadingVectorLight /> : <HeadingVectorDark />}
+        {theme === "dark" ? <HeadingVectorDark /> : <HeadingVectorLight />}
       </button>
       <div className="flex items-center">
-        <div className="mr-4">
+        <div className="mr-8 lg:mr-14">
           <ThemeSwitch />
         </div>
         <p className="text-sm text-[#0E1114] dark:text-white text-right lg:mr-8">
