@@ -15,7 +15,14 @@ const MarketPage = () => {
   if (data) {
     return <Queue q={data} />;
   }
-  return <Custom404 title={'Queue not found!'} />;
+
+  if (error && error?.message) {
+    const missingQueueRegExp = new RegExp("Account does not exist", "i");
+    if (error.message.match(missingQueueRegExp)) {
+      return <Custom404 title={"Queue not found!"} />;
+    }
+  }
+  return null;
 };
 
 MarketPage.getLayout = (page: ReactNode) => getLayout(page, "Queue");

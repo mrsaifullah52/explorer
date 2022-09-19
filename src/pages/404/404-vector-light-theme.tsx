@@ -13,7 +13,7 @@ export const Vector404LightTheme = () => (
       transform="rotate(60 305.268 353.268)"
       fill="url(#paint0_linear_873_13340)"
     />
-    <g clip-path="url(#clip0_873_13340)">
+    <g clipPath="url(#clip0_873_13340)">
       <path
         d="M537.021 267.888L537.575 267.346L538.122 266.799L537.866 266.542L537.609 266.286L537.021 266.839L536.429 267.398L536.732 267.643L537.021 267.888Z"
         fill="black"
@@ -1660,9 +1660,9 @@ export const Vector404LightTheme = () => (
         y2="576.74"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#FFF4B7" />
-        <stop offset="0.0001" stop-color="#FFF3AF" />
-        <stop offset="1" stop-color="#72F7E7" />
+        <stop stopColor="#FFF4B7" />
+        <stop offset="0.0001" stopColor="#FFF3AF" />
+        <stop offset="1" stopColor="#72F7E7" />
       </linearGradient>
       <clipPath id="clip0_873_13340">
         <rect

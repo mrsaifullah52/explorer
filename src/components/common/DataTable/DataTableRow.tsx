@@ -24,7 +24,7 @@ export const DataTableRow = ({
             rel="noopener noreferrer"
             className="p-4 md:px-8 whitespace-nowrap flex justify-end items-center space-x-2"
           >
-            <p className="text-sm text-[#0E1114] dark:text-white  font-light ">{value}</p>
+            <p className="text-sm text-[#0E1114] dark:text-white font-light font-['IBM_Plex_Mono']">{value}</p>
             <ExternalLinkIcon className="h-4 w-4 cursor-pointer" />
           </a>
         </td>
