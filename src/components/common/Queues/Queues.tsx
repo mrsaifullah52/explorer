@@ -22,17 +22,17 @@ export const Queues = () => {
 
   const QueueListItem = ({ queue }: { queue: any }) => {
     return (
-      <div className="hover:bg-[#E7EAED] transition-colors py-2 rounded-lg flex items-center justify-between border border-[#D7DCE1]">
-        <div className="flex flex-col border-r pl-6 w-60">
+      <div className="hover:bg-[#E7EAED] dark:hover:bg-[#5A5A5A] transition-colors py-2 rounded-lg flex items-center justify-between border border-[#D7DCE1] dark:border-[#4F4F4F]">
+        <div className="flex flex-col border-r dark:border-[#4F4F4F] pl-6 w-60">
           <h3 className="text-xs text-[#979797] mb-2.5">Name</h3>
-          <p className="font-normal leading-relaxed text-sm text-[#0E1114]">
+          <p className="font-normal leading-relaxed text-sm text-[#0E1114] dark:text-white">
             {queue.account.name}
           </p>
         </div>
 
         <div className="flex-1 pl-6 flex-col">
           <h3 className="text-xs text-[#979797] mb-2.5">Address</h3>
-          <p className="font-normal leading-relaxed text-sm text-[#0E1114]">
+          <p className="font-normal leading-relaxed text-sm text-[#0E1114] dark:text-white">
             {queue.publicKey.toString()}
           </p>
         </div>
@@ -43,8 +43,8 @@ export const Queues = () => {
   return (
     <div className="flex flex-col space-y-4 items-stretch">
       <div className="flex flex-col">
-        <div className="bg-[#F8F9F9] px-4 py-6 rounded-lg flex flex-col space-y-6">
-          <h2 className="text-2xl text-[#0E1114] font-semibold font-['Inter'] leading-5">
+        <div className="bg-[#F8F9F9] dark:bg-[#393939] px-4 py-6 rounded-lg flex flex-col space-y-6">
+          <h2 className="text-2xl text-[#0E1114] dark:text-white font-semibold font-['Inter'] leading-5">
             Queues
           </h2>
 
@@ -65,7 +65,7 @@ export const Queues = () => {
                 value={filterString}
                 onChange={(e) => setFilterString(e.target.value)}
                 placeholder="Filter by name or address"
-                className="w-full p-2 rounded-lg border border-[#D7DCE1] bg-transparent focus:outline-none text-sm text-[#979797]"
+                className="w-full p-2 rounded-lg border border-[#D7DCE1] dark:border-[#4F4F4F] bg-transparent focus:outline-none text-sm text-[#979797]"
               />
               <ul className="flex flex-col space-y-5 w-full">
                 {pageMarkets.map((queue) => (

@@ -25,7 +25,7 @@ export const WalletButton: FC<WalletButtonProps> = () => {
               }
             : () => setVisible(!visible)
         }
-        className="border border-[#0E1114] text-sm text-[#0E1114] align-middle justify-center"
+        className="border border-[#0E1114] dark:border-white text-sm text-[#0E1114] dark:text-white align-middle justify-center"
       >
         <div className="md:block hidden px-10 py-3">
           {wallet.connected
@@ -39,17 +39,17 @@ export const WalletButton: FC<WalletButtonProps> = () => {
       <ul
         className={`${
           showDropdown ? "block" : "hidden"
-        } absolute top-full w-64 my-2 py-2 bg-[#F8F9F9] rounded-lg flex flex-col space-y-1`}
+        } absolute top-full w-64 my-2 py-2 bg-[#F8F9F9] dark:bg-[#393939] rounded-lg flex flex-col space-y-1`}
       >
         <li
-          className={`hover:bg-[#E7EAED] p-2 cursor-pointer`}
+          className={`hover:bg-[#E7EAED] dark:hover:bg-[#5A5A5A] p-2 cursor-pointer`}
           onClick={() => {
             wallet.disconnect();
             setShowDropdown(false);
           }}
         >
           <div>
-            <h2 className="font-medium text-[#0E1114]">Disconnect</h2>
+            <h2 className="font-medium text-[#0E1114] dark:text-white">Disconnect</h2>
           </div>
         </li>
       </ul>
