@@ -50,7 +50,7 @@ export const SettingsProgramSelectorMenu = () => {
                     queueProgramID === programID.toBase58()
                       ? "bg-[#E7EAED] dark:bg-[#626262]"
                       : "bg-[#F8F9F9] dark:bg-[#393939]"
-                  } bg-[#F8F9F9] dark:bg-[#393939] hover:bg-[#E7EAED] dark:hover:bg-[#626262] p-2 px-3 cursor-pointer`}
+                  } hover:bg-[#E7EAED] dark:hover:bg-[#626262] p-2 px-3 cursor-pointer`}
                 >
                   <div>
                     <h3 className="text-[#979797] text-xs dark:text-[#979797] font-bold">
@@ -107,7 +107,7 @@ export const SettingsProgramSelectorMenu = () => {
                 programID.toBase58() === customProgramID
                   ? "bg-[#E7EAED] dark:bg-[#626262]"
                   : "bg-[#F8F9F9] dark:bg-[#393939]"
-              } bg-[#F8F9F9] dark:bg-[#393939] hover:bg-[#E7EAED] dark:hover:bg-[#626262] p-2 px-3 cursor-pointer`}
+              } hover:bg-[#E7EAED] dark:hover:bg-[#626262] p-2 px-3 cursor-pointer`}
             >
               <div>
                 <h3 className="text-[#979797] text-xs dark:text-[#979797] font-bold">

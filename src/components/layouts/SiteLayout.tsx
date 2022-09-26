@@ -43,7 +43,7 @@ export const SiteLayout: FC<SiteLayoutProps> = ({
           <Header />
           <div className="max-w-6xl w-full mx-auto">
             <div className="flex flex-col space-y-10 items-stretch mb-[30px] px-4">
-              <ProgramSelector />
+              {/* <ProgramSelector /> */}
               <form
                 className="flex items-center space-x-4 rounded-lg border text-[#979797] border-[#E7EAED] dark:border-[#4F4F4F]"
                 onSubmit={handleSubmit}
