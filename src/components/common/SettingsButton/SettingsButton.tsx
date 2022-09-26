@@ -53,7 +53,7 @@ export const SettingsButton: FC<SettingButtonProps> = () => {
       <ul
         className={`${
           showDropdown ? "block" : "hidden"
-        } absolute top-full w-64 my-4 py-2 bg-[#F8F9F9] dark:bg-[#393939] rounded-lg flex flex-col space-y-1`}
+        } absolute top-full w-64 my-4 py-2 bg-[#F8F9F9] dark:bg-[#393939] rounded-lg flex flex-col space-y-1 shadow-md`}
       >
         {CLUSTERS.map((cluster) => {
           if (cluster.label !== "Custom RPC")
@@ -63,11 +63,11 @@ export const SettingsButton: FC<SettingButtonProps> = () => {
                 onClick={() => setCluster(cluster)}
                 className={`${
                   isActiveCluster(cluster) ? "bg-[#E7EAED] dark:bg-[#626262]" : "bg-[#F8F9F9] dark:bg-[#393939]"
-                } hover:bg-[#E7EAED] dark:hover:bg-[#626262] p-2 cursor-pointer`}
+                } hover:bg-[#E7EAED] dark:hover:bg-[#626262] p-2 px-3 cursor-pointer`}
               >
                 <div>
-                  <h2 className="text-[#0E1114] dark:text-white font-bold">{cluster.label}</h2>
-                  <p className="text-[#979797] text-xs">{cluster.endpoint}</p>
+                  <h3 className="text-[#979797] text-xs dark:text-[#979797] font-bold">{cluster.label}</h3>
+                  <p className="text-[#0E1114] dark:text-white text-xs">{cluster.endpoint}</p>
                 </div>
               </li>
             );
@@ -77,17 +77,17 @@ export const SettingsButton: FC<SettingButtonProps> = () => {
             isActiveCluster(CUSTOM_RPC_CLUSTER)
               ? "bg-[#E7EAED] dark:bg-[#626262]"
               : "bg-[#F8F9F9] dark:bg-[#393939]"
-          } hover:bg-[#E7EAED] dark:hover:bg-[#626262] p-2 cursor-pointer`}
+          } hover:bg-[#E7EAED] dark:hover:bg-[#626262] p-2 px-3 cursor-pointer`}
           onClick={() => setCluster(CUSTOM_RPC_CLUSTER)}
         >
           <div>
-            <h2 className="text-[#0E1114] font-bold dark:text-white">Custom RPC</h2>
+            <h3 className="text-[#979797] text-xs font-bold dark:text-[#979797]">Custom RPC</h3>
             {cluster.label === "Custom RPC" && (
               <input
                 type="text"
                 value={endpoint}
                 onChange={(e) => setEndpoint(e.target.value)}
-                className="border border-[#D7DCE1] text-[#979797] text-sm dark:text-white p-2 rounded-lg my-2 w-full bg-[#E7EAED] dark:bg-[#393939] focus:outline-none"
+                className="border border-[#979797] text-[#0E1114] text-sm dark:text-white p-2 px-3 rounded-lg my-2 w-full bg-[#E7EAED] dark:bg-[#393939] focus:outline-none"
               />
             )}
           </div>
