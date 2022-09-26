@@ -34,14 +34,14 @@ export const Header: FC<HeaderProps> = () => {
         {theme === "dark" ? <HeadingVectorDark /> : <HeadingVectorLight />}
       </button>
       <div className="flex items-center">
-        <div className="mr-8 lg:mr-14">
-          <ThemeSwitch />
-        </div>
-        <p className="text-sm text-[#0E1114] dark:text-white text-right lg:mr-8">
+        <p className="text-sm text-[#0E1114] dark:text-white text-right lg:mr-0">
           {cluster.label}
         </p>
         <SettingsButton />
         <WalletButton />
+        <div className="ml-3">
+          <ThemeSwitch />
+        </div>
       </div>
     </div>
   );

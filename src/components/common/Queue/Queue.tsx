@@ -16,8 +16,8 @@ import { useSolana } from "contexts/SolanaContext";
 export const Queue = ({ q }) => {
   const { cluster } = useSolana();
   return (
-    <div className="bg-[#F8F9F9] dark:bg-[#393939] rounded-lg w-full">
-      <div className="w-full px-4 py-6">
+    <div className="rounded-lg w-full">
+      <div className="w-full py-6">
         <h3 className="font-semibold text-2xl text-[#0E1114] dark:text-white font-['Inter'] leading-5 mb-6">
           Overview
         </h3>
