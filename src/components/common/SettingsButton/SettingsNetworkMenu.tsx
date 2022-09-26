@@ -55,7 +55,7 @@ export const SettingsNetworkMenu: FC<SettingsNetworkMenuProps> = ({
       } absolute top-full w-64 my-4 py-2 bg-[#F8F9F9] dark:bg-[#393939] rounded-lg flex flex-col shadow`}
     >
       <SettingsProgramSelectorMenu />
-      <div className="w-full flex px-3 py-2">
+      <div className="w-full flex px-3 pt-1 pb-2">
         <div className="border-[#E7EAED] dark:border-[#4F4F4F] border-b flex-1" />
       </div>
 
@@ -97,13 +97,17 @@ export const SettingsNetworkMenu: FC<SettingsNetworkMenuProps> = ({
               <h3 className="text-[#979797] text-xs font-bold dark:text-[#979797]">
                 Custom RPC
               </h3>
-              {cluster.label === "Custom RPC" && (
+              {cluster.label === "Custom RPC" ? (
                 <input
                   type="text"
                   value={endpoint}
                   onChange={(e) => setEndpoint(e.target.value)}
                   className="border border-[#979797] text-[#0E1114] text-sm dark:text-white p-2 px-3 rounded-lg my-2 w-full bg-[#E7EAED] dark:bg-[#393939] focus:outline-none"
                 />
+              ) : (
+                <p className="text-[#0E1114] dark:text-white text-xs">
+                  Enter custom RPC.
+                </p>
               )}
             </div>
           </li>

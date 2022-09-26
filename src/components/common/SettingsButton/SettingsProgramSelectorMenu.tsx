@@ -21,7 +21,7 @@ export const SettingsProgramSelectorMenu = () => {
 
   console.log(programID.toBase58(), customProgramID);
   return (
-    <div className="my-2 w-full">
+    <div className="py-2 w-full">
       <SettingsMenuLabel>Program Address</SettingsMenuLabel>
       {/* {!isChanging ? (
         <div className="flex items-center space-x-2.5">
@@ -91,13 +91,13 @@ export const SettingsProgramSelectorMenu = () => {
                 onChange={(e) => setCustomProgramID(e.target.value)}
                 className="border border-[#979797] text-[#0E1114] text-xs dark:text-white p-2 px-3 rounded-lg my-2 w-full bg-[#E7EAED] dark:bg-[#393939] focus:outline-none"
               />
-              <button
+              {/* <button
                 type="submit"
                 onClick={() => setProgramID(customProgramID)}
-                className="px-4 py-1 w-full rounded-lg bg-white hover:bg-[#E7EAED] text-black"
+                className="px-4 py-1 w-full rounded-lg bg-[#2C2B2B] hover:bg-[#393939] text-white dark:bg-white dark:hover:bg-[#E7EAED] dark:text-black"
               >
                 Confirm
-              </button>
+              </button> */}
             </li>
           ) : (
             <li
