@@ -1,3 +1,5 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
@@ -5,26 +7,14 @@ module.exports = {
   ],
   darkMode: "class",
   theme: {
-    fontFamily: {
-      display: ["Inter"],
-      body: ["FK Grotesk Neue"],
-    },
     extend: {
       fontFamily: {
-        "fk-grotesk-neue": ["FK Grotesk Neue"],
+        display: ["Inter"],
+        body: ['"FK Grotesk Neue"'],
+        header: ['"TT Firs Neue"'],
+        sans: ['"FK Grotesk Neue"', ...defaultTheme.fontFamily.sans],
+        mono: ['"IBM Plex Mono"', ...defaultTheme.fontFamily.mono],
       },
-      typography: (theme) => ({
-        dark: {
-          css: {
-            color: "white",
-          },
-        },
-        light: {
-          css: {
-            color: "black",
-          },
-        },
-      }),
     },
   },
   variants: {

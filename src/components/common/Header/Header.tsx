@@ -5,7 +5,7 @@ import { useSolana } from "contexts/SolanaContext";
 import { SettingsButton } from "../SettingsButton";
 import { WalletButton } from "../WalletButton";
 import { HeadingVector as HeadingVectorLight } from "./HeadingVector";
-import { HeadingVector as HeadingVectorDark } from "./HeadingVectorDarkMode";
+import { HeadingVector as HeadingVectorDark } from "./HeadingVectorDark";
 import { useTheme } from "next-themes";
 import { ThemeSwitch } from "../ThemeSwitch";
 
@@ -26,22 +26,17 @@ export const Header: FC<HeaderProps> = () => {
   return (
     <div className="h-[86px] w-full py-4 px-4 lg:px-10 flex items-center justify-between border-b border-[#E7EAED] dark:border-[#4F4F4F] mb-10">
       <button
-        className="font-bold text-2xl text-white no-underline text-left"
+        className="font-bold text-2xl text-white no-underline text-left m-0"
         onClick={() =>
           router.push({ pathname: "/", query: sanitizeQuery(router.query) })
         }
       >
         {theme === "dark" ? <HeadingVectorDark /> : <HeadingVectorLight />}
       </button>
-      <div className="flex items-center">
-        <p className="text-sm text-[#0E1114] dark:text-white text-right lg:mr-0">
-          {cluster.label}
-        </p>
+      <div className="flex items-center space-x-3">
         <SettingsButton />
         <WalletButton />
-        <div className="ml-3">
-          <ThemeSwitch />
-        </div>
+        <ThemeSwitch />
       </div>
     </div>
   );
