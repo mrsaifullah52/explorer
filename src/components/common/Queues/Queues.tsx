@@ -5,6 +5,7 @@ import { SkeletonBox } from "../Skeleton";
 import { usePagination } from "hooks/usePagination";
 import { useRouter } from "next/router";
 import { PaginationButton } from "../Pagination/PaginationButton";
+import { PrimaryButton } from "../Button";
 
 export const Queues = () => {
   const router = useRouter();
@@ -19,6 +20,8 @@ export const Queues = () => {
     prevPage,
     nextPage,
   } = usePagination(data, 5, filterString);
+
+  const handleCreateQueue = () => {}
 
   const QueueListItem = ({ queue }: { queue: any }) => {
     return (
@@ -44,9 +47,12 @@ export const Queues = () => {
     <div className="flex flex-col space-y-4 items-stretch">
       <div className="flex flex-col">
         <div className="bg-[#F8F9F9] dark:bg-[#393939] px-4 py-6 rounded-lg flex flex-col space-y-6">
-          <h2 className="text-2xl text-[#0E1114] dark:text-white font-semibold font-['Inter'] leading-5">
-            Queues
-          </h2>
+          <div className="flex justify-between items-center">
+            <h2 className="text-2xl text-[#0E1114] dark:text-white font-semibold font-['Inter'] leading-5">
+              Queues
+            </h2>
+            <PrimaryButton onClick={handleCreateQueue}>Create Queues</PrimaryButton>
+          </div>
 
           {loading ? (
             <div className="flex flex-col space-y-4">
