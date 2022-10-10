@@ -22,7 +22,7 @@ export const Queues = () => {
 
   const QueueListItem = ({ queue }: { queue: any }) => {
     return (
-      <div className="hover:bg-[#E7EAED] dark:hover:bg-[#5A5A5A] transition-colors py-2 rounded-lg flex items-center justify-between border border-[#D7DCE1] dark:border-[#4F4F4F]">
+      <div className="hover:bg-[#E7EAED] dark:hover:bg-[#393939] transition-colors py-2 rounded-lg flex items-center justify-between border border-[#D7DCE1] dark:border-[#4F4F4F]">
         <div className="flex flex-col border-r dark:border-[#4F4F4F] pl-6 w-60">
           <h3 className="text-xs text-[#979797] mb-2.5">Name</h3>
           <p className="font-normal leading-relaxed text-sm text-[#0E1114] dark:text-white">
@@ -43,8 +43,8 @@ export const Queues = () => {
   return (
     <div className="flex flex-col space-y-4 items-stretch">
       <div className="flex flex-col">
-        <div className="bg-[#F8F9F9] dark:bg-[#393939] px-4 py-6 rounded-lg flex flex-col space-y-6">
-          <h2 className="text-2xl text-[#0E1114] dark:text-white font-semibold font-['Inter'] leading-5">
+        <div className="py-6 rounded-lg flex flex-col space-y-6">
+          <h2 className="text-2xl text-[#0E1114] dark:text-white font-semibold font-header leading-5">
             Queues
           </h2>
 

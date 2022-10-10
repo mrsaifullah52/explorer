@@ -52,15 +52,10 @@ export const SettingsNetworkMenu: FC<SettingsNetworkMenuProps> = ({
     <div
       className={`${
         open ? "block" : "hidden"
-      } absolute top-full w-64 my-4 py-2 bg-[#F8F9F9] dark:bg-[#393939] rounded-lg flex flex-col shadow`}
+      } absolute top-full w-screen max-w-lg my-4 py-3 bg-white dark:bg-[#2C2B2B] rounded-lg flex flex-col shadow-xl`}
     >
-      <SettingsProgramSelectorMenu />
-      <div className="w-full flex px-3 pt-1 pb-2">
-        <div className="border-[#E7EAED] dark:border-[#4F4F4F] border-b flex-1" />
-      </div>
-
       <div className="py-2">
-        <SettingsMenuLabel>Network</SettingsMenuLabel>
+        {/* <SettingsMenuLabel>Network</SettingsMenuLabel> */}
         <ul>
           {CLUSTERS.map((cluster) => {
             if (cluster.label !== "Custom RPC")
@@ -70,15 +65,15 @@ export const SettingsNetworkMenu: FC<SettingsNetworkMenuProps> = ({
                   onClick={() => setCluster(cluster)}
                   className={`${
                     isActiveCluster(cluster)
-                      ? "bg-[#E7EAED] dark:bg-[#626262]"
-                      : "bg-[#F8F9F9] dark:bg-[#393939]"
-                  } hover:bg-[#E7EAED] dark:hover:bg-[#626262] p-2 px-3 cursor-pointer`}
+                      ? "bg-[#F2F3F3] dark:bg-[#393939]"
+                      : "bg-white dark:bg-[#2C2B2B]"
+                  } hover:bg-[#F2F3F3] dark:hover:bg-[#393939] p-2 px-8 cursor-pointer`}
                 >
                   <div>
-                    <h3 className="text-[#979797] text-xs dark:text-[#979797] font-bold">
+                    <h3 className="text-[#0E1114] text-lg dark:text-[#FFFFFF] font-medium font-['Inter'] mb-1">
                       {cluster.label}
                     </h3>
-                    <p className="text-[#0E1114] dark:text-white text-xs">
+                    <p className="text-[#979797] dark:text-[#979797] text-xs">
                       {cluster.endpoint}
                     </p>
                   </div>
@@ -88,13 +83,13 @@ export const SettingsNetworkMenu: FC<SettingsNetworkMenuProps> = ({
           <li
             className={`${
               isActiveCluster(CUSTOM_RPC_CLUSTER)
-                ? "bg-[#E7EAED] dark:bg-[#626262]"
-                : "bg-[#F8F9F9] dark:bg-[#393939]"
-            } hover:bg-[#E7EAED] dark:hover:bg-[#626262] p-2 px-3 cursor-pointer`}
+                ? "bg-[#F2F3F3] dark:bg-[#393939]"
+                : "bg-white dark:bg-[#2C2B2B]"
+            } hover:bg-[#F2F3F3] dark:hover:bg-[#393939] p-2 px-8 cursor-pointer`}
             onClick={() => setCluster(CUSTOM_RPC_CLUSTER)}
           >
             <div>
-              <h3 className="text-[#979797] text-xs font-bold dark:text-[#979797]">
+              <h3 className="text-[#0E1114] text-lg dark:text-[#FFFFFF] font-medium font-['Inter'] mb-1">
                 Custom RPC
               </h3>
               {cluster.label === "Custom RPC" ? (
@@ -104,15 +99,15 @@ export const SettingsNetworkMenu: FC<SettingsNetworkMenuProps> = ({
                   onChange={(e) => setEndpoint(e.target.value)}
                   className="border border-[#979797] text-[#0E1114] text-sm dark:text-white p-2 px-3 rounded-lg my-2 w-full bg-[#E7EAED] dark:bg-[#393939] focus:outline-none"
                 />
-              ) : (
-                <p className="text-[#0E1114] dark:text-white text-xs">
-                  Enter custom RPC.
-                </p>
-              )}
+              ) : null}
             </div>
           </li>
         </ul>
       </div>
+      <div className="w-full flex px-6 pt-1 pb-2">
+        <div className="border-[#E7EAED] dark:border-[#BFBFBF] border-b flex-1" />
+      </div>
+      <SettingsProgramSelectorMenu />
     </div>
   );
 };
