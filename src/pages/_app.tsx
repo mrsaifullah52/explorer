@@ -10,11 +10,6 @@ require("../styles/globals.css");
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <>
-      <Head>
-        <title>Clockwork Explorer</title>
-      </Head>
-
       <ContextProvider>
         <ThemeProvider attribute="class">
           <div className="flex flex-col h-screen dark:bg-[#2C2B2B]">
@@ -22,7 +17,6 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
           </div>
         </ThemeProvider>
       </ContextProvider>
-    </>
   );
 };
 

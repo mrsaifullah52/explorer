@@ -19,11 +19,11 @@ export const Queue = ({ q }) => {
     <div className="rounded-lg w-full">
       <div className="w-full py-6">
         <h3 className="font-semibold text-2xl text-[#0E1114] dark:text-white font-['Inter'] leading-5 mb-6">
-          Overview
+          Queue
         </h3>
         <DataTable>
           <DataTableRow
-            label="Queue"
+            label="Address"
             value={q.publicKey.toBase58()}
             link={getExplorerAccountLink(
               q.publicKey.toBase58(),
