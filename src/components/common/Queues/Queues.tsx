@@ -46,7 +46,11 @@ export const Queues = () => {
 
   return (
     <>
-      <Modal open={openCreateQueueModal} setOpen={setOpenCreateQueueModal}>
+      <Modal
+        open={openCreateQueueModal}
+        setOpen={setOpenCreateQueueModal}
+        title="Create a Queue"
+      >
         <CreateQueue />
       </Modal>
       <div className="flex flex-col space-y-4 items-stretch">
@@ -56,7 +60,10 @@ export const Queues = () => {
               <h2 className="text-2xl text-[#0E1114] dark:text-white font-semibold font-header leading-5">
                 Queues
               </h2>
-              <PrimaryButton onClick={() => setOpenCreateQueueModal(true)}>
+              <PrimaryButton
+                onClick={() => setOpenCreateQueueModal(true)}
+                className="pt-3 pb-3"
+              >
                 Create Queues
               </PrimaryButton>
             </div>
