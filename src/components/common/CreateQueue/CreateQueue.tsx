@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 export const CreateQueue = () => {
   const [queueMsg, setQueueMsg] = useState("Hello World!");
   const handleCreateQueue = () => {
-    toast(`A queue has been created with ${queueMsg}`);
+    toast(`A queue has been created with "${queueMsg}"`);
   };
 
   return (
