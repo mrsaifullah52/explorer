@@ -64,7 +64,7 @@ export const Queues = () => {
                 onClick={() => setOpenCreateQueueModal(true)}
                 className="pt-3 pb-3"
               >
-                Create Queues
+                Create Queue
               </PrimaryButton>
             </div>
 

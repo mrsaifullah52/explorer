@@ -1,9 +1,11 @@
 import { useOutsideAlerter } from "hooks/useOutsideAlerter";
 import { useRef } from "react";
+import { useTheme } from "next-themes";
 
 export const Modal = ({ open, setOpen, title = "", children }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   useOutsideAlerter(modalRef, open, () => setOpen(false));
+  const { theme } = useTheme();
 
   return (
     <>
@@ -19,7 +21,11 @@ export const Modal = ({ open, setOpen, title = "", children }) => {
               </h2>
               <span className="cursor-pointer" onClick={() => setOpen(false)}>
                 <img
-                  src="/icons/close.svg"
+                  src={
+                    theme === "dark"
+                      ? "/icons/close-white.svg"
+                      : "/icons/close-black.svg"
+                  }
                   alt="close"
                   width="16px"
                   height="16px"
