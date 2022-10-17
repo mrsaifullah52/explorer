@@ -1,23 +1,41 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
+import * as anchor from "@project-serum/anchor";
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { Transaction } from "@solana/web3.js";
+
 import { PrimaryButton } from "../Button";
 import { Input } from "../Input";
-import * as anchor from "@project-serum/anchor";
 import { HelloClockwork, IDL } from "anchor/types/hello_clockwork";
 import HELLO_CLOCKWORK_PROGRAM_ID from "anchor/addresses/hello_clockwork";
 import { useAnchorProvider } from "contexts/AnchorProvider";
 
 export const CreateQueue = () => {
   const anchorProvider = useAnchorProvider();
+  const { publicKey, sendTransaction } = useWallet();
+  const { connection } = useConnection();
 
   const [queueMsg, setQueueMsg] = useState("Hello World!");
-  const handleCreateQueue = () => {
+  const handleCreateQueue = async () => {
     if (!anchorProvider) return;
 
     const helloworldProgram: anchor.Program<HelloClockwork> =
       new anchor.Program(IDL, HELLO_CLOCKWORK_PROGRAM_ID, anchorProvider);
 
-    toast(`A queue has been created with "${queueMsg}"`);
+    try {
+      const transaction = await helloworldProgram.methods
+        .helloWorld(queueMsg)
+        .accounts({
+          helloQueue: publicKey,
+        })
+        .transaction();
+
+      await sendTransaction(new Transaction().add(transaction), connection);
+
+      toast(`A queue has been created with "${queueMsg}"`);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
