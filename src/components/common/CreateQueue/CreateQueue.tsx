@@ -45,9 +45,12 @@ export const CreateQueue = () => {
         });
 
       const queue_transaction = await queueProgram.methods
-        .queueCreate(queueProgram.programId, transaction.instruction, {
-          schedule: "*/10 * * * * * *",
-          skippable: true,
+        // @ts-ignore
+        .queueCreate("hello", transaction.instruction, {
+          cron: {
+            schedule: "*/10 * * * * * *",
+            skippable: true,
+          },
         })
         .accounts({
           authority: publicKey,
