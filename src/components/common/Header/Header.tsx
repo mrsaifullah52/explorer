@@ -1,21 +1,16 @@
 import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
 import { FC } from "react";
-import { useSolana } from "contexts/SolanaContext";
 import { SettingsButton } from "../SettingsButton";
 import { WalletButton } from "../WalletButton";
-import { HeadingVector as HeadingVectorLight } from "./HeadingVector";
-import { HeadingVector as HeadingVectorDark } from "./HeadingVectorDark";
-import { useTheme } from "next-themes";
+
 import { ThemeSwitch } from "../ThemeSwitch";
+import { HeadingVector } from "./HeadingVector";
 
 type HeaderProps = {};
 
 export const Header: FC<HeaderProps> = () => {
   const router = useRouter();
-  const { cluster } = useSolana();
-  const { theme, setTheme } = useTheme();
-
   const sanitizeQuery = (query: ParsedUrlQuery) => {
     if (query.address) {
       delete query.address;
@@ -31,7 +26,7 @@ export const Header: FC<HeaderProps> = () => {
           router.push({ pathname: "/", query: sanitizeQuery(router.query) })
         }
       >
-        {theme === "dark" ? <HeadingVectorDark /> : <HeadingVectorLight />}
+        <HeadingVector />
       </button>
       <div className="flex items-center space-x-3">
         <SettingsButton />
