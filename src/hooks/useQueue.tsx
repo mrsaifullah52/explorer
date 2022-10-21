@@ -39,7 +39,9 @@ export const useQueue = (address: string) => {
   }, [program, address]);
 
   const [queuesState, setQueuesState] = useState<QueuesHookState>({
+    loading: true,
     data: undefined,
+    error: undefined,
     refetch: fetchQueuesCallback,
   });
 
