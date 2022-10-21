@@ -18,7 +18,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
         <meta property="og:image" content={"/opengraph-image.png"} />
       </Head>
       <ContextProvider>
-        <ThemeProvider attribute="class">
+        <ThemeProvider enableSystem={false} attribute="class">
           <div className="flex flex-col h-screen">
             {getLayout(<Component {...pageProps} />)}
           </div>
