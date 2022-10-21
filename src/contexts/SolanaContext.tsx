@@ -78,12 +78,12 @@ export const CLUSTERS: SolanaCluster[] = [
 
 export const CUSTOM_RPC_CLUSTER = CLUSTERS[CLUSTERS.length - 1];
 
-export const isActiveCluster = (
-  cluster: SolanaCluster,
-  connection: Connection
-) => {
-  return connection.rpcEndpoint === cluster.endpoint;
-};
+// export const isActiveCluster = (
+//   cluster: SolanaCluster,
+//   connection: Connection
+// ) => {
+//   return connection.rpcEndpoint === cluster.endpoint;
+// };
 
 export const SolanaProvider = ({ children }: SolanaProviderProps) => {
   const router = useRouter();
