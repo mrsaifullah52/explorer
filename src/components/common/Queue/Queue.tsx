@@ -39,12 +39,12 @@ export const Queue = ({ q }) => {
             )}
           />
           {q.account.name ||
-            (q.account.id && (
+            q.account.id ? (
               <DataTableRow
                 label="Name"
                 value={q.account.name || q.account.id}
               />
-            ))}
+            ) : null}
           <DataTableRow
             label="Executon Context"
             value={formatExecCtx(q.account.execContext)}
