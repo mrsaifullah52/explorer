@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useClockworks } from "contexts/ClockworksContext";
-import { CLOCKWORKS_PROGRAMS } from "utils/constants";
+import { CLOCKWORKS_PROGRAMS } from "anchor/addresses";
 import { SettingsMenuLabel } from "./SettingsMenuLabel";
 
 export const SettingsProgramSelectorMenu = () => {

@@ -1,7 +1,7 @@
 import * as anchor from '@project-serum/anchor';
 
 import { ClockworkCrank, IDL } from './types/clockwork_crank';
-import { CLOCKWORK_CRANK_PROGRAM_ID } from '../anchor/addresses/clockwork_crank';
+import { CLOCKWORK_CRANK_PROGRAM_ID } from './addresses';
 
 export type initCrankProgram = (
   provider: anchor.AnchorProvider
