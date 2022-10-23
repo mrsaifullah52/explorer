@@ -14,7 +14,10 @@ export const AnchorProviderProvider: React.FC = ({ children }) => {
       // @ts-ignore
       return new AnchorProvider(new Connection(cluster.endpoint), Keypair.generate(), {});
     }
-    const provider = new AnchorProvider(new Connection(cluster.endpoint), wallet, {});
+    const provider = new AnchorProvider(new Connection(cluster.endpoint), wallet, {
+      "preflightCommitment": "processed",
+      "commitment": "processed"
+  });
 
     return provider;
   }, [cluster.endpoint, wallet]);
