@@ -7,8 +7,10 @@ import { PrimaryButton } from "../Button";
 import { Input } from "../Input";
 import { HelloClockwork, IDL } from "anchor/types/hello_clockwork";
 import { QueueProgram, IDL as QueueIDL } from "anchor/types/queue_program";
-import HELLO_CLOCKWORK_PROGRAM_ID from "anchor/addresses/hello_clockwork";
-import CLOCKWORK_QUEUE_PROGRAM_ID from "anchor/addresses/clockwork_queue";
+import {
+  HELLO_CLOCKWORK_PROGRAM_ID,
+  CLOCKWORK_QUEUE_PROGRAM_ID,
+} from "anchor/addresses";
 import { useAnchorProvider } from "contexts/AnchorProvider";
 
 const SEED_QUEUE = "queue";
