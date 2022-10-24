@@ -38,7 +38,13 @@ export const Queue = ({ q }) => {
               cluster.network
             )}
           />
-          <DataTableRow label="Name" value={q.account.name} />
+          {q.account.name ||
+            q.account.id ? (
+              <DataTableRow
+                label="Name"
+                value={q.account.name || q.account.id}
+              />
+            ) : null}
           <DataTableRow
             label="Executon Context"
             value={formatExecCtx(q.account.execContext)}
@@ -51,64 +57,103 @@ export const Queue = ({ q }) => {
             label="Created At"
             value={formatUnix(q.account.createdAt.unixTimestamp.toNumber())}
           />
-          <DataTableRowExpandable label="First Instruction">
-            <DataTableRowInline
-              label="Program Id"
-              value={q.account.firstInstruction.programId.toBase58()}
-              link={getExplorerAccountLink(
-                q.account.firstInstruction.programId.toBase58(),
-                cluster.network
+          {q.account?.firstInstruction && (
+            <DataTableRowExpandable label="First Instruction">
+              <DataTableRowInline
+                label="Program Id"
+                value={q.account.firstInstruction.programId.toBase58()}
+                link={getExplorerAccountLink(
+                  q.account.firstInstruction.programId.toBase58(),
+                  cluster.network
+                )}
+              />
+              {q.account.firstInstruction?.accounts.map(
+                ({ isSigner, isWritable, pubkey }, i) => {
+                  return (
+                    <DataTableRowInline
+                      key={`account-${i}`}
+                      label={`Account ${i}`}
+                      value={pubkey.toBase58()}
+                      link={getExplorerAccountLink(
+                        pubkey.toBase58(),
+                        cluster.network
+                      )}
+                    />
+                  );
+                }
               )}
-            />
-            {q.account.firstInstruction?.accounts.map(
-              ({ isSigner, isWritable, pubkey }, i) => {
-                return (
-                  <DataTableRowInline
-                    key={`account-${i}`}
-                    label={`Account ${i}`}
-                    value={pubkey.toBase58()}
-                    link={getExplorerAccountLink(
-                      pubkey.toBase58(),
-                      cluster.network
-                    )}
-                  />
-                );
-              }
-            )}
-            <DataTableRowInline
-              label="Data"
-              value={JSON.stringify(q.account.nextInstruction?.data)}
-            />
-          </DataTableRowExpandable>
-          <DataTableRowExpandable label="Next Instruction">
-            <DataTableRowInline
-              label="Program Id"
-              value={q.account.nextInstruction?.programId?.toBase58()}
-              link={getExplorerAccountLink(
-                q.account.nextInstruction?.programId.toBase58(),
-                cluster.network
+              <DataTableRowInline
+                label="Data"
+                value={JSON.stringify(q.account.firstInstruction?.data)}
+              />
+            </DataTableRowExpandable>
+          )}
+
+          {q.account?.kickoffInstruction && (
+            <DataTableRowExpandable label="Kickoff Instruction">
+              <DataTableRowInline
+                label="Program Id"
+                value={q.account.kickoffInstruction.programId.toBase58()}
+                link={getExplorerAccountLink(
+                  q.account.kickoffInstruction.programId.toBase58(),
+                  cluster.network
+                )}
+              />
+              {q.account.kickoffInstruction?.accounts.map(
+                ({ isSigner, isWritable, pubkey }, i) => {
+                  return (
+                    <DataTableRowInline
+                      key={`account-${i}`}
+                      label={`Account ${i}`}
+                      value={pubkey.toBase58()}
+                      link={getExplorerAccountLink(
+                        pubkey.toBase58(),
+                        cluster.network
+                      )}
+                    />
+                  );
+                }
               )}
-            />
-            {q.account.nextInstruction?.accounts.map(
-              ({ isSigner, isWritable, pubkey }, i) => {
-                return (
-                  <DataTableRowInline
-                    key={`account-${i}`}
-                    label={`Account ${i}`}
-                    value={pubkey.toBase58()}
-                    link={getExplorerAccountLink(
-                      pubkey.toBase58(),
-                      cluster.network
-                    )}
-                  />
-                );
-              }
-            )}
-            <DataTableRowInline
-              label="Data"
-              value={JSON.stringify(q.account.nextInstruction?.data)}
-            />
-          </DataTableRowExpandable>
+              <DataTableRowInline
+                label="Data"
+                value={JSON.stringify(q.account.kickoffInstruction?.data)}
+              />
+            </DataTableRowExpandable>
+          )}
+
+          {q.account?.nextInstruction ? (
+            <DataTableRowExpandable label="Next Instruction">
+              <DataTableRowInline
+                label="Program Id"
+                value={q.account.nextInstruction?.programId?.toBase58()}
+                link={getExplorerAccountLink(
+                  q.account.nextInstruction?.programId.toBase58(),
+                  cluster.network
+                )}
+              />
+              {q.account.nextInstruction?.accounts.map(
+                ({ isSigner, isWritable, pubkey }, i) => {
+                  return (
+                    <DataTableRowInline
+                      key={`account-${i}`}
+                      label={`Account ${i}`}
+                      value={pubkey.toBase58()}
+                      link={getExplorerAccountLink(
+                        pubkey.toBase58(),
+                        cluster.network
+                      )}
+                    />
+                  );
+                }
+              )}
+              <DataTableRowInline
+                label="Data"
+                value={JSON.stringify(q.account.nextInstruction?.data)}
+              />
+            </DataTableRowExpandable>
+          ) : (
+            <DataTableRow label="Next Instruction" value={"None"} />
+          )}
         </DataTable>
       </div>
     </div>

@@ -30,7 +30,7 @@ export const Queues = () => {
         <div className="flex flex-col border-r dark:border-[#4F4F4F] pl-6 w-60">
           <h3 className="text-xs text-[#979797] mb-2.5">Name</h3>
           <p className="font-normal leading-relaxed text-sm text-[#0E1114] dark:text-white">
-            {queue.account.name}
+            {queue.account.name || queue.account.id}
           </p>
         </div>
 
@@ -68,10 +68,15 @@ export const Queues = () => {
               </PrimaryButton>
             </div>
 
+            <input
+              type="text"
+              value={filterString}
+              onChange={(e) => setFilterString(e.target.value)}
+              placeholder="Filter by name or address"
+              className="w-full p-2 rounded-lg border border-[#D7DCE1] dark:border-[#4F4F4F] bg-transparent focus:outline-none text-sm text-[#979797]"
+            />
             {loading ? (
-              <div className="flex flex-col space-y-4">
-                <SkeletonBox />
-                <SkeletonBox />
+              <div className="flex flex-col space-y-5">
                 <SkeletonBox />
                 <SkeletonBox />
                 <SkeletonBox />
@@ -80,13 +85,6 @@ export const Queues = () => {
               </div>
             ) : (
               <>
-                <input
-                  type="text"
-                  value={filterString}
-                  onChange={(e) => setFilterString(e.target.value)}
-                  placeholder="Filter by name or address"
-                  className="w-full p-2 rounded-lg border border-[#D7DCE1] dark:border-[#4F4F4F] bg-transparent focus:outline-none text-sm text-[#979797]"
-                />
                 <ul className="flex flex-col space-y-5 w-full">
                   {pageMarkets.map((queue) => (
                     <li

@@ -16,13 +16,8 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>
-          <link rel="shortcut icon" href="/favicon.ico" />
-          <title>Clockwork Explorer</title>
-          <meta property="og:title" content={'Clockwork Explorer'} />
-          <meta property="og:image" content={'/opengraph-image.png'} />
-        </Head>
-        <body>
+        <Head />
+        <body className="dark:bg-[#2C2B2B]">
           <Main />
           <NextScript />
         </body>
