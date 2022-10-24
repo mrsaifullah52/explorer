@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import { toast } from "react-toastify";
 import * as anchor from "@project-serum/anchor";
 import { useWallet } from "@solana/wallet-adapter-react";
@@ -14,12 +14,13 @@ import {
 import { useAnchorProvider } from "contexts/AnchorProvider";
 
 const SEED_QUEUE = "queue";
-const HELLO_QUEUE_ID = "hello";
 export const CreateQueue = () => {
   const anchorProvider = useAnchorProvider();
   const { publicKey } = useWallet();
 
+  const [queueName, setQueueName] = useState("hello");
   const [queueMsg, setQueueMsg] = useState("Hello World!");
+
   const handleCreateQueue = async () => {
     if (!anchorProvider) return;
     if (!publicKey) {
@@ -36,11 +37,18 @@ export const CreateQueue = () => {
       anchorProvider
     );
 
+    const queues = await queueProgram.account.queue.all();
+    const qAccountIds = queues.map((q) => q.account.id);
+    if (qAccountIds.find((id) => id === queueName)) {
+      toast("Please try another name!");
+      return;
+    }
+
     const [pda] = await anchor.web3.PublicKey.findProgramAddress(
       [
         Buffer.from(SEED_QUEUE, "utf-8"),
         publicKey.toBuffer(),
-        Buffer.from(HELLO_QUEUE_ID, "utf-8"),
+        Buffer.from(queueName, "utf-8"),
       ],
       CLOCKWORK_QUEUE_PROGRAM_ID
     );
@@ -48,7 +56,7 @@ export const CreateQueue = () => {
     try {
       const queue_transaction = await queueProgram.methods
         .queueCreate(
-          HELLO_QUEUE_ID,
+          queueName,
           {
             programId: helloworldProgram.programId,
             accounts: [
@@ -81,12 +89,23 @@ export const CreateQueue = () => {
 
   return (
     <div className="flex flex-col mt-3">
+      <label>Name:</label>
+      <Input
+        className="mt-1 mb-5"
+        placeholder="Queue name here"
+        value={queueName}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setQueueName(e.target.value)
+        }
+      />
       <label>Message:</label>
       <Input
         className="mt-1 mb-5"
         placeholder="Queue message here"
         value={queueMsg}
-        onChange={(e) => setQueueMsg(e.target.value)}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setQueueMsg(e.target.value)
+        }
       />
       <PrimaryButton className="pt-3 pb-3" onClick={() => handleCreateQueue()}>
         Create Queue
