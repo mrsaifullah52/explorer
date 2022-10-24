@@ -38,6 +38,7 @@ export const CreateQueue = () => {
     );
 
     const queues = await queueProgram.account.queue.all();
+    console.log(queues[0].account.createdAt)
     const qAccountIds = queues.map((q) => q.account.id);
     if (qAccountIds.find((id) => id === queueName)) {
       toast("Please try another name!");
