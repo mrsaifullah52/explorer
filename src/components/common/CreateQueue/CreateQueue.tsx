@@ -18,8 +18,7 @@ export const CreateQueue = () => {
   const anchorProvider = useAnchorProvider();
   const { publicKey } = useWallet();
 
-  const [queueName, setQueueName] = useState("hello");
-  const [queueMsg, setQueueMsg] = useState("Hello World!");
+  const [queueMsg, setQueueMsg] = useState("World!");
 
   const handleCreateQueue = async () => {
     if (!anchorProvider) return;
@@ -39,7 +38,7 @@ export const CreateQueue = () => {
 
     const queues = await queueProgram.account.queue.all();
     const qAccountIds = queues.map((q) => q.account.id);
-    if (qAccountIds.find((id) => id === queueName)) {
+    if (qAccountIds.find((id) => id === queueMsg)) {
       toast("Please try another name!");
       return;
     }
@@ -48,7 +47,7 @@ export const CreateQueue = () => {
       [
         Buffer.from(SEED_QUEUE, "utf-8"),
         publicKey.toBuffer(),
-        Buffer.from(queueName, "utf-8"),
+        Buffer.from(queueMsg, "utf-8"),
       ],
       CLOCKWORK_QUEUE_PROGRAM_ID
     );
@@ -63,7 +62,7 @@ export const CreateQueue = () => {
     try {
       const queue_transaction = await queueProgram.methods
         .queueCreate(
-          queueName,
+          queueMsg,
           {
             programId: helloworldProgram.programId,
             accounts: [{ pubkey: pda, isSigner: true, isWritable: true }],
@@ -94,15 +93,6 @@ export const CreateQueue = () => {
 
   return (
     <div className="flex flex-col mt-3">
-      <label>Name:</label>
-      <Input
-        className="mt-1 mb-5"
-        placeholder="Queue name here"
-        value={queueName}
-        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-          setQueueName(e.target.value)
-        }
-      />
       <label>Message:</label>
       <Input
         className="mt-1 mb-5"
