@@ -5,6 +5,7 @@ import { ContextProvider } from "../contexts/ContextProvider";
 import { getLayout } from "components/layouts/SiteLayout";
 import { ThemeProvider } from "next-themes";
 
+import "react-toastify/dist/ReactToastify.css";
 require("@solana/wallet-adapter-react-ui/styles.css");
 require("../styles/globals.css");
 
