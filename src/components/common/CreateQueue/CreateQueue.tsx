@@ -38,7 +38,6 @@ export const CreateQueue = () => {
     );
 
     const queues = await queueProgram.account.queue.all();
-    console.log(queues[0].account.createdAt)
     const qAccountIds = queues.map((q) => q.account.id);
     if (qAccountIds.find((id) => id === queueName)) {
       toast("Please try another name!");
@@ -54,16 +53,21 @@ export const CreateQueue = () => {
       CLOCKWORK_QUEUE_PROGRAM_ID
     );
 
+    anchorProvider.connection.requestAirdrop(pda, 2e9);
+
+    const helloworldInstruction = await helloworldProgram.methods
+      .helloWorld(queueMsg)
+      .accounts({ helloQueue: publicKey })
+      .instruction();
+
     try {
       const queue_transaction = await queueProgram.methods
         .queueCreate(
           queueName,
           {
             programId: helloworldProgram.programId,
-            accounts: [
-              { pubKey: publicKey, isSigner: true, isWritable: false },
-            ],
-            data: Buffer.from(queueMsg, "utf-8"),
+            accounts: [{ pubkey: pda, isSigner: true, isWritable: true }],
+            data: helloworldInstruction.data,
           },
           {
             cron: {
