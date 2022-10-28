@@ -2,6 +2,7 @@ import { useState, ChangeEvent } from "react";
 import { toast } from "react-toastify";
 import * as anchor from "@project-serum/anchor";
 import { useWallet } from "@solana/wallet-adapter-react";
+import uuid from "short-uuid";
 
 import { PrimaryButton } from "../Button";
 import { Input } from "../Input";
@@ -36,18 +37,12 @@ export const CreateQueue = () => {
       anchorProvider
     );
 
-    const queues = await queueProgram.account.queue.all();
-    const qAccountIds = queues.map((q) => q.account.id);
-    if (qAccountIds.find((id) => id === queueMsg)) {
-      toast("Please try another name!");
-      return;
-    }
-
+    const queueName = uuid().new();
     const [pda] = await anchor.web3.PublicKey.findProgramAddress(
       [
         Buffer.from(SEED_QUEUE, "utf-8"),
         publicKey.toBuffer(),
-        Buffer.from(queueMsg, "utf-8"),
+        Buffer.from(queueName, "utf-8"),
       ],
       CLOCKWORK_QUEUE_PROGRAM_ID
     );
@@ -62,7 +57,7 @@ export const CreateQueue = () => {
     try {
       const queue_transaction = await queueProgram.methods
         .queueCreate(
-          queueMsg,
+          queueName,
           {
             programId: helloworldProgram.programId,
             accounts: [{ pubkey: pda, isSigner: true, isWritable: true }],
