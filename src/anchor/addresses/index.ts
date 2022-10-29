@@ -5,11 +5,11 @@ export const DEFAULT_PROGRAM_ID = new PublicKey(
 );
 
 export const HELLO_CLOCKWORK_PROGRAM_ID = new PublicKey(
-  "7KNTQLA6wrwM2orK4bTcoXJ9tEQnWbKngh7nNPzcuxa"
+  "kPo3JPUmMNnLQ68tUq798v5zGPEqbgbvCTDY5mdzTfT"
 );
 
-export const CLOCKWORK_QUEUE_PROGRAM_ID = new PublicKey(
-  "3XXuUFfweXBwFgFfYaejLvZE4cGZiHgKiGfMtdxNzYmv"
+export const CLOCKWORK_THREAD_PROGRAM_ID = new PublicKey(
+  "ATbWHVo6dsH9VCMbivxP9rwJ7Tyh58AiGYdpmK7J3PDT"
 );
 
 export const CLOCKWORKS_PROGRAMS: { [key: string]: string } = {

@@ -6,7 +6,7 @@ export type HelloClockwork = {
       "name": "helloWorld",
       "accounts": [
         {
-          "name": "helloQueue",
+          "name": "helloThread",
           "isMut": false,
           "isSigner": true
         }
@@ -18,7 +18,7 @@ export type HelloClockwork = {
         }
       ],
       "returns": {
-        "defined": "clockwork_sdk::CrankResponse"
+        "defined": "clockwork_sdk::ExecResponse"
       }
     }
   ]
@@ -32,7 +32,7 @@ export const IDL: HelloClockwork = {
       "name": "helloWorld",
       "accounts": [
         {
-          "name": "helloQueue",
+          "name": "helloThread",
           "isMut": false,
           "isSigner": true
         }
@@ -44,7 +44,7 @@ export const IDL: HelloClockwork = {
         }
       ],
       "returns": {
-        "defined": "clockwork_sdk::CrankResponse"
+        "defined": "clockwork_sdk::ExecResponse"
       }
     }
   ]
