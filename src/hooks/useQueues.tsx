@@ -16,15 +16,18 @@ export const useQueues = () => {
     setQueuesState((prev) => ({ ...prev, loading: true, error: undefined }));
     try {
       const queues = await program.account.queue.all();
-      console.log('queues', queues);
       setQueuesState((prev) => ({
         ...prev,
-        data: queues,
+        data: queues.sort(
+          (a, b) =>
+            b.account.createdAt.unixTimestamp.toNumber() -
+            a.account.createdAt.unixTimestamp.toNumber()
+        ),
         error: undefined,
         loading: false,
       }));
     } catch (error) {
-      console.error(error)
+      console.error(error);
       setQueuesState((prev) => ({
         ...prev,
         error: error,

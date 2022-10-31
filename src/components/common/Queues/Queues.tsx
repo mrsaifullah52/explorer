@@ -5,12 +5,16 @@ import { SkeletonBox } from "../Skeleton";
 import { usePagination } from "hooks/usePagination";
 import { useRouter } from "next/router";
 import { PaginationButton } from "../Pagination/PaginationButton";
+import { PrimaryButton } from "../Button";
+import { Modal } from "../Modal";
+import { CreateQueue } from "../CreateQueue";
 
 export const Queues = () => {
   const router = useRouter();
   const { data, error, loading } = useQueues();
 
   const [filterString, setFilterString] = useState("");
+  const [openCreateQueueModal, setOpenCreateQueueModal] = useState(false);
 
   const {
     pageData: pageMarkets,
@@ -41,66 +45,76 @@ export const Queues = () => {
   };
 
   return (
-    <div className="flex flex-col space-y-4 items-stretch">
-      <div className="flex flex-col">
-        <div className="py-6 rounded-lg flex flex-col space-y-6">
-          <h2 className="text-2xl text-[#0E1114] dark:text-white font-semibold font-header leading-5">
-            Queues
-          </h2>
-
-          <input
-                type="text"
-                value={filterString}
-                onChange={(e) => setFilterString(e.target.value)}
-                placeholder="Filter by name or address"
-                className="w-full p-2 rounded-lg border border-[#D7DCE1] dark:border-[#4F4F4F] bg-transparent focus:outline-none text-sm text-[#979797]"
-              />
-          {loading ? (
-            <div className="flex flex-col space-y-5">
-              <SkeletonBox />
-              <SkeletonBox />
-              <SkeletonBox />
-              <SkeletonBox />
-              <SkeletonBox />
+    <>
+      <Modal
+        open={openCreateQueueModal}
+        setOpen={setOpenCreateQueueModal}
+        title="Create a Queue"
+      >
+        <CreateQueue />
+      </Modal>
+      <div className="flex flex-col space-y-4 items-stretch">
+        <div className="flex flex-col">
+          <div className="py-6 rounded-lg flex flex-col space-y-6">
+            <div className="flex justify-between items-center">
+              <h2 className="text-2xl text-[#0E1114] dark:text-white font-semibold font-header leading-5">
+                Queues
+              </h2>
+              <PrimaryButton
+                onClick={() => setOpenCreateQueueModal(true)}
+                className="pt-3 pb-3"
+              >
+                Create Queue
+              </PrimaryButton>
             </div>
-          ) : (
-            <>
-              {/* <input
-                type="text"
-                value={filterString}
-                onChange={(e) => setFilterString(e.target.value)}
-                placeholder="Filter by name or address"
-                className="w-full p-2 rounded-lg border border-[#D7DCE1] dark:border-[#4F4F4F] bg-transparent focus:outline-none text-sm text-[#979797]"
-              /> */}
-              <ul className="flex flex-col space-y-5 w-full">
-                {pageMarkets.map((queue) => (
-                  <li
-                    key={queue.publicKey.toString()}
-                    className="cursor-pointer w-full"
-                  >
-                    <Link
-                      passHref
-                      href={{
-                        pathname: `/queue/${queue.publicKey.toString()}`,
-                        query: router.query,
-                      }}
-                    >
-                      <a>
-                        <QueueListItem queue={queue} />
-                      </a>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              <div className="flex items-center justify-between">
-                <PaginationButton type="prev" onClick={prevPage} />
-                <p className="text-sm text-[#979797]">{`${pageNumber} of ${totalPages}`}</p>
-                <PaginationButton type="next" onClick={nextPage} />
+
+            <input
+              type="text"
+              value={filterString}
+              onChange={(e) => setFilterString(e.target.value)}
+              placeholder="Filter by name or address"
+              className="w-full p-2 rounded-lg border border-[#D7DCE1] dark:border-[#4F4F4F] bg-transparent focus:outline-none text-sm text-[#979797]"
+            />
+            {loading ? (
+              <div className="flex flex-col space-y-5">
+                <SkeletonBox />
+                <SkeletonBox />
+                <SkeletonBox />
+                <SkeletonBox />
+                <SkeletonBox />
               </div>
-            </>
-          )}
+            ) : (
+              <>
+                <ul className="flex flex-col space-y-5 w-full">
+                  {pageMarkets.map((queue) => (
+                    <li
+                      key={queue.publicKey.toString()}
+                      className="cursor-pointer w-full"
+                    >
+                      <Link
+                        passHref
+                        href={{
+                          pathname: `/queue/${queue.publicKey.toString()}`,
+                          query: router.query,
+                        }}
+                      >
+                        <a>
+                          <QueueListItem queue={queue} />
+                        </a>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex items-center justify-between">
+                  <PaginationButton type="prev" onClick={prevPage} />
+                  <p className="text-sm text-[#979797]">{`${pageNumber} of ${totalPages}`}</p>
+                  <PaginationButton type="next" onClick={nextPage} />
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };

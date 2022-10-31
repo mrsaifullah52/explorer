@@ -8,7 +8,7 @@ import {
   useState,
 } from "react";
 import { toast } from "react-toastify";
-import { DEFAULT_PROGRAM_ID } from "anchor/addresses";
+import { CLOCKWORK_QUEUE_PROGRAM_ID } from "anchor/addresses";
 
 type ClockworksContextType = {
   programID: PublicKey;
@@ -24,7 +24,7 @@ const ClockworksContext = createContext<ClockworksContextType | null>(null);
 export const ClockworksProvider = ({ children }: ClockworksProviderProps) => {
   const router = useRouter();
 
-  const [programID, _setProgramID] = useState(DEFAULT_PROGRAM_ID);
+  const [programID, _setProgramID] = useState(CLOCKWORK_QUEUE_PROGRAM_ID);
 
   const setProgramID = (programID: string) => {
     const newQuery: {
@@ -34,7 +34,7 @@ export const ClockworksProvider = ({ children }: ClockworksProviderProps) => {
       programID,
     };
 
-    if (programID === DEFAULT_PROGRAM_ID.toBase58()) delete newQuery.programID;
+    if (programID === CLOCKWORK_QUEUE_PROGRAM_ID.toBase58()) delete newQuery.programID;
 
     try {
       new PublicKey(programID);
@@ -52,7 +52,7 @@ export const ClockworksProvider = ({ children }: ClockworksProviderProps) => {
   useEffect(() => {
     if (router.query.programID) {
       _setProgramID(new PublicKey(router.query.programID));
-    } else _setProgramID(new PublicKey(DEFAULT_PROGRAM_ID));
+    } else _setProgramID(new PublicKey(CLOCKWORK_QUEUE_PROGRAM_ID));
   }, [router.query.programID]);
 
   return (
