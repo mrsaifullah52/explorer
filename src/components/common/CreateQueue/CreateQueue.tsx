@@ -14,7 +14,7 @@ import {
 } from "anchor/addresses";
 import { useAnchorProvider } from "contexts/AnchorProvider";
 
-const SEED_QUEUE = "queue";
+const SEED_QUEUE = "thread";
 export const CreateQueue = () => {
   const anchorProvider = useAnchorProvider();
   const { publicKey } = useWallet();

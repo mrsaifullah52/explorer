@@ -5,7 +5,7 @@ export const DEFAULT_PROGRAM_ID = new PublicKey(
 );
 
 export const HELLO_CLOCKWORK_PROGRAM_ID = new PublicKey(
-  "kPo3JPUmMNnLQ68tUq798v5zGPEqbgbvCTDY5mdzTfT"
+  "8FFu5CSkQKQiGZihvv59PmV1FggLHLrH5GU6SP2JWBWq"
 );
 
 export const CLOCKWORK_THREAD_PROGRAM_ID = new PublicKey(

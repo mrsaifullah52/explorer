@@ -1,5 +1,5 @@
 export type ThreadProgram = {
-  version: "1.3.1";
+  version: "1.3.5";
   name: "thread_program";
   docs: ["Program for creating transaction threads on Solana."];
   instructions: [
@@ -144,14 +144,7 @@ export type ThreadProgram = {
           docs: ["The worker."];
         }
       ];
-      args: [
-        {
-          name: "dataHash";
-          type: {
-            option: "u64";
-          };
-        }
-      ];
+      args: [];
     },
     {
       name: "threadPause";
@@ -647,59 +640,54 @@ export type ThreadProgram = {
   errors: [
     {
       code: 6000;
-      name: "DataHashNotPresent";
-      msg: "This trigger requires a data hash observation";
-    },
-    {
-      code: 6001;
       name: "InvalidExecResponse";
       msg: "The exec response could not be parsed";
     },
     {
-      code: 6002;
+      code: 6001;
       name: "InvalidThreadState";
       msg: "The thread is in an invalid state";
     },
     {
-      code: 6003;
-      name: "RangeOutOfBounds";
-      msg: "The range is larger than the account size";
-    },
-    {
-      code: 6004;
+      code: 6002;
       name: "TriggerNotActive";
       msg: "The trigger condition has not been activated";
     },
     {
-      code: 6005;
+      code: 6003;
       name: "ThreadBusy";
       msg: "This operation cannot be processes because the thread is currently busy";
     },
     {
-      code: 6006;
+      code: 6004;
       name: "ThreadPaused";
       msg: "The thread is currently paused";
     },
     {
-      code: 6007;
+      code: 6005;
       name: "RateLimitExeceeded";
       msg: "The thread's rate limit has been reached";
     },
     {
-      code: 6008;
+      code: 6006;
       name: "MaxRateLimitExceeded";
       msg: "Thread rate limits cannot exceed the maximum allowed value";
     },
     {
-      code: 6009;
+      code: 6007;
       name: "UnauthorizedWrite";
       msg: "Inner instruction attempted to write to an unauthorized address";
+    },
+    {
+      code: 6008;
+      name: "WithdrawalTooLarge";
+      msg: "Withdrawing this amount would leave the thread with less than the minimum required SOL for rent exemption";
     }
   ];
 };
 
 export const IDL: ThreadProgram = {
-  version: "1.3.1",
+  version: "1.3.5",
   name: "thread_program",
   docs: ["Program for creating transaction threads on Solana."],
   instructions: [
@@ -844,14 +832,7 @@ export const IDL: ThreadProgram = {
           docs: ["The worker."],
         },
       ],
-      args: [
-        {
-          name: "dataHash",
-          type: {
-            option: "u64",
-          },
-        },
-      ],
+      args: [],
     },
     {
       name: "threadPause",
@@ -1347,53 +1328,48 @@ export const IDL: ThreadProgram = {
   errors: [
     {
       code: 6000,
-      name: "DataHashNotPresent",
-      msg: "This trigger requires a data hash observation",
-    },
-    {
-      code: 6001,
       name: "InvalidExecResponse",
       msg: "The exec response could not be parsed",
     },
     {
-      code: 6002,
+      code: 6001,
       name: "InvalidThreadState",
       msg: "The thread is in an invalid state",
     },
     {
-      code: 6003,
-      name: "RangeOutOfBounds",
-      msg: "The range is larger than the account size",
-    },
-    {
-      code: 6004,
+      code: 6002,
       name: "TriggerNotActive",
       msg: "The trigger condition has not been activated",
     },
     {
-      code: 6005,
+      code: 6003,
       name: "ThreadBusy",
       msg: "This operation cannot be processes because the thread is currently busy",
     },
     {
-      code: 6006,
+      code: 6004,
       name: "ThreadPaused",
       msg: "The thread is currently paused",
     },
     {
-      code: 6007,
+      code: 6005,
       name: "RateLimitExeceeded",
       msg: "The thread's rate limit has been reached",
     },
     {
-      code: 6008,
+      code: 6006,
       name: "MaxRateLimitExceeded",
       msg: "Thread rate limits cannot exceed the maximum allowed value",
     },
     {
-      code: 6009,
+      code: 6007,
       name: "UnauthorizedWrite",
       msg: "Inner instruction attempted to write to an unauthorized address",
+    },
+    {
+      code: 6008,
+      name: "WithdrawalTooLarge",
+      msg: "Withdrawing this amount would leave the thread with less than the minimum required SOL for rent exemption",
     },
   ],
 };
