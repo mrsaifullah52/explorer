@@ -1,10 +1,13 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import { HomeView } from "../views";
+import { Queues } from "components/common/Queues/Queues";
+import { AccountRenderer } from "components/common/AccountRenderer";
 
 const Home: NextPage = (props) => {
   return (
-      <HomeView />
+    <>
+      <AccountRenderer />
+      <Queues />
+    </>
   );
 };
 

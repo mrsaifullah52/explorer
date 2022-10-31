@@ -4,11 +4,14 @@ import { ReactNode, useState } from "react";
 export const DataTableRowExpandable = ({
   label,
   children,
+  depth = 0
 }: {
   label: string;
   children?: ReactNode;
+  depth?: number;
 }) => {
   const [expanded, setExpanded] = useState(false);
+  const xPadding = `py-4 px-${depth + 4}  md:px-${depth + 8}`;
 
   return (
     <>

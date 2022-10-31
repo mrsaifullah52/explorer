@@ -5,7 +5,7 @@ import { useCrankProgram } from "contexts/CrankProgramProvider";
 import { Program } from "@project-serum/anchor";
 
 export type AddressHookState = {
-  data?:  { accountInfo: AccountInfo<any>, account: any, accountType: string },
+  data?:  { accountInfo: AccountInfo<any>, account?: any, accountType: string },
   error?: Error;
   loading?: boolean;
 };
@@ -25,7 +25,7 @@ export const tryDecode = (program: Program<any>, data: any) => {
       }
     }
     // doesn't match any idl account
-    return { account: data, accountType: "Account" };
+    return { account: undefined, accountType: "Account" };
   } catch (error) {
     // unexpected error
     console.error(error);
@@ -61,7 +61,6 @@ export const useAddressAll = (address: string) => {
       try {
         const publicKey = new PublicKey(address);
         const accountInfo = await connection.getAccountInfo(publicKey);
-        console.log("accountInfo", accountInfo);
         if (accountInfo) {
           const { account, accountType } = tryDecode(program, accountInfo.data);
           setAddressState((prev) => ({
@@ -122,6 +121,7 @@ export const useAddressAll = (address: string) => {
     if (address.length === 0) {
       setAddressState((prev) => ({
         ...prev,
+        data: undefined,
         error: undefined,
       }));
     }

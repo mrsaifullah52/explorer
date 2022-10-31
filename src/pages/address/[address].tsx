@@ -13,9 +13,7 @@ import { getExplorerAccountLink } from "utils/general";
 const AddressPage = () => {
   const router = useRouter();
   const { address } = router.query;
-  console.log("address", address);
   const { data, error, loading, reset } = useAddress(address as string);
-  console.log({ data, error, loading });
   const { cluster } = useSolana();
 
   useEffect(() => {
