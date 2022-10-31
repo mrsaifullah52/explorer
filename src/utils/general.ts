@@ -16,7 +16,7 @@ export function getExplorerAccountLink(
   account: PublicKey,
   cluster: ClusterType
 ): string {
-  return `https://explorer.solana.com/address/${account.toString()}?cluster=${
+  return `/address/${account.toString()}?network=${
     cluster === "mainnet-beta" ? null : cluster
   }`;
 }
