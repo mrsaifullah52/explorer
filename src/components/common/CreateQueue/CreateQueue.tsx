@@ -47,7 +47,10 @@ export const CreateQueue = () => {
       CLOCKWORK_THREAD_PROGRAM_ID
     );
 
-    anchorProvider.connection.requestAirdrop(pda, 2e9);
+    anchorProvider.connection.requestAirdrop(
+      pda,
+      1 * anchor.web3.LAMPORTS_PER_SOL
+    );
 
     const helloworldInstruction = await helloworldProgram.methods
       .helloWorld(queueMsg)

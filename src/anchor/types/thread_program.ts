@@ -572,18 +572,14 @@ export type ThreadProgram = {
               {
                 name: "offset";
                 docs: ["The byte offset of the account data to monitor."];
-                type: {
-                  defined: "usize";
-                };
+                type: "u64";
               },
               {
                 name: "size";
                 docs: [
                   "The size of the byte slice to monitor (must be less than 1kb)"
                 ];
-                type: {
-                  defined: "usize";
-                };
+                type: "u64";
               }
             ];
           },
@@ -1276,18 +1272,14 @@ export const IDL: ThreadProgram = {
               {
                 name: "offset",
                 docs: ["The byte offset of the account data to monitor."],
-                type: {
-                  defined: "usize",
-                },
+                type: "u64",
               },
               {
                 name: "size",
                 docs: [
                   "The size of the byte slice to monitor (must be less than 1kb)",
                 ],
-                type: {
-                  defined: "usize",
-                },
+                type: "u64",
               },
             ],
           },
