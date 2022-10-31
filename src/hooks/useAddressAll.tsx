@@ -1,15 +1,40 @@
 import { useCallback, useEffect, useState } from "react";
 import { AccountInfo, PublicKey } from "@solana/web3.js";
 import { useConnection } from "@solana/wallet-adapter-react";
+import { useCrankProgram } from "contexts/CrankProgramProvider";
+import { Program } from "@project-serum/anchor";
 
 export type AddressHookState = {
-  data?: AccountInfo<any>;
+  data?:  { accountInfo: AccountInfo<any>, account: any, accountType: string },
   error?: Error;
   loading?: boolean;
 };
 
-export const useAddress = (address: string) => {
+export const tryDecode = (program: Program<any>, data: any) => {
+  try {
+    // get all account types in selected program
+    const accountTypes = Object.keys(program.account);
+    // try to decode into one of the program accounts
+    for (let index = 0; index < accountTypes.length; index++) {
+      const accountType = accountTypes[index];
+      try {
+        const decoded = program.coder.accounts.decode(accountType, data!);
+        return { account: decoded, accountType };
+      } catch (error) {
+        // this account type doesnt decode
+      }
+    }
+    // doesn't match any idl account
+    return { account: data, accountType: "Account" };
+  } catch (error) {
+    // unexpected error
+    console.error(error);
+  }
+};
+
+export const useAddressAll = (address: string) => {
   const { connection } = useConnection();
+  const program = useCrankProgram();
 
   const [addresssState, setAddressState] = useState<AddressHookState>({
     data: undefined,
@@ -37,12 +62,11 @@ export const useAddress = (address: string) => {
         const publicKey = new PublicKey(address);
         const accountInfo = await connection.getAccountInfo(publicKey);
         console.log("accountInfo", accountInfo);
-        // const account = await program.account.address.fetch(address);
-        // const address = { publicKey: new PublicKey(address), account: account };
         if (accountInfo) {
+          const { account, accountType } = tryDecode(program, accountInfo.data);
           setAddressState((prev) => ({
             ...prev,
-            data: accountInfo,
+            data: { accountInfo, account, accountType },
             error: undefined,
             loading: false,
           }));
@@ -85,7 +109,7 @@ export const useAddress = (address: string) => {
         }));
       }
     },
-    [connection]
+    [connection, program]
   );
 
   useEffect(() => {
@@ -101,7 +125,7 @@ export const useAddress = (address: string) => {
         error: undefined,
       }));
     }
-  }, [address])
+  }, [address]);
 
   return { ...addresssState, refetch: fetchAddressCallback, reset };
 };
