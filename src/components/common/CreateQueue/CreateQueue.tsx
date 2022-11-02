@@ -2,18 +2,19 @@ import { useState, ChangeEvent } from "react";
 import { toast } from "react-toastify";
 import * as anchor from "@project-serum/anchor";
 import { useWallet } from "@solana/wallet-adapter-react";
+import uuid from "short-uuid";
 
 import { PrimaryButton } from "../Button";
 import { Input } from "../Input";
 import { HelloClockwork, IDL } from "anchor/types/hello_clockwork";
-import { QueueProgram, IDL as QueueIDL } from "anchor/types/queue_program";
+import { ThreadProgram, IDL as ThreadIDL } from "anchor/types/thread_program";
 import {
   HELLO_CLOCKWORK_PROGRAM_ID,
-  CLOCKWORK_QUEUE_PROGRAM_ID,
+  CLOCKWORK_THREAD_PROGRAM_ID,
 } from "anchor/addresses";
 import { useAnchorProvider } from "contexts/AnchorProvider";
 
-const SEED_QUEUE = "queue";
+const SEED_QUEUE = "thread";
 export const CreateQueue = () => {
   const anchorProvider = useAnchorProvider();
   const { publicKey } = useWallet();
@@ -30,39 +31,31 @@ export const CreateQueue = () => {
     const helloworldProgram: anchor.Program<HelloClockwork> =
       new anchor.Program(IDL, HELLO_CLOCKWORK_PROGRAM_ID, anchorProvider);
 
-    const queueProgram: anchor.Program<QueueProgram> = new anchor.Program(
-      QueueIDL,
-      CLOCKWORK_QUEUE_PROGRAM_ID,
+    const threadProgram: anchor.Program<ThreadProgram> = new anchor.Program(
+      ThreadIDL,
+      CLOCKWORK_THREAD_PROGRAM_ID,
       anchorProvider
     );
 
-    const queues = await queueProgram.account.queue.all();
-    const qAccountIds = queues.map((q) => q.account.id);
-    if (qAccountIds.find((id) => id === queueMsg)) {
-      toast("Please try another name!");
-      return;
-    }
-
+    const threadName = uuid().new();
     const [pda] = await anchor.web3.PublicKey.findProgramAddress(
       [
         Buffer.from(SEED_QUEUE, "utf-8"),
         publicKey.toBuffer(),
-        Buffer.from(queueMsg, "utf-8"),
+        Buffer.from(threadName, "utf-8"),
       ],
-      CLOCKWORK_QUEUE_PROGRAM_ID
+      CLOCKWORK_THREAD_PROGRAM_ID
     );
-
-    anchorProvider.connection.requestAirdrop(pda, 2e9);
 
     const helloworldInstruction = await helloworldProgram.methods
       .helloWorld(queueMsg)
-      .accounts({ helloQueue: publicKey })
+      .accounts({ helloThread: publicKey })
       .instruction();
 
     try {
-      const queue_transaction = await queueProgram.methods
-        .queueCreate(
-          queueMsg,
+      const thread_transaction = await threadProgram.methods
+        .threadCreate(
+          threadName,
           {
             programId: helloworldProgram.programId,
             accounts: [{ pubkey: pda, isSigner: true, isWritable: true }],
@@ -78,12 +71,12 @@ export const CreateQueue = () => {
         .accounts({
           authority: publicKey,
           payer: publicKey,
-          queue: pda,
+          thread: pda,
           systemProgram: anchor.web3.SystemProgram.programId,
         })
         .rpc();
 
-      console.log(queue_transaction);
+      console.log(thread_transaction);
 
       toast(`A queue has been created with "${queueMsg}"`);
     } catch (e) {
