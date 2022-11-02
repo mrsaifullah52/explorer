@@ -15,6 +15,9 @@ module.exports = {
         sans: ['"FK Grotesk Neue"', ...defaultTheme.fontFamily.sans],
         mono: ['"IBM Plex Mono"', ...defaultTheme.fontFamily.mono],
       },
+      dropShadow: {
+        "3xl": "0 20px 20px rgba(10, 10, 10, 0.25)",
+      },
     },
   },
   variants: {

@@ -52,7 +52,7 @@ export const SettingsNetworkMenu: FC<SettingsNetworkMenuProps> = ({
     <div
       className={`${
         open ? "block" : "hidden"
-      } absolute top-full w-screen max-w-lg my-4 py-3 bg-white dark:bg-[#2C2B2B] rounded-lg flex flex-col shadow-xl`}
+      } absolute top-full w-screen max-w-lg my-4 py-3 bg-white dark:bg-[#2C2B2B] rounded-lg flex flex-col drop-shadow-3xl z-50`}
     >
       <div className="py-2">
         {/* <SettingsMenuLabel>Network</SettingsMenuLabel> */}
