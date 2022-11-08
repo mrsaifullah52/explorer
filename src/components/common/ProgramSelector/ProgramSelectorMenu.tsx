@@ -41,7 +41,7 @@ export const ProgramSelectorMenu = () => {
             type="text"
             value={customProgramID}
             onChange={(e) => setCustomProgramID(e.target.value)}
-            placeholder="Queue Address"
+            placeholder="Thread Address"
             className="px-4 py-2 w-full text-white rounded-lg bg-transparent border border-[#E7EAED] focus:outline-none"
           />
           {Object.entries(CLOCKWORKS_PROGRAMS).map(
