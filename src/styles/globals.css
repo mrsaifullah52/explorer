@@ -15,7 +15,6 @@
   font-weight: 300;
 }
 
-
 @font-face {
   font-family: "FK Grotesk Neue";
   src: url("../../public/fonts/FK Grotesk Neue/FKGroteskNeue-Regular.otf");
@@ -52,7 +51,6 @@
   src: url("../../public/fonts/TT Firs Neue/TT Firs Neue Light.ttf");
   font-weight: 300;
 }
-
 
 @font-face {
   font-family: "TT Firs Neue";
@@ -125,9 +123,10 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: FK Grotesk Neue, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  @apply bg-white
+  font-family: FK Grotesk Neue, -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
+  @apply bg-white;
 }
 
 a {
@@ -141,20 +140,19 @@ a {
 
 /* example: override wallet button style */
 .wallet-adapter-button:not([disabled]):hover {
-  background-color: #E8E8E8;
+  background-color: #e8e8e8;
 }
 
 .wallet-adapter-button {
-  color: #0E1114
+  color: #0e1114;
 }
 
-
 .wallet-adapter-modal-wrapper {
-  background-color: white
+  background-color: white;
 }
 
 .wallet-adapter-modal-title {
-  color: #0E1114
+  color: #0e1114;
 }
 
 .wallet-adapter-modal-button-close {
@@ -163,14 +161,14 @@ a {
 }
 
 .wallet-adapter-modal-button-close:hover {
-  color: #0E1114;
+  color: #0e1114;
   background: inherit;
 }
 
 .wallet-adapter-modal-list-more {
-  color: #979797
+  color: #979797;
 }
 
-.wallet-adapter-modal-list-more>svg {
-  fill: #979797
+.wallet-adapter-modal-list-more > svg {
+  fill: #979797;
 }
