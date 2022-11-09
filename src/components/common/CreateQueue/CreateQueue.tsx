@@ -96,7 +96,7 @@ export const CreateQueue = () => {
         }
       />
       <PrimaryButton className="pt-3 pb-3" onClick={() => handleCreateQueue()}>
-        Create Queue
+        Create Thread
       </PrimaryButton>
     </div>
   );

@@ -19,7 +19,7 @@ export const Queue = ({ q }) => {
     <div className="rounded-lg w-full">
       <div className="w-full py-6">
         <h3 className="font-semibold text-2xl text-[#0E1114] dark:text-white font-['Inter'] leading-5 mb-6">
-          Queue
+          Thread
         </h3>
         <DataTable>
           <DataTableRow
@@ -38,13 +38,9 @@ export const Queue = ({ q }) => {
               cluster.network
             )}
           />
-          {q.account.name ||
-            q.account.id ? (
-              <DataTableRow
-                label="Name"
-                value={q.account.name || q.account.id}
-              />
-            ) : null}
+          {q.account.name || q.account.id ? (
+            <DataTableRow label="Name" value={q.account.name || q.account.id} />
+          ) : null}
           <DataTableRow
             label="Executon Context"
             value={formatExecCtx(q.account.execContext)}
