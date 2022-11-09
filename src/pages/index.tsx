@@ -1,11 +1,8 @@
 import type { NextPage } from "next";
-import Head from "next/head";
 import { HomeView } from "../views";
 
-const Home: NextPage = (props) => {
-  return (
-      <HomeView />
-  );
+const Home: NextPage = () => {
+  return <HomeView />;
 };
 
 export default Home;
