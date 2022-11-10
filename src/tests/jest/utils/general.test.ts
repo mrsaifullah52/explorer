@@ -1,4 +1,4 @@
-import { classNames, formatUnix } from "../../utils/general";
+import { classNames, formatUnix } from "../../../utils/general";
 
 test("classNames", () => {
   const class1 = "flex";
