@@ -1,9 +1,10 @@
-import { PublicKey } from "@solana/web3.js";
+import BigNumber from "bignumber.js";
 import {
   classNames,
   formatUnix,
   getExplorerLink,
-  getExplorerAccountLink,
+  formatTrigger,
+  formatExecCtx,
 } from "../../../utils/general";
 import { ClusterType } from "../../../utils/constants";
 
@@ -22,7 +23,7 @@ test("getExplorerLink", () => {
   expect(getExplorerLink(txSig, cluster)).toBe(expected);
 });
 
-test("getExplorerAccountLink", () => {
+/*test("getExplorerAccountLink", () => {
   const account: PublicKey = new PublicKey(
     "HbeMiiNcf4nrj8v3i316kNKXr6qYdBk2dbSKDxWvGw6m"
   );
@@ -30,6 +31,22 @@ test("getExplorerAccountLink", () => {
   const expected =
     "https://explorer.solana.com/tx/HbeMiiNcf4nrj8v3i316kNKXr6qYdBk2dbSKDxWvGw6m?cluster=devnet";
   expect(getExplorerAccountLink(account, cluster)).toBe(expected);
+});*/
+
+test("formatTrigger", () => {
+  const trigger = { cron: { schedule: "* * * * * *" } };
+  const hasCronResult = "Cron: * * * * * *";
+  const noCronResult = "Instant";
+  expect(formatTrigger(trigger)).toBe(hasCronResult);
+  expect(formatTrigger(null)).toBe(noCronResult);
+});
+
+test("formatExecCtx", () => {
+  const trigger = { cron: { startedAt: new BigNumber("1668007710") } };
+  const hasCronResult = "Cron: November 9th, 2022 at 10:28:30 AM GMT-5";
+  const noCronResult = "Instant";
+  expect(formatExecCtx(trigger)).toBe(hasCronResult);
+  expect(formatExecCtx(null)).toBe(noCronResult);
 });
 
 test("formatUnix", () => {
