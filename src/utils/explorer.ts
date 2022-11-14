@@ -1,10 +1,9 @@
-import { PublicKey, Transaction } from "@solana/web3.js";
-import base58 from "bs58";
+import { PublicKey } from "@solana/web3.js";
 
 export function getExplorerUrl(
   endpoint: string,
   viewTypeOrItemAddress: "inspector" | PublicKey | string,
-  itemType = "address" // | 'tx' | 'block'
+  itemType: "address" | "tx" | "block" = "address"
 ) {
   const getClusterUrlParam = () => {
     let cluster = "";
