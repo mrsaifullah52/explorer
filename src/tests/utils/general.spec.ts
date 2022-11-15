@@ -5,8 +5,8 @@ import {
   getExplorerLink,
   formatTrigger,
   formatExecCtx,
-} from "../../../utils/general";
-import { ClusterType } from "../../../utils/constants";
+} from "../../utils/general";
+import { ClusterType } from "../../utils/constants";
 
 test("classNames", () => {
   const class1 = "flex";

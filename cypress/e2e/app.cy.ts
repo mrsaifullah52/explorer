@@ -1,5 +1,5 @@
 describe("Navigation", () => {
-  it("should navigate to the about page", () => {
+  it("should navigate to the thread page", () => {
     // Start from the index page
     cy.visit("http://localhost:3000/");
 
@@ -13,6 +13,8 @@ describe("Navigation", () => {
       "include",
       "/queue/HbeMiiNcf4nrj8v3i316kNKXr6qYdBk2dbSKDxWvGw6m"
     );
+
+    cy.wait(1000);
 
     // The new page should contain an h3 with "Thread"
     cy.get("h3").contains("Thread");

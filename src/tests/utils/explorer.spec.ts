@@ -1,4 +1,4 @@
-import { getExplorerUrl } from "../../../utils/explorer";
+import { getExplorerUrl } from "../../utils/explorer";
 
 test("getExplorerUrl localnet", () => {
   const endpoint = "localnet";
