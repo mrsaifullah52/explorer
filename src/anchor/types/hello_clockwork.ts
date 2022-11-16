@@ -1,51 +1,51 @@
 export type HelloClockwork = {
-  "version": "0.1.0",
-  "name": "hello_clockwork",
-  "instructions": [
+  version: "0.1.0";
+  name: "hello_clockwork";
+  instructions: [
     {
-      "name": "helloWorld",
-      "accounts": [
+      name: "helloWorld";
+      accounts: [
         {
-          "name": "helloQueue",
-          "isMut": false,
-          "isSigner": true
+          name: "helloThread";
+          isMut: false;
+          isSigner: true;
         }
-      ],
-      "args": [
+      ];
+      args: [
         {
-          "name": "name",
-          "type": "string"
+          name: "name";
+          type: "string";
         }
-      ],
-      "returns": {
-        "defined": "clockwork_sdk::CrankResponse"
-      }
+      ];
+      returns: {
+        defined: "clockwork_sdk::ExecResponse";
+      };
     }
-  ]
+  ];
 };
 
 export const IDL: HelloClockwork = {
-  "version": "0.1.0",
-  "name": "hello_clockwork",
-  "instructions": [
+  version: "0.1.0",
+  name: "hello_clockwork",
+  instructions: [
     {
-      "name": "helloWorld",
-      "accounts": [
+      name: "helloWorld",
+      accounts: [
         {
-          "name": "helloQueue",
-          "isMut": false,
-          "isSigner": true
-        }
+          name: "helloThread",
+          isMut: false,
+          isSigner: true,
+        },
       ],
-      "args": [
+      args: [
         {
-          "name": "name",
-          "type": "string"
-        }
+          name: "name",
+          type: "string",
+        },
       ],
-      "returns": {
-        "defined": "clockwork_sdk::CrankResponse"
-      }
-    }
-  ]
+      returns: {
+        defined: "clockwork_sdk::ExecResponse",
+      },
+    },
+  ],
 };

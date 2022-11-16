@@ -1,6 +1,6 @@
+import { format } from "date-fns";
 import { PublicKey } from "@solana/web3.js";
 import { ClusterType } from "./constants";
-import { format } from "date-fns";
 
 export function classNames(...classes: string[]): string {
   return classes.filter(Boolean).join(" ");

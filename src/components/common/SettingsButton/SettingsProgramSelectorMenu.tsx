@@ -49,7 +49,7 @@ export const SettingsProgramSelectorMenu = () => {
             type="text"
             value={customProgramID}
             onChange={(e) => setCustomProgramID(e.target.value)}
-            placeholder="Queue Address"
+            placeholder="Thread Address"
             className="px-4 py-2 w-full text-sm font-mono text-[#0E1114] dark:text-white rounded-lg bg-transparent border border-[#BFBFBF
             ] dark:border-[#626262] focus:outline-none"
           />

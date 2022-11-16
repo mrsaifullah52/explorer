@@ -49,7 +49,7 @@ export const Queues = () => {
       <Modal
         open={openCreateQueueModal}
         setOpen={setOpenCreateQueueModal}
-        title="Create a Queue"
+        title="Create a Thread"
       >
         <CreateQueue />
       </Modal>
@@ -58,13 +58,13 @@ export const Queues = () => {
           <div className="py-6 rounded-lg flex flex-col space-y-6">
             <div className="flex justify-between items-center">
               <h2 className="text-2xl text-[#0E1114] dark:text-white font-semibold font-header leading-5">
-                Queues
+                Threads
               </h2>
               <PrimaryButton
                 onClick={() => setOpenCreateQueueModal(true)}
                 className="pt-3 pb-3"
               >
-                Create Queue
+                Create Thread
               </PrimaryButton>
             </div>
 
