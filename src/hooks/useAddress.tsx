@@ -95,7 +95,7 @@ export const useAddress = (address: string) => {
   }, [connection, address, fetchAddressCallback]);
 
   useEffect(() => {
-    if (address.length === 0) {
+    if (!address || address.length === 0) {
       setAddressState((prev) => ({
         ...prev,
         error: undefined,

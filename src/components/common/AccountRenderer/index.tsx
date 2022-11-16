@@ -7,6 +7,7 @@ import { getExplorerAccountLink } from "utils/general";
 import { DataTable, DataTableRow, DataTableRowExpandable } from "../DataTable";
 import { DataTableRowAccount } from "../DataTable/DataTableRowAccount";
 import { toSentenceCase } from "utils/toSentenceCase";
+import { DataTableRowBuffer } from "../DataTable/DataTableRowBuffer";
 
 export const AccountRenderer = () => {
   const { data } = useSearch();
@@ -124,11 +125,11 @@ export const RecursiveAccountRenderer: FC<{ account: Record<any, any> }> = ({
 
       if (tryIsBuffer(value)) {
         return (
-          <DataTableRow
+          <DataTableRowBuffer
             key={`${name}_${i}_${depth}`}
             label={label}
             depth={depth}
-            value={JSON.stringify(value)}
+            value={value}
           />
         );
       }
