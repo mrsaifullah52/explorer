@@ -1,29 +1,23 @@
 import { ExternalLinkIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 
-export const DataTableRow = ({
-  label,
-  value,
-  link,
-}: {
+export type DataTableRowProps = {
   label: string;
   value: string;
   link?: string;
-}) => {
+};
+export const DataTableRow = ({ label, value, link }: DataTableRowProps) => {
   if (link) {
     return (
       <tr className="text-[#979797] hover:text-[#0E1114] dark:hover:text-white hover:bg-white dark:hover:bg-[#5A5A5A] cursor-pointer w-full">
         <td className="whitespace-nowrap p-0">
           <Link href={link}>
-            <p className="text-sm p-4 md:px-8 ">{label}</p>
+            <a className="text-sm p-4 md:px-8 ">{label}</a>
           </Link>
         </td>
         <td className="whitespace-nowrap p-0">
           <Link href={link}>
-            <span
-              // rel="noopener noreferrer"
-              className="p-4 md:px-8 whitespace-nowrap flex justify-end items-center space-x-2"
-            >
+            <span className="p-4 md:px-8 whitespace-nowrap flex justify-end items-center space-x-2">
               <p className="text-sm text-[#0E1114] dark:text-white font-light font-['IBM_Plex_Mono']">
                 {value}
               </p>

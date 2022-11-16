@@ -1,15 +1,12 @@
 import { ExternalLinkIcon } from "@heroicons/react/outline";
 import Link from "next/link";
+import { DataTableRowProps } from "./DataTableRow";
 
 export const DataTableRowInline = ({
   label,
   value,
   link,
-}: {
-  label: string;
-  value: string;
-  link?: string;
-}) => {
+}: DataTableRowProps) => {
   if (link) {
     return (
       <tr className="text-[#979797] hover:text-[#0E1114] dark:hover:bg-[#5A5A5A] dark:hover:text-white hover:bg-white cursor-pointer w-full">
