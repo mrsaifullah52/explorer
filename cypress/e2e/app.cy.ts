@@ -40,7 +40,31 @@ describe("Navigation", () => {
 
     cy.wait(1000);
 
-    // The new page should contain an h3 with "Thread"
+    // The new page should contain an h2 with "Account"
+    cy.get("h2").contains("Account");
+  });
+
+  it("should navigate to the next account page", () => {
+    // Start from the account page
+    cy.visit(
+      "http://localhost:3000/address/HbeMiiNcf4nrj8v3i316kNKXr6qYdBk2dbSKDxWvGw6m?network=devnet"
+    );
+    cy.wait(1000);
+
+    // Find a link with an href attribute containing "/address/HbeMiiNcf4nrj8v3i316kNKXr6qYdBk2dbSKDxWvGw6m?network=devnet" and click it
+    cy.get(
+      'a[href*="/address/3XXuUFfweXBwFgFfYaejLvZE4cGZiHgKiGfMtdxNzYmv?network=devnet"]'
+    ).click();
+
+    // The new url should include "/address/3XXuUFfweXBwFgFfYaejLvZE4cGZiHgKiGfMtdxNzYmv?network=devnet"
+    cy.url().should(
+      "include",
+      "/address/3XXuUFfweXBwFgFfYaejLvZE4cGZiHgKiGfMtdxNzYmv?network=devnet"
+    );
+
+    cy.wait(1000);
+
+    // The new page should contain an h2 with "Account"
     cy.get("h2").contains("Account");
   });
 });
