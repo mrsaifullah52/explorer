@@ -3,6 +3,7 @@ import {
   ClipboardCheckIcon,
 } from "@heroicons/react/outline";
 import { useState } from "react";
+import { CopyButton } from "../CopyButton";
 
 export const DataTableRowBuffer = ({
   label,
@@ -27,32 +28,26 @@ export const DataTableRowBuffer = ({
       <div
         className={`py-4 px-4 md:px-8 whitespace-nowrap flex justify-end items-center space-x-2`}
       >
-        <button>
-          {copied ? (
-            <span className="flex">
-              <span className="text-sm">Copied</span>
-              <span>
-                <ClipboardCheckIcon className="h-4 w-4" />
-              </span>
-            </span>
-          ) : (
-              <ClipboardCopyIcon
-                className="h-4 w-4 cursor-pointer"
-                onClick={() => {
-                  navigator.clipboard.writeText(value.toString("hex"));
-                  setCopied(true);
-                  setTimeout(() => {
-                    setCopied(false);
-                  }, 3000);
-                }}
-              />
-          )}
-        </button>
-        <p
-          className={`p-1 rounded-md bg-[#E7EAED] dark:bg-[#626262] text-sm text-[#0E1114] dark:text-white font-light "font-['IBM_Plex_Mono']"`}
-        >
-          {styleString(value)}
-        </p>
+        {value.length === 0 ? (
+          <span className="text-sm">None</span>
+        ) : (
+          <>
+            <CopyButton valueToCopy={value.toString("hex")} />
+            <div className={`w-80 h-auto flex flex-col p-3 rounded-md bg-[#E7EAED] dark:bg-[#626262] font-['IBM_Plex_Mono']`}>
+
+                {styleString(value).map((section, i) => {
+                  return (
+                    <p
+                      key={`${i}_bytes`}
+                      className={`text-sm text-[#0E1114] break-all dark:text-white font-light font-['IBM_Plex_Mono']`}
+                    >
+                      {section.join('')}
+                    </p>
+                  );
+                })}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
@@ -64,10 +59,18 @@ const styleString = (buffer) => {
   for (let i = 0; i < hexString.length; i++) {
     const char = hexString[i];
     if (i % 2) {
-      output.push(char + " ");
+      output.push(char);
+      output.push(" ");
     } else {
       output.push(char);
     }
   }
-  return output;
+
+  const display = [];
+
+  for (let i = 0; i < output.length; i += 36) {
+    display.push(output.slice(i, i + 36));
+  }
+
+  return display;
 };

@@ -1,6 +1,7 @@
-import { ExternalLinkIcon } from "@heroicons/react/outline";
+import { ArrowUpIcon, ExternalLinkIcon } from "@heroicons/react/outline";
 import { PublicKey } from "@solana/web3.js";
 import Link from "next/link";
+import { CopyButton } from "../CopyButton";
 
 export const DataTableRowAccount = ({
   label,
@@ -19,26 +20,32 @@ export const DataTableRowAccount = ({
   fontMono?: boolean;
   depth?: number;
 }) => {
-    return (
-      <div style={{ paddingLeft: depth * 16 }} className={`flex justify-between  text-[#979797] hover:text-[#0E1114] dark:hover:text-white hover:bg-white dark:hover:bg-[#5A5A5A] cursor-pointer w-full`}>
-        <div className="whitespace-nowrap p-0">
-          <Link href={link}>
-            <p className={`text-sm py-4 px-4  md:px-8`}>{label}</p>
-          </Link>
-        </div>
-        <div className="whitespace-nowrap p-0">
-          <Link href={link}>
-            <span
-              // rel="noopener noreferrer"
-              className={`py-4 px-4  md:px-8 whitespace-nowrap flex justify-end items-center space-x-2`}
-            >
-              <p className="text-sm text-[#0E1114] dark:text-white font-light font-['IBM_Plex_Mono']">
-                {pubkey.toBase58()}
-              </p>
-              <ExternalLinkIcon className="h-4 w-4 cursor-pointer" />
-            </span>
-          </Link>
-        </div>
+  return (
+    <div
+      style={{ paddingLeft: depth * 16 }}
+      className={`flex justify-between  text-[#979797] w-full`}
+    >
+      <div className="whitespace-nowrap p-0">
+        <p className={`text-sm py-4 px-4  md:px-8`}>{label}</p>
       </div>
-    );
+      <div className="whitespace-nowrap p-0">
+        <span
+          // rel="noopener noreferrer"
+          className={`py-4 px-4 md:px-8 whitespace-nowrap flex justify-end items-center space-x-2`}
+        >
+          <CopyButton valueToCopy={pubkey.toBase58()} />
+          <Link href={link}>
+            <a>
+              <div className="flex items-center space-x-2">
+                <p className="space-x-2 text-sm text-[#0E1114] dark:text-white hover:underline font-light font-['IBM_Plex_Mono']">
+                  {pubkey.toBase58()}
+                </p>
+                <ArrowUpIcon className="h-4 w-4 cursor-pointer hover:text-[#0E1114] hover:dark:text-white rotate-45" />
+              </div>
+            </a>
+          </Link>
+        </span>
+      </div>
+    </div>
+  );
 };

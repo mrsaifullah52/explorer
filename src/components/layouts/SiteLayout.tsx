@@ -24,7 +24,7 @@ export const SiteLayout: FC<SiteLayoutProps> = ({
       <div className="w-full h-screen overflow-y-auto flex flex-col space-y-4 justify-between">
         <div className="w-full mx-auto">
           <Header />
-          <div className="max-w-6xl w-full mx-auto">
+          <div className="max-w-5xl w-full mx-auto">
             <SearchBar />
             <div className="px-4">{children}</div>
           </div>
