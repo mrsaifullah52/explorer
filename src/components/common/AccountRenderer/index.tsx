@@ -5,6 +5,8 @@ import { useSolana } from "contexts/SolanaContext";
 import { FC, ReactElement, useMemo } from "react";
 import { getExplorerAccountLink } from "utils/general";
 import { DataTable, DataTableRow, DataTableRowExpandable } from "../DataTable";
+import { DataTableRowAccount } from "../DataTable/DataTableRowAccount";
+import { toSentenceCase } from "utils/toSentenceCase";
 
 export const AccountRenderer = () => {
   const { data } = useSearch();
@@ -43,6 +45,15 @@ const tryIntoPubkey = (value: any) => {
   }
 };
 
+const tryIsAccounts = (value: any) => {
+  try {
+    console.log("value: ", value);
+    return new PublicKey(value).toBase58();
+  } catch (error) {
+    return false;
+  }
+};
+
 export const RecursiveAccountRenderer: FC<{ account: Record<any, any> }> = ({
   account,
 }) => {
@@ -51,15 +62,13 @@ export const RecursiveAccountRenderer: FC<{ account: Record<any, any> }> = ({
 
   const mapEntriesToComponents = (entries: [string, any][], depth = 0) => {
     return entries.map(([name, value], i) => {
-      //   console.log(name, value);
-
-      console.log("type: ", typeof value);
+      const label = toSentenceCase(name);
 
       if (typeof value === "boolean") {
         return (
           <DataTableRow
             key={`${name}_${i}_${depth}`}
-            label={name}
+            label={label}
             depth={depth}
             value={value ? "true" : "false"}
           />
@@ -70,7 +79,7 @@ export const RecursiveAccountRenderer: FC<{ account: Record<any, any> }> = ({
         return (
           <DataTableRow
             key={`${name}_${i}_${depth}`}
-            label={name}
+            label={label}
             depth={depth}
             value={value}
           />
@@ -81,7 +90,7 @@ export const RecursiveAccountRenderer: FC<{ account: Record<any, any> }> = ({
         return (
           <DataTableRow
             key={`${name}_${i}_${depth}`}
-            label={name}
+            label={label}
             depth={depth}
             value={value}
           />
@@ -93,7 +102,7 @@ export const RecursiveAccountRenderer: FC<{ account: Record<any, any> }> = ({
         return (
           <DataTableRow
             key={`${name}_${i}_${depth}`}
-            label={name}
+            label={label}
             depth={depth}
             value={value.toBase58()}
             link={link}
@@ -105,7 +114,7 @@ export const RecursiveAccountRenderer: FC<{ account: Record<any, any> }> = ({
         return (
           <DataTableRow
             key={`${name}_${i}_${depth}`}
-            label={name}
+            label={label}
             depth={depth}
             value={value.toString()}
             fontMono
@@ -117,7 +126,7 @@ export const RecursiveAccountRenderer: FC<{ account: Record<any, any> }> = ({
         return (
           <DataTableRow
             key={`${name}_${i}_${depth}`}
-            label={name}
+            label={label}
             depth={depth}
             value={JSON.stringify(value)}
           />
@@ -125,18 +134,43 @@ export const RecursiveAccountRenderer: FC<{ account: Record<any, any> }> = ({
       }
 
       if (typeof value === "object") {
+        if (name === "accounts") {
+          return (
+            <>
+              {Object.entries(value).map(([index, accountIx]) => {
+                const { pubkey, isWritable, isSigner } = accountIx as {
+                  pubkey: PublicKey;
+                  isWritable: boolean;
+                  isSigner: boolean;
+                };
+                return (
+                  <DataTableRowAccount
+                    key={name + index}
+                    link={getExplorerAccountLink(pubkey, cluster.network)}
+                    label={`Account #${parseInt(index) + 1}`}
+                    pubkey={pubkey}
+                    isSigner={isSigner}
+                    isWritable={isWritable}
+                    depth={depth}
+                  />
+                );
+              })}
+            </>
+          );
+        }
+
         try {
           const children = mapEntriesToComponents(
             Object.entries(value),
             depth + 1
           );
           return (
-            <DataTableRowExpandable label={name} depth={depth}>
+            <DataTableRowExpandable label={label} depth={depth}>
               {children}
             </DataTableRowExpandable>
           );
         } catch (error) {
-          console.log(value);
+          console.error(value);
         }
       }
     });
