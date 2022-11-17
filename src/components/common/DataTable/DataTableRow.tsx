@@ -1,4 +1,4 @@
-import { ExternalLinkIcon, ArrowUpIcon } from "@heroicons/react/outline";
+import { ArrowUpIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { CopyButton } from "../CopyButton";
 
@@ -24,13 +24,10 @@ export const DataTableRow = ({
         } border-[#E7EAED] dark:border-[#626262] text-[#979797] w-full`}
       >
         <div className="whitespace-nowrap p-0">
-          {/* <Link href={link}> */}
           <p className={`text-sm py-4 px-4 md:px-8`}>{label}</p>
-          {/* </Link> */}
         </div>
         <div className="whitespace-nowrap p-0">
           <span
-            // rel="noopener noreferrer"
             className={`py-4 px-4 md:px-8 whitespace-nowrap flex justify-end items-center space-x-2`}
           >
             <CopyButton valueToCopy={value} />
@@ -56,7 +53,9 @@ export const DataTableRow = ({
         depth === 0 ? "border-b" : ""
       } border-[#E7EAED] dark:border-[#626262] text-[#979797]`}
     >
-      <div className={`text-sm py-4 px-4 md:px-8 whitespace-nowrap`}>{label}</div>
+      <div className={`text-sm py-4 px-4 md:px-8 whitespace-nowrap`}>
+        {label}
+      </div>
       <div
         className={`py-4 px-4 md:px-8 whitespace-nowrap flex justify-end items-center space-x-2`}
       >
