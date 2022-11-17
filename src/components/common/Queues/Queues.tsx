@@ -107,7 +107,10 @@ export const Queues = () => {
                 </ul>
                 <div className="flex items-center justify-between">
                   <PaginationButton type="prev" onClick={prevPage} />
-                  <p className="text-sm text-[#979797]">{`${pageNumber} of ${totalPages}`}</p>
+                  <p
+                    id="page_number"
+                    className="text-sm text-[#979797]"
+                  >{`${pageNumber} of ${totalPages}`}</p>
                   <PaginationButton type="next" onClick={nextPage} />
                 </div>
               </>

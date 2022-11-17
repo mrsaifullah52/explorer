@@ -69,4 +69,15 @@ describe("Navigation", () => {
   });
 });
 
+describe("Pagination", () => {
+  it("should navigate to the next page", () => {
+    // Start from the first page
+    cy.visit("http://localhost:3000/");
+
+    cy.get("button").contains("Next").click();
+
+    cy.get("p#page_number").contains("1 of 10");
+  });
+});
+
 export {};
