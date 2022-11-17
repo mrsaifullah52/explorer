@@ -1,31 +1,14 @@
-export type ThreadProgram = {
-  "version": "1.3.8",
-  "name": "thread_program",
+export type QueueProgram = {
+  "version": "1.2.14",
+  "name": "queue_program",
   "docs": [
-    "Program for creating transaction threads on Solana."
+    "Program for creating transaction queues on Solana."
   ],
   "instructions": [
     {
-      "name": "getCrateInfo",
+      "name": "queueCrank",
       "docs": [
-        "Return the crate information via `sol_set_return_data/sol_get_return_data`"
-      ],
-      "accounts": [
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": [],
-      "returns": {
-        "defined": "CrateInfo"
-      }
-    },
-    {
-      "name": "threadExec",
-      "docs": [
-        "Executes the next instruction on thread."
+        "Cranks a transaction queue."
       ],
       "accounts": [
         {
@@ -53,19 +36,19 @@ export type ThreadProgram = {
           ]
         },
         {
+          "name": "queue",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The queue to crank."
+          ]
+        },
+        {
           "name": "signatory",
           "isMut": true,
           "isSigner": true,
           "docs": [
             "The signatory."
-          ]
-        },
-        {
-          "name": "thread",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "The thread to execute."
           ]
         },
         {
@@ -80,9 +63,9 @@ export type ThreadProgram = {
       "args": []
     },
     {
-      "name": "threadCreate",
+      "name": "queueCreate",
       "docs": [
-        "Creates a new transaction thread."
+        "Creates a new transaction queue."
       ],
       "accounts": [
         {
@@ -90,7 +73,7 @@ export type ThreadProgram = {
           "isMut": false,
           "isSigner": true,
           "docs": [
-            "The authority (owner) of the thread."
+            "The authority (owner) of the queue."
           ]
         },
         {
@@ -102,19 +85,19 @@ export type ThreadProgram = {
           ]
         },
         {
+          "name": "queue",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The queue to be created."
+          ]
+        },
+        {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
           "docs": [
             "The Solana system program."
-          ]
-        },
-        {
-          "name": "thread",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "The thread to be created."
           ]
         }
       ],
@@ -138,9 +121,9 @@ export type ThreadProgram = {
       ]
     },
     {
-      "name": "threadDelete",
+      "name": "queueDelete",
       "docs": [
-        "Closes an existing thread account and returns the lamports to the owner."
+        "Closes an existing queue account and returns the lamports to the owner."
       ],
       "accounts": [
         {
@@ -148,7 +131,7 @@ export type ThreadProgram = {
           "isMut": false,
           "isSigner": true,
           "docs": [
-            "The authority (owner) of the thread."
+            "The authority (owner) of the queue."
           ]
         },
         {
@@ -160,36 +143,36 @@ export type ThreadProgram = {
           ]
         },
         {
-          "name": "thread",
+          "name": "queue",
           "isMut": true,
           "isSigner": false,
           "docs": [
-            "The thread to be delete."
+            "The queue to be delete."
           ]
         }
       ],
       "args": []
     },
     {
-      "name": "threadKickoff",
+      "name": "queueKickoff",
       "docs": [
-        "Kicks off a thread if its trigger condition is active."
+        "Kicks off a queue if its trigger condition is active."
       ],
       "accounts": [
+        {
+          "name": "queue",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The queue to crank."
+          ]
+        },
         {
           "name": "signatory",
           "isMut": true,
           "isSigner": true,
           "docs": [
             "The signatory."
-          ]
-        },
-        {
-          "name": "thread",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "The thread to kickoff."
           ]
         },
         {
@@ -201,12 +184,19 @@ export type ThreadProgram = {
           ]
         }
       ],
-      "args": []
+      "args": [
+        {
+          "name": "dataHash",
+          "type": {
+            "option": "u64"
+          }
+        }
+      ]
     },
     {
-      "name": "threadPause",
+      "name": "queuePause",
       "docs": [
-        "Pauses an active thread."
+        "Pauses an active queue."
       ],
       "accounts": [
         {
@@ -214,24 +204,24 @@ export type ThreadProgram = {
           "isMut": false,
           "isSigner": true,
           "docs": [
-            "The authority (owner) of the thread."
+            "The authority (owner) of the queue."
           ]
         },
         {
-          "name": "thread",
+          "name": "queue",
           "isMut": true,
           "isSigner": false,
           "docs": [
-            "The thread to be paused."
+            "The queue to be paused."
           ]
         }
       ],
       "args": []
     },
     {
-      "name": "threadResume",
+      "name": "queueResume",
       "docs": [
-        "Resumes a paused thread."
+        "Resumes a paused queue."
       ],
       "accounts": [
         {
@@ -239,24 +229,24 @@ export type ThreadProgram = {
           "isMut": false,
           "isSigner": true,
           "docs": [
-            "The authority (owner) of the thread."
+            "The authority (owner) of the queue."
           ]
         },
         {
-          "name": "thread",
+          "name": "queue",
           "isMut": true,
           "isSigner": false,
           "docs": [
-            "The thread to be resumed."
+            "The queue to be resumed."
           ]
         }
       ],
       "args": []
     },
     {
-      "name": "threadStop",
+      "name": "queueStop",
       "docs": [
-        "Resumes a paused thread."
+        "Resumes a paused queue."
       ],
       "accounts": [
         {
@@ -264,24 +254,24 @@ export type ThreadProgram = {
           "isMut": false,
           "isSigner": true,
           "docs": [
-            "The authority (owner) of the thread."
+            "The authority (owner) of the queue."
           ]
         },
         {
-          "name": "thread",
+          "name": "queue",
           "isMut": true,
           "isSigner": false,
           "docs": [
-            "The thread to be paused."
+            "The queue to be paused."
           ]
         }
       ],
       "args": []
     },
     {
-      "name": "threadUpdate",
+      "name": "queueUpdate",
       "docs": [
-        "Allows an owner to update the mutable properties of a thread."
+        "Allows an owner to update the mutable properties of a queue."
       ],
       "accounts": [
         {
@@ -289,7 +279,15 @@ export type ThreadProgram = {
           "isMut": true,
           "isSigner": true,
           "docs": [
-            "The authority (owner) of the thread."
+            "The authority (owner) of the queue."
+          ]
+        },
+        {
+          "name": "queue",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The queue to be updated."
           ]
         },
         {
@@ -299,29 +297,21 @@ export type ThreadProgram = {
           "docs": [
             "The Solana system program"
           ]
-        },
-        {
-          "name": "thread",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "The thread to be updated."
-          ]
         }
       ],
       "args": [
         {
           "name": "settings",
           "type": {
-            "defined": "ThreadSettings"
+            "defined": "QueueSettings"
           }
         }
       ]
     },
     {
-      "name": "threadWithdraw",
+      "name": "queueWithdraw",
       "docs": [
-        "Allows an owner to withdraw from a thread's lamport balance."
+        "Allows an owner to withdraw from a queue's lamport balance."
       ],
       "accounts": [
         {
@@ -329,7 +319,7 @@ export type ThreadProgram = {
           "isMut": false,
           "isSigner": true,
           "docs": [
-            "The authority (owner) of the thread."
+            "The authority (owner) of the queue."
           ]
         },
         {
@@ -341,11 +331,11 @@ export type ThreadProgram = {
           ]
         },
         {
-          "name": "thread",
+          "name": "queue",
           "isMut": true,
           "isSigner": false,
           "docs": [
-            "The thread to be."
+            "The queue to be."
           ]
         }
       ],
@@ -359,7 +349,7 @@ export type ThreadProgram = {
   ],
   "accounts": [
     {
-      "name": "thread",
+      "name": "queue",
       "docs": [
         "Tracks the current state of a transaction thread on Solana."
       ],
@@ -369,14 +359,14 @@ export type ThreadProgram = {
           {
             "name": "authority",
             "docs": [
-              "The owner of this thread."
+              "The owner of this queue."
             ],
             "type": "publicKey"
           },
           {
             "name": "createdAt",
             "docs": [
-              "The cluster clock at the moment the thread was created."
+              "The cluster clock at the moment the queue was created."
             ],
             "type": {
               "defined": "ClockData"
@@ -385,7 +375,7 @@ export type ThreadProgram = {
           {
             "name": "execContext",
             "docs": [
-              "The context of the thread's current execution state."
+              "The context of the current thread execution state."
             ],
             "type": {
               "option": {
@@ -396,14 +386,14 @@ export type ThreadProgram = {
           {
             "name": "fee",
             "docs": [
-              "The number of lamports to payout to workers per execution."
+              "The number of lamports to payout to workers per crank."
             ],
             "type": "u64"
           },
           {
             "name": "id",
             "docs": [
-              "The id of the thread, given by the authority."
+              "The id of the queue, given by the authority."
             ],
             "type": "string"
           },
@@ -430,14 +420,14 @@ export type ThreadProgram = {
           {
             "name": "paused",
             "docs": [
-              "Whether or not the thread is currently paused."
+              "Whether or not the queue is currently paused."
             ],
             "type": "bool"
           },
           {
             "name": "rateLimit",
             "docs": [
-              "The maximum number of execs allowed per slot."
+              "The maximum number of cranks allowed per slot."
             ],
             "type": "u64"
           },
@@ -456,9 +446,9 @@ export type ThreadProgram = {
   ],
   "types": [
     {
-      "name": "ThreadSettings",
+      "name": "QueueSettings",
       "docs": [
-        "The properties of threads which are updatable."
+        "The properties of queues which are updatable."
       ],
       "type": {
         "kind": "struct",
@@ -503,23 +493,23 @@ export type ThreadProgram = {
         "kind": "struct",
         "fields": [
           {
-            "name": "execsSinceReimbursement",
+            "name": "cranksSinceReimbursement",
             "docs": [
-              "Number of execs since the last tx reimbursement."
+              "Number of cranks since the last tx reimbursement."
             ],
             "type": "u64"
           },
           {
-            "name": "execsSinceSlot",
+            "name": "cranksSinceSlot",
             "docs": [
-              "Number of execs in this slot."
+              "Number of cranks in this slot."
             ],
             "type": "u64"
           },
           {
-            "name": "lastExecAt",
+            "name": "lastCrankAt",
             "docs": [
-              "Slot of the last exec"
+              "Slot of the last crank"
             ],
             "type": "u64"
           },
@@ -584,9 +574,9 @@ export type ThreadProgram = {
       }
     },
     {
-      "name": "ThreadResponse",
+      "name": "CrankResponse",
       "docs": [
-        "A response value target programs can return to update the thread."
+        "A response value target programs can return to update the queue."
       ],
       "type": {
         "kind": "struct",
@@ -594,7 +584,7 @@ export type ThreadProgram = {
           {
             "name": "kickoffInstruction",
             "docs": [
-              "The kickoff instruction to use on the next triggering of the thread.",
+              "The kickoff instruction to use on the next triggering of the queue.",
               "If none, the kickoff instruction remains unchanged."
             ],
             "type": {
@@ -606,7 +596,7 @@ export type ThreadProgram = {
           {
             "name": "nextInstruction",
             "docs": [
-              "The next instruction to use on the next execution of the thread."
+              "The next instruction to use on the next crank of the queue."
             ],
             "type": {
               "option": {
@@ -688,7 +678,7 @@ export type ThreadProgram = {
     {
       "name": "Trigger",
       "docs": [
-        "The triggering conditions of a thread."
+        "The triggering conditions of a queue."
       ],
       "type": {
         "kind": "enum",
@@ -697,29 +687,11 @@ export type ThreadProgram = {
             "name": "Account",
             "fields": [
               {
-                "name": "address",
+                "name": "pubkey",
                 "docs": [
-                  "The address of the account to monitor."
+                  "The address of the account to subscribe to."
                 ],
                 "type": "publicKey"
-              },
-              {
-                "name": "offset",
-                "docs": [
-                  "The byte offset of the account data to monitor."
-                ],
-                "type": {
-                  "defined": "usize"
-                }
-              },
-              {
-                "name": "size",
-                "docs": [
-                  "The size of the byte slice to monitor (must be less than 1kb)"
-                ],
-                "type": {
-                  "defined": "usize"
-                }
               }
             ]
           },
@@ -737,7 +709,7 @@ export type ThreadProgram = {
                 "name": "skippable",
                 "docs": [
                   "Boolean value indicating whether triggering moments may be skipped if they are missed (e.g. due to network downtime).",
-                  "If false, any \"missed\" triggering moments will simply be executed as soon as the network comes back online."
+                  "If false, any \"missed\" triggering moments will simply be cranked as soon as the network comes back online."
                 ],
                 "type": "bool"
               }
@@ -791,80 +763,63 @@ export type ThreadProgram = {
   "errors": [
     {
       "code": 6000,
-      "name": "InvalidThreadResponse",
-      "msg": "The exec response could not be parsed"
+      "name": "DataHashNotPresent",
+      "msg": "This trigger requires a data hash observation"
     },
     {
       "code": 6001,
-      "name": "InvalidThreadState",
-      "msg": "The thread is in an invalid state"
+      "name": "InvalidCrankResponse",
+      "msg": "The crank response could not be parsed"
     },
     {
       "code": 6002,
+      "name": "InvalidQueueState",
+      "msg": "The queue is in an invalid state"
+    },
+    {
+      "code": 6003,
       "name": "TriggerNotActive",
       "msg": "The trigger condition has not been activated"
     },
     {
-      "code": 6003,
-      "name": "ThreadBusy",
-      "msg": "This operation cannot be processes because the thread is currently busy"
-    },
-    {
       "code": 6004,
-      "name": "ThreadPaused",
-      "msg": "The thread is currently paused"
+      "name": "QueueBusy",
+      "msg": "This operation cannot be processes because the queue is currently busy"
     },
     {
       "code": 6005,
-      "name": "RateLimitExeceeded",
-      "msg": "The thread's rate limit has been reached"
+      "name": "QueuePaused",
+      "msg": "The queue is currently paused"
     },
     {
       "code": 6006,
-      "name": "MaxRateLimitExceeded",
-      "msg": "Thread rate limits cannot exceed the maximum allowed value"
+      "name": "RateLimitExeceeded",
+      "msg": "The queue's rate limit has been reached"
     },
     {
       "code": 6007,
-      "name": "UnauthorizedWrite",
-      "msg": "Inner instruction attempted to write to an unauthorized address"
+      "name": "MaxRateLimitExceeded",
+      "msg": "Queue rate limits cannot exceed the maximum allowed value"
     },
     {
       "code": 6008,
-      "name": "WithdrawalTooLarge",
-      "msg": "Withdrawing this amount would leave the thread with less than the minimum required SOL for rent exemption"
+      "name": "UnauthorizedWrite",
+      "msg": "Inner instruction attempted to write to an unauthorized address"
     }
   ]
 };
 
-export const IDL: ThreadProgram = {
-  "version": "1.3.8",
-  "name": "thread_program",
+export const IDL: QueueProgram = {
+  "version": "1.2.14",
+  "name": "queue_program",
   "docs": [
-    "Program for creating transaction threads on Solana."
+    "Program for creating transaction queues on Solana."
   ],
   "instructions": [
     {
-      "name": "getCrateInfo",
+      "name": "queueCrank",
       "docs": [
-        "Return the crate information via `sol_set_return_data/sol_get_return_data`"
-      ],
-      "accounts": [
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": [],
-      "returns": {
-        "defined": "CrateInfo"
-      }
-    },
-    {
-      "name": "threadExec",
-      "docs": [
-        "Executes the next instruction on thread."
+        "Cranks a transaction queue."
       ],
       "accounts": [
         {
@@ -892,19 +847,19 @@ export const IDL: ThreadProgram = {
           ]
         },
         {
+          "name": "queue",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The queue to crank."
+          ]
+        },
+        {
           "name": "signatory",
           "isMut": true,
           "isSigner": true,
           "docs": [
             "The signatory."
-          ]
-        },
-        {
-          "name": "thread",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "The thread to execute."
           ]
         },
         {
@@ -919,9 +874,9 @@ export const IDL: ThreadProgram = {
       "args": []
     },
     {
-      "name": "threadCreate",
+      "name": "queueCreate",
       "docs": [
-        "Creates a new transaction thread."
+        "Creates a new transaction queue."
       ],
       "accounts": [
         {
@@ -929,7 +884,7 @@ export const IDL: ThreadProgram = {
           "isMut": false,
           "isSigner": true,
           "docs": [
-            "The authority (owner) of the thread."
+            "The authority (owner) of the queue."
           ]
         },
         {
@@ -941,19 +896,19 @@ export const IDL: ThreadProgram = {
           ]
         },
         {
+          "name": "queue",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The queue to be created."
+          ]
+        },
+        {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false,
           "docs": [
             "The Solana system program."
-          ]
-        },
-        {
-          "name": "thread",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "The thread to be created."
           ]
         }
       ],
@@ -977,9 +932,9 @@ export const IDL: ThreadProgram = {
       ]
     },
     {
-      "name": "threadDelete",
+      "name": "queueDelete",
       "docs": [
-        "Closes an existing thread account and returns the lamports to the owner."
+        "Closes an existing queue account and returns the lamports to the owner."
       ],
       "accounts": [
         {
@@ -987,7 +942,7 @@ export const IDL: ThreadProgram = {
           "isMut": false,
           "isSigner": true,
           "docs": [
-            "The authority (owner) of the thread."
+            "The authority (owner) of the queue."
           ]
         },
         {
@@ -999,36 +954,36 @@ export const IDL: ThreadProgram = {
           ]
         },
         {
-          "name": "thread",
+          "name": "queue",
           "isMut": true,
           "isSigner": false,
           "docs": [
-            "The thread to be delete."
+            "The queue to be delete."
           ]
         }
       ],
       "args": []
     },
     {
-      "name": "threadKickoff",
+      "name": "queueKickoff",
       "docs": [
-        "Kicks off a thread if its trigger condition is active."
+        "Kicks off a queue if its trigger condition is active."
       ],
       "accounts": [
+        {
+          "name": "queue",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The queue to crank."
+          ]
+        },
         {
           "name": "signatory",
           "isMut": true,
           "isSigner": true,
           "docs": [
             "The signatory."
-          ]
-        },
-        {
-          "name": "thread",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "The thread to kickoff."
           ]
         },
         {
@@ -1040,12 +995,19 @@ export const IDL: ThreadProgram = {
           ]
         }
       ],
-      "args": []
+      "args": [
+        {
+          "name": "dataHash",
+          "type": {
+            "option": "u64"
+          }
+        }
+      ]
     },
     {
-      "name": "threadPause",
+      "name": "queuePause",
       "docs": [
-        "Pauses an active thread."
+        "Pauses an active queue."
       ],
       "accounts": [
         {
@@ -1053,24 +1015,24 @@ export const IDL: ThreadProgram = {
           "isMut": false,
           "isSigner": true,
           "docs": [
-            "The authority (owner) of the thread."
+            "The authority (owner) of the queue."
           ]
         },
         {
-          "name": "thread",
+          "name": "queue",
           "isMut": true,
           "isSigner": false,
           "docs": [
-            "The thread to be paused."
+            "The queue to be paused."
           ]
         }
       ],
       "args": []
     },
     {
-      "name": "threadResume",
+      "name": "queueResume",
       "docs": [
-        "Resumes a paused thread."
+        "Resumes a paused queue."
       ],
       "accounts": [
         {
@@ -1078,24 +1040,24 @@ export const IDL: ThreadProgram = {
           "isMut": false,
           "isSigner": true,
           "docs": [
-            "The authority (owner) of the thread."
+            "The authority (owner) of the queue."
           ]
         },
         {
-          "name": "thread",
+          "name": "queue",
           "isMut": true,
           "isSigner": false,
           "docs": [
-            "The thread to be resumed."
+            "The queue to be resumed."
           ]
         }
       ],
       "args": []
     },
     {
-      "name": "threadStop",
+      "name": "queueStop",
       "docs": [
-        "Resumes a paused thread."
+        "Resumes a paused queue."
       ],
       "accounts": [
         {
@@ -1103,24 +1065,24 @@ export const IDL: ThreadProgram = {
           "isMut": false,
           "isSigner": true,
           "docs": [
-            "The authority (owner) of the thread."
+            "The authority (owner) of the queue."
           ]
         },
         {
-          "name": "thread",
+          "name": "queue",
           "isMut": true,
           "isSigner": false,
           "docs": [
-            "The thread to be paused."
+            "The queue to be paused."
           ]
         }
       ],
       "args": []
     },
     {
-      "name": "threadUpdate",
+      "name": "queueUpdate",
       "docs": [
-        "Allows an owner to update the mutable properties of a thread."
+        "Allows an owner to update the mutable properties of a queue."
       ],
       "accounts": [
         {
@@ -1128,7 +1090,15 @@ export const IDL: ThreadProgram = {
           "isMut": true,
           "isSigner": true,
           "docs": [
-            "The authority (owner) of the thread."
+            "The authority (owner) of the queue."
+          ]
+        },
+        {
+          "name": "queue",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The queue to be updated."
           ]
         },
         {
@@ -1138,29 +1108,21 @@ export const IDL: ThreadProgram = {
           "docs": [
             "The Solana system program"
           ]
-        },
-        {
-          "name": "thread",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "The thread to be updated."
-          ]
         }
       ],
       "args": [
         {
           "name": "settings",
           "type": {
-            "defined": "ThreadSettings"
+            "defined": "QueueSettings"
           }
         }
       ]
     },
     {
-      "name": "threadWithdraw",
+      "name": "queueWithdraw",
       "docs": [
-        "Allows an owner to withdraw from a thread's lamport balance."
+        "Allows an owner to withdraw from a queue's lamport balance."
       ],
       "accounts": [
         {
@@ -1168,7 +1130,7 @@ export const IDL: ThreadProgram = {
           "isMut": false,
           "isSigner": true,
           "docs": [
-            "The authority (owner) of the thread."
+            "The authority (owner) of the queue."
           ]
         },
         {
@@ -1180,11 +1142,11 @@ export const IDL: ThreadProgram = {
           ]
         },
         {
-          "name": "thread",
+          "name": "queue",
           "isMut": true,
           "isSigner": false,
           "docs": [
-            "The thread to be."
+            "The queue to be."
           ]
         }
       ],
@@ -1198,7 +1160,7 @@ export const IDL: ThreadProgram = {
   ],
   "accounts": [
     {
-      "name": "thread",
+      "name": "queue",
       "docs": [
         "Tracks the current state of a transaction thread on Solana."
       ],
@@ -1208,14 +1170,14 @@ export const IDL: ThreadProgram = {
           {
             "name": "authority",
             "docs": [
-              "The owner of this thread."
+              "The owner of this queue."
             ],
             "type": "publicKey"
           },
           {
             "name": "createdAt",
             "docs": [
-              "The cluster clock at the moment the thread was created."
+              "The cluster clock at the moment the queue was created."
             ],
             "type": {
               "defined": "ClockData"
@@ -1224,7 +1186,7 @@ export const IDL: ThreadProgram = {
           {
             "name": "execContext",
             "docs": [
-              "The context of the thread's current execution state."
+              "The context of the current thread execution state."
             ],
             "type": {
               "option": {
@@ -1235,14 +1197,14 @@ export const IDL: ThreadProgram = {
           {
             "name": "fee",
             "docs": [
-              "The number of lamports to payout to workers per execution."
+              "The number of lamports to payout to workers per crank."
             ],
             "type": "u64"
           },
           {
             "name": "id",
             "docs": [
-              "The id of the thread, given by the authority."
+              "The id of the queue, given by the authority."
             ],
             "type": "string"
           },
@@ -1269,14 +1231,14 @@ export const IDL: ThreadProgram = {
           {
             "name": "paused",
             "docs": [
-              "Whether or not the thread is currently paused."
+              "Whether or not the queue is currently paused."
             ],
             "type": "bool"
           },
           {
             "name": "rateLimit",
             "docs": [
-              "The maximum number of execs allowed per slot."
+              "The maximum number of cranks allowed per slot."
             ],
             "type": "u64"
           },
@@ -1295,9 +1257,9 @@ export const IDL: ThreadProgram = {
   ],
   "types": [
     {
-      "name": "ThreadSettings",
+      "name": "QueueSettings",
       "docs": [
-        "The properties of threads which are updatable."
+        "The properties of queues which are updatable."
       ],
       "type": {
         "kind": "struct",
@@ -1342,23 +1304,23 @@ export const IDL: ThreadProgram = {
         "kind": "struct",
         "fields": [
           {
-            "name": "execsSinceReimbursement",
+            "name": "cranksSinceReimbursement",
             "docs": [
-              "Number of execs since the last tx reimbursement."
+              "Number of cranks since the last tx reimbursement."
             ],
             "type": "u64"
           },
           {
-            "name": "execsSinceSlot",
+            "name": "cranksSinceSlot",
             "docs": [
-              "Number of execs in this slot."
+              "Number of cranks in this slot."
             ],
             "type": "u64"
           },
           {
-            "name": "lastExecAt",
+            "name": "lastCrankAt",
             "docs": [
-              "Slot of the last exec"
+              "Slot of the last crank"
             ],
             "type": "u64"
           },
@@ -1423,9 +1385,9 @@ export const IDL: ThreadProgram = {
       }
     },
     {
-      "name": "ThreadResponse",
+      "name": "CrankResponse",
       "docs": [
-        "A response value target programs can return to update the thread."
+        "A response value target programs can return to update the queue."
       ],
       "type": {
         "kind": "struct",
@@ -1433,7 +1395,7 @@ export const IDL: ThreadProgram = {
           {
             "name": "kickoffInstruction",
             "docs": [
-              "The kickoff instruction to use on the next triggering of the thread.",
+              "The kickoff instruction to use on the next triggering of the queue.",
               "If none, the kickoff instruction remains unchanged."
             ],
             "type": {
@@ -1445,7 +1407,7 @@ export const IDL: ThreadProgram = {
           {
             "name": "nextInstruction",
             "docs": [
-              "The next instruction to use on the next execution of the thread."
+              "The next instruction to use on the next crank of the queue."
             ],
             "type": {
               "option": {
@@ -1527,7 +1489,7 @@ export const IDL: ThreadProgram = {
     {
       "name": "Trigger",
       "docs": [
-        "The triggering conditions of a thread."
+        "The triggering conditions of a queue."
       ],
       "type": {
         "kind": "enum",
@@ -1536,29 +1498,11 @@ export const IDL: ThreadProgram = {
             "name": "Account",
             "fields": [
               {
-                "name": "address",
+                "name": "pubkey",
                 "docs": [
-                  "The address of the account to monitor."
+                  "The address of the account to subscribe to."
                 ],
                 "type": "publicKey"
-              },
-              {
-                "name": "offset",
-                "docs": [
-                  "The byte offset of the account data to monitor."
-                ],
-                "type": {
-                  "defined": "usize"
-                }
-              },
-              {
-                "name": "size",
-                "docs": [
-                  "The size of the byte slice to monitor (must be less than 1kb)"
-                ],
-                "type": {
-                  "defined": "usize"
-                }
               }
             ]
           },
@@ -1576,7 +1520,7 @@ export const IDL: ThreadProgram = {
                 "name": "skippable",
                 "docs": [
                   "Boolean value indicating whether triggering moments may be skipped if they are missed (e.g. due to network downtime).",
-                  "If false, any \"missed\" triggering moments will simply be executed as soon as the network comes back online."
+                  "If false, any \"missed\" triggering moments will simply be cranked as soon as the network comes back online."
                 ],
                 "type": "bool"
               }
@@ -1630,48 +1574,48 @@ export const IDL: ThreadProgram = {
   "errors": [
     {
       "code": 6000,
-      "name": "InvalidThreadResponse",
-      "msg": "The exec response could not be parsed"
+      "name": "DataHashNotPresent",
+      "msg": "This trigger requires a data hash observation"
     },
     {
       "code": 6001,
-      "name": "InvalidThreadState",
-      "msg": "The thread is in an invalid state"
+      "name": "InvalidCrankResponse",
+      "msg": "The crank response could not be parsed"
     },
     {
       "code": 6002,
+      "name": "InvalidQueueState",
+      "msg": "The queue is in an invalid state"
+    },
+    {
+      "code": 6003,
       "name": "TriggerNotActive",
       "msg": "The trigger condition has not been activated"
     },
     {
-      "code": 6003,
-      "name": "ThreadBusy",
-      "msg": "This operation cannot be processes because the thread is currently busy"
-    },
-    {
       "code": 6004,
-      "name": "ThreadPaused",
-      "msg": "The thread is currently paused"
+      "name": "QueueBusy",
+      "msg": "This operation cannot be processes because the queue is currently busy"
     },
     {
       "code": 6005,
-      "name": "RateLimitExeceeded",
-      "msg": "The thread's rate limit has been reached"
+      "name": "QueuePaused",
+      "msg": "The queue is currently paused"
     },
     {
       "code": 6006,
-      "name": "MaxRateLimitExceeded",
-      "msg": "Thread rate limits cannot exceed the maximum allowed value"
+      "name": "RateLimitExeceeded",
+      "msg": "The queue's rate limit has been reached"
     },
     {
       "code": 6007,
-      "name": "UnauthorizedWrite",
-      "msg": "Inner instruction attempted to write to an unauthorized address"
+      "name": "MaxRateLimitExceeded",
+      "msg": "Queue rate limits cannot exceed the maximum allowed value"
     },
     {
       "code": 6008,
-      "name": "WithdrawalTooLarge",
-      "msg": "Withdrawing this amount would leave the thread with less than the minimum required SOL for rent exemption"
+      "name": "UnauthorizedWrite",
+      "msg": "Inner instruction attempted to write to an unauthorized address"
     }
   ]
 };
