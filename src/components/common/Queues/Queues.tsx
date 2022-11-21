@@ -74,6 +74,7 @@ export const Queues = () => {
               onChange={(e) => setFilterString(e.target.value)}
               placeholder="Filter by name or address"
               className="w-full p-2 rounded-lg border border-[#D7DCE1] dark:border-[#4F4F4F] bg-transparent focus:outline-none text-sm text-[#979797]"
+              data-testid="filter-by-input"
             />
             {loading ? (
               <div className="flex flex-col space-y-5">
