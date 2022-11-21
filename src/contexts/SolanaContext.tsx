@@ -91,7 +91,7 @@ export const SolanaProvider = ({ children }: SolanaProviderProps) => {
   const [customEndpoint, _setCustomEndpoint] = useState(LOCALNET_URL);
 
   const endpoint = useMemo(() => {
-    if (cluster.label === "Custom RPC") {
+    if (cluster?.label === "Custom RPC") {
       return customEndpoint;
     }
     return cluster.endpoint;

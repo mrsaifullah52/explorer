@@ -12,7 +12,7 @@ const CrankProgramProviderContext = React.createContext<
   anchor.Program<ClockworkProgram> | undefined
 >(undefined);
 
-const selectIdl = (programID: anchor.web3.PublicKey) => {
+export const selectIdl = (programID: anchor.web3.PublicKey) => {
   try {
     const version = CLOCKWORKS_PROGRAMS[programID.toBase58()];
     switch (version) {
