@@ -1,5 +1,5 @@
 describe("Navigation", () => {
-  it("should navigate to the thread page", () => {
+  it("should navigate to the main page", () => {
     // Start from the index page
     cy.visit("http://localhost:3000/");
 
@@ -20,16 +20,16 @@ describe("Navigation", () => {
       'a[href*="HbeMiiNcf4nrj8v3i316kNKXr6qYdBk2dbSKDxWvGw6m?network=devnet"]'
     ).click();
 
-    // The new url should include "/queue/HbeMiiNcf4nrj8v3i316kNKXr6qYdBk2dbSKDxWvGw6m"
+    // The new url should include "/address/HbeMiiNcf4nrj8v3i316kNKXr6qYdBk2dbSKDxWvGw6m"
     cy.url().should(
       "include",
-      "/queue/HbeMiiNcf4nrj8v3i316kNKXr6qYdBk2dbSKDxWvGw6m"
+      "/address/HbeMiiNcf4nrj8v3i316kNKXr6qYdBk2dbSKDxWvGw6m"
     );
 
     cy.wait(1000);
 
-    // The new page should contain an h3 with "Thread"
-    cy.get("h3").contains("Thread");
+    // The new page should contain an h2 with "Thread"
+    cy.get("h2").contains("Thread");
   });
 
   it("should navigate to the account page", () => {
@@ -47,7 +47,7 @@ describe("Navigation", () => {
 
     // Start from the thread page
     cy.visit(
-      "http://localhost:3000/queue/HbeMiiNcf4nrj8v3i316kNKXr6qYdBk2dbSKDxWvGw6m?network=devnet"
+      "http://localhost:3000/address/HbeMiiNcf4nrj8v3i316kNKXr6qYdBk2dbSKDxWvGw6m?network=devnet"
     );
     cy.wait(1000);
 
