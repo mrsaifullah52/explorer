@@ -94,7 +94,7 @@ export const Queues = () => {
                       <Link
                         passHref
                         href={{
-                          pathname: `/queue/${queue.publicKey.toString()}`,
+                          pathname: `/address/${queue.publicKey.toString()}`,
                           query: router.query,
                         }}
                       >
