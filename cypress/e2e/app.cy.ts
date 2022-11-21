@@ -3,6 +3,18 @@ describe("Navigation", () => {
     // Start from the index page
     cy.visit("http://localhost:3000/");
 
+    // find a network selection button and click to open menu
+    cy.get('[data-cy="network-select-btn"]').click();
+
+    // select devnet from the menu
+    cy.get("li").contains("Devnet").click();
+
+    // wait until it loads threads
+    cy.wait(3000);
+
+    // find a network selection button and click to hide menu
+    cy.get('[data-cy="network-select-btn"]').click();
+
     // Find a link with an href attribute containing "HbeMiiNcf4nrj8v3i316kNKXr6qYdBk2dbSKDxWvGw6m" and click it
     cy.get(
       'a[href*="HbeMiiNcf4nrj8v3i316kNKXr6qYdBk2dbSKDxWvGw6m?network=devnet"]'
@@ -21,6 +33,18 @@ describe("Navigation", () => {
   });
 
   it("should navigate to the account page", () => {
+    // find a network selection button and click to open menu
+    cy.get('[data-cy="network-select-btn"]').click();
+
+    // select devnet from the menu
+    cy.get("li").contains("Devnet").click();
+
+    // wait until it loads threads
+    cy.wait(3000);
+
+    // find a network selection button and click to hide menu
+    cy.get('[data-cy="network-select-btn"]').click();
+
     // Start from the thread page
     cy.visit(
       "http://localhost:3000/queue/HbeMiiNcf4nrj8v3i316kNKXr6qYdBk2dbSKDxWvGw6m?network=devnet"
@@ -74,9 +98,21 @@ describe("Pagination", () => {
     // Start from the first page
     cy.visit("http://localhost:3000/");
 
-    cy.get("button").contains("Next").click();
+    // find a network selection button and click to open menu
+    cy.get('[data-cy="network-select-btn"]').click();
 
-    cy.get("p#page_number").contains("1 of 10");
+    // select devnet from the menu
+    cy.get("li").contains("Devnet").click();
+
+    // wait until it loads threads
+    cy.wait(3000);
+
+    // find a network selection button and click to hide menu
+    cy.get('[data-cy="network-select-btn"]').click();
+
+    cy.get('[data-cy="pagination-btn"]').contains("Next").click();
+
+    cy.get("p#page_number").contains("2 of 10");
   });
 });
 
