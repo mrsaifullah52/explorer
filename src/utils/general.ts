@@ -17,7 +17,7 @@ export function getExplorerAccountLink(
   cluster: ClusterType
 ): string {
   return `/address/${account.toString()}${
-    cluster === "mainnet-beta" ? '' : "?network=" + cluster
+    cluster === "mainnet-beta" ? "" : "?network=" + cluster
   }`;
 }
 

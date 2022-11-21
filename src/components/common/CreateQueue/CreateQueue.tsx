@@ -94,8 +94,13 @@ export const CreateQueue = () => {
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           setQueueMsg(e.target.value)
         }
+        data-testid="queue-name-input"
       />
-      <PrimaryButton className="pt-3 pb-3" onClick={() => handleCreateQueue()}>
+      <PrimaryButton
+        className="pt-3 pb-3"
+        onClick={() => handleCreateQueue()}
+        data-cy="create-thread-btn"
+      >
         Create Thread
       </PrimaryButton>
     </div>
