@@ -21,7 +21,9 @@ const AddressPage = () => {
     return (
       <div className="py-6 rounded-lg flex flex-col mb-6">
         <h2 className="text-2xl text-[#0E1114] dark:text-white font-semibold font-header leading-5 mb-6">
-          {data.accountType[0].toUpperCase() + data.accountType.slice(1)}
+          {data.accountType === "queue"
+            ? "Thread"
+            : data.accountType[0].toUpperCase() + data.accountType.slice(1)}
         </h2>
         <DataTable>
           <RecursiveAccountRenderer
