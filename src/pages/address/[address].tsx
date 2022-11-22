@@ -5,6 +5,7 @@ import Custom404 from "pages/404";
 import { DataTable } from "components/common/DataTable";
 import { RecursiveAccountRenderer } from "components/common/AccountRenderer";
 import { useAddressAll } from "hooks/useAddressAll";
+import { Loader } from "components/common/Loader";
 
 const AddressPage = () => {
   const router = useRouter();
@@ -15,7 +16,7 @@ const AddressPage = () => {
     return () => reset();
   }, [reset]);
 
-  if (loading) return <p>loading...</p>;
+  if (loading) return <Loader />;
 
   if (data) {
     return (
@@ -33,7 +34,6 @@ const AddressPage = () => {
   }
 
   if (error && error?.message) {
-    console.log("error.message", error?.message);
     const missingQueueRegExp = new RegExp("Account does not exist", "i");
     if (error.message.match(missingQueueRegExp)) {
       return <Custom404 title={"Address not found!"} />;

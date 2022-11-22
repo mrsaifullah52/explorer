@@ -66,7 +66,7 @@ export const SearchBar: FC<SearchBarProps> = ({}: SearchBarProps) => {
           <SearchIcon className="h-5 w-5 text-[#979797]" />
         </button>
       </form>
-      {error && <p>{error.message}</p>}
+      {/* {error && <p>{error.message}</p>} */}
     </div>
   );
 };
