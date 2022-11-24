@@ -17,9 +17,9 @@ describe("Search", () => {
 
     // find search input box and type
     cy.get('[data-testid="filter-by-input"]').clear();
-    cy.get('[data-testid="filter-by-input"]').type(
-      "HbeMiiNcf4nrj8v3i316kNKXr6qYdBk2dbSKDxWvGw6m"
-    );
+
+    const threadAddress = "HbeMiiNcf4nrj8v3i316kNKXr6qYdBk2dbSKDxWvGw6m";
+    cy.get('[data-testid="filter-by-input"]').type(threadAddress);
 
     // page should show only 1 thread
     cy.get("p#page_number").contains("1 of 1");
