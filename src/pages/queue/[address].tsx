@@ -8,6 +8,7 @@ import { useSolana } from "contexts/SolanaContext";
 import { getExplorerAccountLink } from "utils/general";
 import { PublicKey } from "@solana/web3.js";
 import Link from "next/link";
+import { Loader } from "components/common/Loader";
 
 const QueuePage = () => {
   const router = useRouter();
@@ -34,7 +35,7 @@ const QueuePage = () => {
 
   const { data, error, loading } = queue;
 
-  if (loading) return <p>loading...</p>;
+  if (loading) return <Loader />;
 
   if (data) {
     return <Queue q={data} />;
