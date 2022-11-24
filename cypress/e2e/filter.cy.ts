@@ -1,5 +1,5 @@
-describe("Search", () => {
-  it("should search a thread", () => {
+describe("Filter", () => {
+  it("should filter a thread by address", () => {
     // start from the first page
     cy.visit("http://localhost:3000/");
 
