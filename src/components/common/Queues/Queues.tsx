@@ -17,11 +17,11 @@ import {
 import Tabs from "../CreateQueue/Tabs";
 
 const exampleThreads = [
-  <HelloWorldThread />,
-  <DollarCostAvgThread />,
-  <PaymentThread />,
-  <PresetNameThread />,
-  <SerumCrankThread />,
+  <HelloWorldThread key={0} />,
+  <DollarCostAvgThread key={1} />,
+  <PaymentThread key={2} />,
+  <PresetNameThread key={3} />,
+  <SerumCrankThread key={4} />,
 ];
 
 export const Queues = () => {
