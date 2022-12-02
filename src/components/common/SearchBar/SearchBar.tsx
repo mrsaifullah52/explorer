@@ -59,7 +59,7 @@ export const SearchBar: FC<SearchBarProps> = ({}: SearchBarProps) => {
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
-          placeholder="Queue Address"
+          placeholder="Thread Address"
           className="px-3 py-2 w-full bg-transparent focus:outline-none text-[#979797] flex-1"
         />
         <button type="submit" className="px-4 py-2">

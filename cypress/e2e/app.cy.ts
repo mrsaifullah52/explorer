@@ -10,7 +10,7 @@ describe("Navigation", () => {
     cy.get("li").contains("Devnet").click();
 
     // wait until it loads threads
-    cy.wait(3000);
+    cy.wait(5000);
 
     // find a network selection button and click to hide menu
     cy.get('[data-cy="network-select-btn"]').click();
@@ -40,7 +40,7 @@ describe("Navigation", () => {
     cy.get("li").contains("Devnet").click();
 
     // wait until it loads threads
-    cy.wait(3000);
+    cy.wait(5000);
 
     // find a network selection button and click to hide menu
     cy.get('[data-cy="network-select-btn"]').click();
