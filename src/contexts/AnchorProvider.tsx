@@ -8,12 +8,8 @@ const AnchorProviderContext = React.createContext<AnchorProvider | undefined>(un
 
 export const AnchorProviderProvider: React.FC = ({ children }) => {
   const { cluster, customEndpoint } = useSolana();
-  // const {connection, } = useConnection();
   const wallet = useAnchorWallet();
   const provider = React.useMemo(() => {
-    // console.log('customEndpoint', customEndpoint);
-    // console.log('cluster.network', cluster.network)
-
     const c  = cluster.network === 'custom' ? new Connection(customEndpoint) : new Connection(cluster.endpoint);
 
     if (!wallet) {

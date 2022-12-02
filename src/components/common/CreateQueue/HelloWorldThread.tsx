@@ -78,7 +78,7 @@ export const HelloWorldThread = () => {
 
       toast(`A queue has been created with "${queueMsg}"`);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 

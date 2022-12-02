@@ -17,11 +17,10 @@ const useUserSOLBalanceStore = create<UserSOLBalanceStore>((set, _get) => ({
       );
       balance = balance / LAMPORTS_PER_SOL;
     } catch (e) {
-      console.log(`error getting balance: `, e);
+      console.error(`error getting balance: `, e);
     }
     set((s) => {
       s.balance = balance;
-      console.log(`balance updated, `, balance);
     })
   },
 }));

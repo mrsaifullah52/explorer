@@ -36,7 +36,6 @@ export const useAddress = (address: string) => {
       try {
         const publicKey = new PublicKey(address);
         const accountInfo = await connection.getAccountInfo(publicKey);
-        console.log("accountInfo", accountInfo);
         // const account = await program.account.address.fetch(address);
         // const address = { publicKey: new PublicKey(address), account: account };
         if (accountInfo) {
