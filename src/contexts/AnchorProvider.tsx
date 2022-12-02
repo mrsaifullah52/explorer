@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useAnchorWallet } from '@solana/wallet-adapter-react';
+import { useAnchorWallet, useConnection } from '@solana/wallet-adapter-react';
 import { AnchorProvider } from '@project-serum/anchor';
 import { Keypair, Connection } from '@solana/web3.js';
 import { useSolana } from './SolanaContext';
@@ -8,19 +8,22 @@ const AnchorProviderContext = React.createContext<AnchorProvider | undefined>(un
 
 export const AnchorProviderProvider: React.FC = ({ children }) => {
   const { cluster } = useSolana();
+  const {connection} = useConnection();
+  console.log('connection', connection);
   const wallet = useAnchorWallet();
   const provider = React.useMemo(() => {
+    console.log('cluster', cluster)
     if (!wallet) {
       // @ts-ignore
-      return new AnchorProvider(new Connection(cluster.endpoint), Keypair.generate(), {});
+      return new AnchorProvider(connection, Keypair.generate(), {});
     }
-    const provider = new AnchorProvider(new Connection(cluster.endpoint), wallet, {
+    const provider = new AnchorProvider(connection, wallet, {
       "preflightCommitment": "processed",
       "commitment": "processed"
   });
 
     return provider;
-  }, [cluster.endpoint, wallet]);
+  }, [cluster.endpoint, connection, wallet]);
 
   return (
     <AnchorProviderContext.Provider value={provider}>
