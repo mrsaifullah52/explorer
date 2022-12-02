@@ -1,14 +1,13 @@
-import { FC, useEffect, useRef, useState } from "react";
-import { CogIcon } from "@heroicons/react/outline";
+import { FC, useEffect } from "react";
+import { useLocalStorage } from "@solana/wallet-adapter-react";
+
 import {
   CLUSTERS,
   CUSTOM_RPC_CLUSTER,
   useSolana,
 } from "contexts/SolanaContext";
-import { useOutsideAlerter } from "hooks/useOutsideAlerter";
 import { toast } from "react-toastify";
 import { SettingsProgramSelectorMenu } from "./SettingsProgramSelectorMenu";
-import { SettingsMenuLabel } from "./SettingsMenuLabel";
 
 type SettingsNetworkMenuProps = {
   open?: boolean;
@@ -20,11 +19,10 @@ export const SettingsNetworkMenu: FC<SettingsNetworkMenuProps> = ({
   const { setCustomEndpoint, cluster, setCluster, isActiveCluster } =
     useSolana();
 
-  const [endpoint, setEndpoint] = useState(CUSTOM_RPC_CLUSTER.endpoint);
-  // const [showDropdown, setShowDropdown] = useState(false);
-
-  // const dropdownRef = useRef<HTMLDivElement>(null);
-  // useOutsideAlerter(dropdownRef, showDropdown, () => setShowDropdown(false));
+  const [endpoint, setEndpoint] = useLocalStorage(
+    "customRPC",
+    CUSTOM_RPC_CLUSTER.endpoint
+  );
 
   useEffect(() => {
     let debounceTimer: NodeJS.Timeout;
@@ -55,7 +53,6 @@ export const SettingsNetworkMenu: FC<SettingsNetworkMenuProps> = ({
       } absolute top-full w-screen max-w-lg my-4 py-3 bg-white dark:bg-[#2C2B2B] rounded-lg flex flex-col drop-shadow-3xl z-50`}
     >
       <div className="py-2">
-        {/* <SettingsMenuLabel>Network</SettingsMenuLabel> */}
         <ul>
           {CLUSTERS.map((cluster) => {
             if (cluster.label !== "Custom RPC")
@@ -86,7 +83,7 @@ export const SettingsNetworkMenu: FC<SettingsNetworkMenuProps> = ({
                 ? "bg-[#F2F3F3] dark:bg-[#393939]"
                 : "bg-white dark:bg-[#2C2B2B]"
             } hover:bg-[#F2F3F3] dark:hover:bg-[#393939] p-2 px-8 cursor-pointer`}
-            onClick={() => setCluster(CUSTOM_RPC_CLUSTER)}
+            onClick={() => setCustomEndpoint(endpoint)}
           >
             <div>
               <h3 className="text-[#0E1114] text-lg dark:text-[#FFFFFF] font-medium font-['Inter'] mb-1">

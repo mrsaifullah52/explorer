@@ -2,19 +2,21 @@ import { ArrowUpIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { CopyButton } from "../CopyButton";
 
+export type DataTableRowProps = {
+  label: string;
+  value: string | number;
+  link?: string;
+  fontMono?: boolean;
+  depth?: number;
+};
+
 export const DataTableRow = ({
   label,
   value,
   link,
   fontMono = false,
   depth = 0,
-}: {
-  label: string;
-  value: string | number;
-  link?: string;
-  fontMono?: boolean;
-  depth?: number;
-}) => {
+}: DataTableRowProps) => {
   if (link) {
     return (
       <div
