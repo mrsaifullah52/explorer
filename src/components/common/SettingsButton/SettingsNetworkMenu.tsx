@@ -38,7 +38,7 @@ export const SettingsNetworkMenu: FC<SettingsNetworkMenuProps> = ({
           toast.error("Invalid RPC endpoint");
           setCustomEndpoint(CUSTOM_RPC_CLUSTER.endpoint);
         }
-      }, 1500);
+      }, 800);
     }
 
     return () => clearTimeout(debounceTimer);

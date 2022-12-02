@@ -1,5 +1,6 @@
 import {
   ConnectionProvider,
+  useLocalStorage,
   WalletProvider,
 } from "@solana/wallet-adapter-react";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
@@ -88,7 +89,10 @@ export const CUSTOM_RPC_CLUSTER = CLUSTERS[CLUSTERS.length - 1];
 export const SolanaProvider = ({ children }: SolanaProviderProps) => {
   const router = useRouter();
   const [cluster, _setCluster] = useState(CLUSTERS[0]);
-  const [customEndpoint, _setCustomEndpoint] = useState(LOCALNET_URL);
+  const [customEndpoint, _setCustomEndpoint] = useLocalStorage(
+    "customRPC",
+    LOCALNET_URL
+  );
 
   const endpoint = useMemo(() => {
     if (cluster?.label === "Custom RPC") {
@@ -122,7 +126,7 @@ export const SolanaProvider = ({ children }: SolanaProviderProps) => {
 
     if (cluster.network === "mainnet-beta") delete newQuery.network;
 
-    if (cluster.network === "custom") newQuery.customRPC = LOCALNET_URL;
+    if (cluster.network === "custom") newQuery.customRPC = customEndpoint;
     else delete newQuery.customRPC;
 
     router.replace({

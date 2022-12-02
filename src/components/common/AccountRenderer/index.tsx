@@ -15,7 +15,6 @@ export const AccountRenderer = () => {
 
   if (!data)
     return <div className="py-6 rounded-lg flex flex-col space-y-6"></div>;
-  console.log({ data });
 
   return (
     <div className="py-6 rounded-lg flex flex-col mb-6">

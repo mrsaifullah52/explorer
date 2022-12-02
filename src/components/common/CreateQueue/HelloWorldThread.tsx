@@ -76,11 +76,9 @@ export const HelloWorldThread = () => {
         })
         .rpc();
 
-      console.log(thread_transaction);
-
       toast(`A queue has been created with "${queueMsg}"`);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 

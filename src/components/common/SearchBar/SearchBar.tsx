@@ -18,9 +18,10 @@ export const tryDecode = (program: anchor.Program<any>, data: any) => {
 
       try {
         const decoded = program.coder.accounts.decode(accountType, data!);
-        console.log("decoded", decoded);
         return { account: decoded, accountType };
-      } catch (error) {}
+      } catch (error) {
+        console.error(error);
+      }
     }
 
     // doesn't match any idl account

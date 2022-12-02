@@ -13,7 +13,7 @@ export const useQueues = () => {
   const program = useCrankProgram();
 
   const fetchQueuesCallback = useCallback(async () => {
-    setQueuesState((prev) => ({ ...prev, loading: true, error: undefined }));
+    setQueuesState((prev) => ({ ...prev, data: [], loading: true, error: undefined }));
     try {
       const queues = await program.account.queue.all();
       setQueuesState((prev) => ({

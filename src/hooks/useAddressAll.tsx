@@ -128,7 +128,5 @@ export const useAddressAll = (address: string) => {
     }
   }, [address]);
 
-  console.log('addresssState: ', addresssState);
-
   return { ...addresssState, refetch: fetchAddressCallback, reset };
 };
