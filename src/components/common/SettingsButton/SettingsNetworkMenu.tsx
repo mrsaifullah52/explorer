@@ -100,6 +100,7 @@ export const SettingsNetworkMenu: FC<SettingsNetworkMenuProps> = ({
                   value={endpoint}
                   onChange={(e) => setEndpoint(e.target.value)}
                   className="border border-[#979797] text-[#0E1114] text-sm dark:text-white p-2 px-3 rounded-lg my-2 w-full bg-[#E7EAED] dark:bg-[#393939] focus:outline-none"
+                  data-testid="custom-rpc-input"
                 />
               ) : null}
             </div>
