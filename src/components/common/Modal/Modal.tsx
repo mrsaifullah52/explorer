@@ -19,18 +19,23 @@ export const Modal = ({ open, setOpen, title = "", children }) => {
               <h2 className="text-2xl text-[#0E1114] dark:text-white font-semibold font-header leading-5">
                 {title}
               </h2>
-              <span className="cursor-pointer" onClick={() => setOpen(false)}>
-                <img
-                  src={
-                    theme === "dark"
-                      ? "/icons/close-white.svg"
-                      : "/icons/close-black.svg"
-                  }
-                  alt="close"
-                  width="16px"
-                  height="16px"
-                />
-              </span>
+              <div>
+                <button
+                  className="cursor-pointer"
+                  onClick={() => setOpen(false)}
+                >
+                  <img
+                    src={
+                      theme === "dark"
+                        ? "/icons/close-white.svg"
+                        : "/icons/close-black.svg"
+                    }
+                    alt="close"
+                    width="16px"
+                    height="16px"
+                  />
+                </button>
+              </div>
             </div>
             {children}
           </div>

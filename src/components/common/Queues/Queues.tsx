@@ -66,8 +66,9 @@ export const Queues = () => {
       <Modal
         open={openCreateQueueModal}
         setOpen={setOpenCreateQueueModal}
-        title="Create a thread"
+        title="Create thread"
       >
+        <hr className="bg-gray-200 dark:bg-[#626262] h-px border-0 my-4" />
         <Tabs activeTab={tab} setActiveTab={setTab} />
         {exampleThreads[tab]}
       </Modal>

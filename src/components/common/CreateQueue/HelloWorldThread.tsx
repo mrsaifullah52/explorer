@@ -86,7 +86,7 @@ export const HelloWorldThread = () => {
 
   return (
     <div className="flex flex-col mt-3">
-      <label>Message:</label>
+      <label>Message</label>
       <Input
         className="mt-1 mb-5"
         placeholder="Queue message here"
@@ -96,13 +96,15 @@ export const HelloWorldThread = () => {
         }
         data-testid="queue-name-input"
       />
-      <PrimaryButton
-        className="pt-3 pb-3"
-        onClick={() => handleCreateQueue()}
-        data-cy="create-thread-btn"
-      >
-        Create Thread
-      </PrimaryButton>
+      <div className="flex justify-end pt-5">
+        <PrimaryButton
+          className="pt-3 pb-3"
+          onClick={() => handleCreateQueue()}
+          data-cy="create-thread-btn"
+        >
+          Create Thread
+        </PrimaryButton>
+      </div>
     </div>
   );
 };
