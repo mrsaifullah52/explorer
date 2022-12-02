@@ -1,7 +1,7 @@
 import React from "react";
 import ReactTooltip from "react-tooltip";
 
-const threadTitles: string[] = [
+export const threadTitles: string[] = [
   "Hello world",
   "Payments",
   "Dollar Cost Averaging",
@@ -29,6 +29,7 @@ export default function Tabs({ activeTab, setActiveTab }: TabsType) {
             }`}
             data-html={true}
             data-tip={index !== 0 ? "Coming soon!" : ""}
+            data-cy={title}
             // disabled={index !== 0}
           >
             {title}
