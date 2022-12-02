@@ -105,7 +105,7 @@ export const Queues = () => {
             ) : (
               <>
                 <ul className="flex flex-col space-y-5 w-full">
-                  {pageMarkets.map((queue) => (
+                  {pageMarkets.map((queue: any) => (
                     <li
                       key={queue.publicKey.toString()}
                       className="cursor-pointer w-full"
