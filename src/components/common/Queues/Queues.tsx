@@ -7,7 +7,22 @@ import { useRouter } from "next/router";
 import { PaginationButton } from "../Pagination/PaginationButton";
 import { PrimaryButton } from "../Button";
 import { Modal } from "../Modal";
-import { CreateQueue } from "../CreateQueue";
+import {
+  HelloWorldThread,
+  DollarCostAvgThread,
+  PaymentThread,
+  PresetNameThread,
+  SerumCrankThread,
+} from "../CreateQueue";
+import Tabs from "../CreateQueue/Tabs";
+
+const exampleThreads = [
+  <HelloWorldThread key={0} />,
+  <DollarCostAvgThread key={1} />,
+  <PaymentThread key={2} />,
+  <PresetNameThread key={3} />,
+  <SerumCrankThread key={4} />,
+];
 
 export const Queues = () => {
   const router = useRouter();
@@ -15,6 +30,8 @@ export const Queues = () => {
 
   const [filterString, setFilterString] = useState("");
   const [openCreateQueueModal, setOpenCreateQueueModal] = useState(false);
+
+  const [tab, setTab] = useState(0);
 
   const {
     pageData: pageMarkets,
@@ -49,9 +66,11 @@ export const Queues = () => {
       <Modal
         open={openCreateQueueModal}
         setOpen={setOpenCreateQueueModal}
-        title="Create a Thread"
+        title="Create thread"
       >
-        <CreateQueue />
+        <hr className="bg-gray-200 dark:bg-[#626262] h-px border-0 my-4" />
+        <Tabs activeTab={tab} setActiveTab={setTab} />
+        {exampleThreads[tab]}
       </Modal>
       <div className="flex flex-col space-y-4 items-stretch">
         <div className="flex flex-col">
