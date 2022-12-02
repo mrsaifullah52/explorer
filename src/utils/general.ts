@@ -38,3 +38,30 @@ export const formatExecCtx = (execContext: any) => {
 export const formatUnix = (unix: number) => {
   return format(new Date(unix * 1000), "PPPppp");
 };
+
+export const tryIsBuffer = (value: any) => {
+  try {
+    console.log("value: ", value);
+    return Buffer.isBuffer(value);
+  } catch (error) {
+    return false;
+  }
+};
+
+export const tryIntoPubkey = (value: any) => {
+  try {
+    console.log("value: ", value);
+    return new PublicKey(value);
+  } catch (error) {
+    return undefined;
+  }
+};
+
+export const tryIsAccounts = (value: any) => {
+  try {
+    console.log("value: ", value);
+    return new PublicKey(value).toBase58();
+  } catch (error) {
+    return false;
+  }
+};

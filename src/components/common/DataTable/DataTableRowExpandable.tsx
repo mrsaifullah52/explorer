@@ -14,7 +14,11 @@ export const DataTableRowExpandable = ({
   const xPadding = `py-4 px-${depth + 4}  md:px-${depth + 8}`;
 
   return (
-    <div className={`border-b border-[#E7EAED] dark:border-[#626262] w-full`}>
+    <div
+      className={`${
+        depth === 0 ? "border-b" : ""
+      } border-[#E7EAED] dark:border-[#626262] w-full`}
+    >
       <div
         style={{ paddingLeft: depth * 16 }}
         className={`

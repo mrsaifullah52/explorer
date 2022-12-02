@@ -3,6 +3,7 @@ import { AccountInfo, PublicKey } from "@solana/web3.js";
 import { useConnection } from "@solana/wallet-adapter-react";
 import { useCrankProgram } from "contexts/CrankProgramProvider";
 import { Program } from "@project-serum/anchor";
+import { tryIntoPubkey } from "utils/general"
 
 export type AddressHookState = {
   data?:  { accountInfo: AccountInfo<any>, account?: any, accountType: string },
@@ -60,7 +61,7 @@ export const useAddressAll = (address: string) => {
       }));
       try {
         const publicKey = new PublicKey(address);
-        const accountInfo = await connection.getAccountInfo(publicKey);
+        const accountInfo = await program.provider.connection.getAccountInfo(publicKey);
         if (accountInfo) {
           const { account, accountType } = tryDecode(program, accountInfo.data);
           setAddressState((prev) => ({
@@ -108,14 +109,14 @@ export const useAddressAll = (address: string) => {
         }));
       }
     },
-    [connection, program]
+    [program]
   );
 
   useEffect(() => {
-    if (connection && address) {
+    if (program && address?.length > 0) {
       fetchAddressCallback(address);
     }
-  }, [connection, address, fetchAddressCallback]);
+  }, [program, address, fetchAddressCallback]);
 
   useEffect(() => {
     if (address?.length === 0) {
@@ -126,6 +127,8 @@ export const useAddressAll = (address: string) => {
       }));
     }
   }, [address]);
+
+  console.log('addresssState: ', addresssState);
 
   return { ...addresssState, refetch: fetchAddressCallback, reset };
 };

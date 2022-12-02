@@ -3,14 +3,15 @@ import { PublicKey } from "@solana/web3.js";
 import { useSearch } from "contexts/SearchContext";
 import { useSolana } from "contexts/SolanaContext";
 import { FC, useMemo } from "react";
-import { getExplorerAccountLink } from "utils/general";
+import { getExplorerAccountLink, tryIntoPubkey, tryIsBuffer } from "utils/general";
 import { DataTable, DataTableRow, DataTableRowExpandable } from "../DataTable";
 import { DataTableRowAccount } from "../DataTable/DataTableRowAccount";
 import { toSentenceCase } from "utils/toSentenceCase";
 import { DataTableRowBuffer } from "../DataTable/DataTableRowBuffer";
+import { AccountTableTitle } from "../AccountTableTitle";
 
 export const AccountRenderer = () => {
-  const { data } = useSearch();
+  const { data, address } = useSearch();
 
   if (!data)
     return <div className="py-6 rounded-lg flex flex-col space-y-6"></div>;
@@ -18,46 +19,21 @@ export const AccountRenderer = () => {
 
   return (
     <div className="py-6 rounded-lg flex flex-col mb-6">
-      <h2 className="text-2xl text-[#0E1114] dark:text-white font-semibold font-header leading-5 mb-6">
-        {data.accountType[0].toUpperCase() + data.accountType.slice(1)}
-      </h2>
+      <AccountTableTitle accountType={data.accountType} />
       <DataTable>
-        <RecursiveAccountRenderer account={data.account || data.accountInfo} />
+        <RecursiveAccountRenderer
+          account={data.account || data.accountInfo}
+          address={address}
+        />
       </DataTable>
     </div>
   );
 };
 
-const tryIsBuffer = (value: any) => {
-  try {
-    console.log("value: ", value);
-    return Buffer.isBuffer(value);
-  } catch (error) {
-    return false;
-  }
-};
-
-const tryIntoPubkey = (value: any) => {
-  try {
-    console.log("value: ", value);
-    return new PublicKey(value).toBase58();
-  } catch (error) {
-    return false;
-  }
-};
-
-const tryIsAccounts = (value: any) => {
-  try {
-    console.log("value: ", value);
-    return new PublicKey(value).toBase58();
-  } catch (error) {
-    return false;
-  }
-};
-
-export const RecursiveAccountRenderer: FC<{ account: Record<any, any> }> = ({
-  account,
-}) => {
+export const RecursiveAccountRenderer: FC<{
+  account: Record<any, any>;
+  address: string;
+}> = ({ account, address }) => {
   const { cluster } = useSolana();
   let entries = useMemo(() => Object.entries(account), [account]);
 
@@ -177,5 +153,20 @@ export const RecursiveAccountRenderer: FC<{ account: Record<any, any> }> = ({
     });
   };
 
-  return <>{mapEntriesToComponents(entries, 0)}</>;
+  const addressPubkey = useMemo(() => tryIntoPubkey(address), [address]);
+
+  return (
+    <>
+      {addressPubkey && (
+        <DataTableRow
+          key={`address`}
+          label={"Address"}
+          depth={0}
+          value={address}
+          link={getExplorerAccountLink(addressPubkey, cluster.network)}
+        />
+      )}
+      {mapEntriesToComponents(entries, 0)}
+    </>
+  );
 };
