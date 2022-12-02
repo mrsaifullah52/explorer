@@ -7,23 +7,26 @@ import { useSolana } from './SolanaContext';
 const AnchorProviderContext = React.createContext<AnchorProvider | undefined>(undefined);
 
 export const AnchorProviderProvider: React.FC = ({ children }) => {
-  const { cluster } = useSolana();
-  const {connection} = useConnection();
-  console.log('connection', connection);
+  const { cluster, customEndpoint } = useSolana();
+  // const {connection, } = useConnection();
   const wallet = useAnchorWallet();
   const provider = React.useMemo(() => {
-    console.log('cluster', cluster)
+    // console.log('customEndpoint', customEndpoint);
+    // console.log('cluster.network', cluster.network)
+
+    const c  = cluster.network === 'custom' ? new Connection(customEndpoint) : new Connection(cluster.endpoint);
+
     if (!wallet) {
       // @ts-ignore
-      return new AnchorProvider(connection, Keypair.generate(), {});
+      return new AnchorProvider(c, Keypair.generate(), {});
     }
-    const provider = new AnchorProvider(connection, wallet, {
+    const provider = new AnchorProvider(c, wallet, {
       "preflightCommitment": "processed",
       "commitment": "processed"
   });
 
     return provider;
-  }, [cluster.endpoint, connection, wallet]);
+  }, [cluster.network, cluster.endpoint, customEndpoint, wallet]);
 
   return (
     <AnchorProviderContext.Provider value={provider}>
