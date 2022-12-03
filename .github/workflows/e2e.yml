@@ -1,8 +1,5 @@
-name: Build and End-to-end test
-on:
-  push:
-  pull_request:
-    branches: [main]
+name: End-to-end tests
+on: [push]
 jobs:
   cypress-run:
     runs-on: ubuntu-20.04
