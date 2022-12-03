@@ -1,4 +1,4 @@
-import { toSentenceCase } from "utils/toSentenceCase";
+import { toSentenceCase } from "@clockwork-xyz/sdk";
 
 export const ACCOUNT_TITLE_ALIAS = {
   Queue: "Thread",

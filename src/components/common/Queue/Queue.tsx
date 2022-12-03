@@ -10,7 +10,7 @@ import {
   formatTrigger,
   formatUnix,
   getExplorerAccountLink,
-} from "utils/general";
+} from "@clockwork-xyz/sdk";
 import { useSolana } from "contexts/SolanaContext";
 
 export const Queue = ({ q }) => {

@@ -3,7 +3,7 @@ import { AccountInfo, PublicKey } from "@solana/web3.js";
 import { useConnection } from "@solana/wallet-adapter-react";
 import { useCrankProgram } from "contexts/CrankProgramProvider";
 import { Program } from "@project-serum/anchor";
-import { tryIntoPubkey } from "utils/general"
+import { tryIntoPubkey } from "@clockwork-xyz/sdk"
 
 export type AddressHookState = {
   data?:  { accountInfo: AccountInfo<any>, account?: any, accountType: string },

@@ -1,6 +1,6 @@
 import { useCrankProgram } from "contexts/CrankProgramProvider";
 import { useCallback, useEffect, useState } from "react";
-import { Queue } from "models/types";
+import { Queue } from "@clockwork-xyz/sdk";
 
 export type QueuesHookState = {
   data: Queue[];

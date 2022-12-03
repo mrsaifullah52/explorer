@@ -1,6 +1,6 @@
 import { Console } from "console";
 import { useEffect, useState } from "react";
-import { queueFilter, queueFilterV1_2_14 } from "utils/filters";
+import { queueFilter, queueFilterV1_2_14 } from "@clockwork-xyz/sdk";
 
 //crayz hook
 export const usePagination = <T>(
