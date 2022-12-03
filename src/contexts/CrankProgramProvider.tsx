@@ -29,7 +29,7 @@ export const selectIdl = (programID: anchor.web3.PublicKey) => {
   }
 }
 
-export const CrankProgramProvider: React.FC = ({ children }) => {
+export const CrankProgramProvider: React.FC<{ children: React.ReactChild }> = ({ children }) => {
   const anchorProvider = useAnchorProvider();
   const { programID } = useClockworks();
   const crankProgram = React.useMemo(() => {
