@@ -16,7 +16,7 @@ describe("Thread", () => {
     cy.get("button").contains("Create Thread").click();
 
     // after click, it should open modal box with title
-    cy.get("h2").contains("Create a Thread");
+    cy.get("h2").contains("Create thread");
 
     // find message input box and type
     cy.get('[data-testid="queue-name-input"]').clear();

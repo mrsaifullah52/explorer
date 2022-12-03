@@ -3,10 +3,10 @@ import { PublicKey } from "@solana/web3.js";
 import { useSearch } from "contexts/SearchContext";
 import { useSolana } from "contexts/SolanaContext";
 import { FC, useMemo } from "react";
-import { getExplorerAccountLink, tryIntoPubkey, tryIsBuffer } from "utils/general";
+import { getExplorerAccountLink, tryIntoPubkey, tryIsBuffer } from "@clockwork-xyz/sdk";
 import { DataTable, DataTableRow, DataTableRowExpandable } from "../DataTable";
 import { DataTableRowAccount } from "../DataTable/DataTableRowAccount";
-import { toSentenceCase } from "utils/toSentenceCase";
+import { toSentenceCase } from "@clockwork-xyz/sdk";
 import { DataTableRowBuffer } from "../DataTable/DataTableRowBuffer";
 import { AccountTableTitle } from "../AccountTableTitle";
 
