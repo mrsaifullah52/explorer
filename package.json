@@ -2,7 +2,8 @@
   "name": "clockwork_explorer",
   "version": "0.1.0",
   "license": "MIT",
-  "private": false,
+  "private": true,
+  "workspaces": ["packages/*"],
   "description": "Dashboard for exploring and managing Clockwork automations",
   "scripts": {
     "dev": "next dev",
