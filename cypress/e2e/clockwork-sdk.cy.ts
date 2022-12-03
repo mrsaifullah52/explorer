@@ -55,6 +55,7 @@ describe("Unit Test Clockwork TS SDK", function () {
 
     it("formatExecCtx", () => {
       const trigger = { cron: { startedAt: new BigNumber("1668007710") } };
+      // Formatting varies based on the clock of the testing environment.
       // const hasCronResult = "Cron: November 9th, 2022 at 10:28:30 AM GMT-5";
       const beginsWithCronResult = "Cron: November";
       const noCronResult = "Instant";
@@ -64,6 +65,7 @@ describe("Unit Test Clockwork TS SDK", function () {
 
     it("formatUnix", () => {
       const timestamp = 1668007710;
+      // Formatting varies based on the clock of the testing environment.
       // const expected = "November 9th, 2022 at 10:28:30 AM GMT-5";
       const expected = "November";
       expect(formatUnix(timestamp).slice(0, 8)).to.eq(expected);
