@@ -1,6 +1,7 @@
 import { useOutsideAlerter } from "hooks/useOutsideAlerter";
 import { useRef } from "react";
 import { useTheme } from "next-themes";
+import Image from "next/image";
 
 export const Modal = ({ open, setOpen, title = "", children }) => {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -24,16 +25,18 @@ export const Modal = ({ open, setOpen, title = "", children }) => {
                   className="cursor-pointer"
                   onClick={() => setOpen(false)}
                 >
-                  <img
-                    src={
-                      theme === "dark"
-                        ? "/icons/close-white.svg"
-                        : "/icons/close-black.svg"
-                    }
-                    alt="close"
-                    width="16px"
-                    height="16px"
-                  />
+                  <svg
+                    viewBox="0 0 48 48"
+                    className="w-6 h-6"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 2L36 36M2 36L36 2"
+                      stroke={theme === "dark" ? "white" : "black"}
+                      strokeWidth="3"
+                    />
+                  </svg>
                 </button>
               </div>
             </div>
