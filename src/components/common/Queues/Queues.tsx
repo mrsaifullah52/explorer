@@ -118,9 +118,7 @@ export const Queues = () => {
                           query: router.query,
                         }}
                       >
-                        <a>
-                          <QueueListItem queue={queue} />
-                        </a>
+                        <QueueListItem queue={queue} />
                       </Link>
                     </li>
                   ))}
