@@ -3,7 +3,11 @@ import { PublicKey } from "@solana/web3.js";
 import { useSearch } from "contexts/SearchContext";
 import { useSolana } from "contexts/SolanaContext";
 import { FC, useMemo } from "react";
-import { getExplorerAccountLink, tryIntoPubkey, tryIsBuffer } from "@clockwork-xyz/sdk";
+import {
+  getExplorerAccountLink,
+  tryIntoPubkey,
+  tryIsBuffer,
+} from "@clockwork-xyz/sdk";
 import { DataTable, DataTableRow, DataTableRowExpandable } from "../DataTable";
 import { DataTableRowAccount } from "../DataTable/DataTableRowAccount";
 import { toSentenceCase } from "@clockwork-xyz/sdk";
@@ -18,7 +22,7 @@ export const AccountRenderer = () => {
 
   return (
     <div className="py-6 rounded-lg flex flex-col mb-6">
-      <AccountTableTitle accountType={data.accountType} />
+      <AccountTableTitle accountType={data.accountType} account={data} />
       <DataTable>
         <RecursiveAccountRenderer
           account={data.account || data.accountInfo}
