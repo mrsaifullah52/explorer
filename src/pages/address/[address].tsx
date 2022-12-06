@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 import { ReactNode, useEffect } from "react";
-import { getLayout } from "../../components/layouts/SiteLayout";
 import Custom404 from "pages/404";
+import { useAddressAll } from "hooks/useAddressAll";
+import { getLayout } from "../../components/layouts/SiteLayout";
 import { DataTable } from "components/common/DataTable";
 import { RecursiveAccountRenderer } from "components/common/AccountRenderer";
-import { useAddressAll } from "hooks/useAddressAll";
 import { AccountTableTitle } from "components/common/AccountTableTitle";
 import { Loader } from "components/common/Loader";
 
@@ -22,7 +22,7 @@ const AddressPage = () => {
   if (data) {
     return (
       <div className="py-6 rounded-lg flex flex-col mb-6">
-        <AccountTableTitle accountType={data.accountType} />
+        <AccountTableTitle accountType={data.accountType} account={data} />
         <DataTable>
           <RecursiveAccountRenderer
             account={data.account || data.accountInfo}
