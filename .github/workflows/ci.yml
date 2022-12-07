@@ -2,14 +2,14 @@ name: CI Pipeline
 on: [push]
 jobs:
   test-e2e:
-    name: Install, Build, & Test E2E
+    name: Install & Cache, Build, Unit & E2E Test.
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
-      - name: Install, Build, Test E2E
+      - name: Install & Cache, Build, Unit & E2E Test
         uses: cypress-io/github-action@v4
         with:
           build: yarn build
@@ -17,7 +17,7 @@ jobs:
   deploy-sdk:
     name: Deploy JS/TS SDK
     runs-on: ubuntu-20.04
-    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+    # if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
     steps:
       - name: Build JS/TS SDK
         run: yarn build:sdk
