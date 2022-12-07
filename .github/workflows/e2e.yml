@@ -13,3 +13,10 @@ jobs:
         with:
           build: yarn build
           start: yarn start
+      - name: Build JS/TS SDK
+        run: build:sdk
+      - name: Publish JS/TS SDK
+        run: npm publish
+        working-directory: ./dist/sdk
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
