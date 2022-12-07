@@ -42,3 +42,6 @@ yarn-error.log*
 # cypress
 /cypress/screenshots
 /cypress/videos
+
+# packages build output
+dist
