@@ -1,4 +1,4 @@
-name: End-to-end tests
+name: CI
 on: [push]
 jobs:
   cypress-run:
@@ -8,15 +8,16 @@ jobs:
         uses: actions/checkout@v3
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
-      - name: Cypress run
+      - name: Install, Build, Test E2E
         uses: cypress-io/github-action@v4
         with:
           build: yarn build
           start: yarn start
       - name: Build JS/TS SDK
+        if: github.event.pull_request.merged == true
         run: yarn build:sdk
       - name: Publish JS/TS SDK
+        if: github.event.pull_request.merged == true
         run: npm publish
-        working-directory: ./dist/sdk
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
