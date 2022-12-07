@@ -1,7 +1,8 @@
-name: CI
+name: CI Pipeline
 on: [push]
 jobs:
-  cypress-run:
+  test-e2e:
+    name: Install, Build, & Test E2E
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -13,11 +14,14 @@ jobs:
         with:
           build: yarn build
           start: yarn start
+  deploy-sdk:
+    name: Deploy JS/TS SDK
+    runs-on: ubuntu-20.04
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+    steps:
       - name: Build JS/TS SDK
-        if: github.event.pull_request.merged == true
         run: yarn build:sdk
       - name: Publish JS/TS SDK
-        if: github.event.pull_request.merged == true
         run: npm publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
