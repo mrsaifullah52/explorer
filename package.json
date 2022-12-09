@@ -7,6 +7,9 @@
     "packages/*"
   ],
   "description": "Dashboard for exploring and managing Clockwork automations",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
