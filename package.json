@@ -14,7 +14,7 @@
     "dev": "next dev",
     "build": "next build",
     "build:sdk": "tsc -p packages/sdk && cp -r packages/sdk dist",
-    "publish:sdk": "npm publish dist",
+    "publish:sdk": "npm publish dist/sdk",
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watch",

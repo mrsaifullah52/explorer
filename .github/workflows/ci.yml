@@ -16,7 +16,9 @@ jobs:
           start: yarn start
       - name: Build JS/TS SDK
         run: yarn build:sdk
+      - name: NPM Config
+        run: npmwhoami && npm config ls -l
       - name: Publish JS/TS SDK
-        run: npm publish ./packages/sdk
+        run: npm publish ./dist/sdk --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
