@@ -1,6 +1,6 @@
 {
-  "name": "clockwork_explorer",
-  "version": "0.1.0",
+  "name": "clockwork-xyz",
+  "version": "0.0.2",
   "license": "MIT",
   "private": true,
   "workspaces": [
@@ -11,7 +11,8 @@
     "dev": "next dev",
     "build": "next build",
     "build:sdk": "tsc -p packages/sdk && cp -r packages/sdk dist",
-    "publish:sdk": "npm publish dist",
+    "publish:sdk": "npm publish ./dist/sdk --access public",
+    "ci:version:sdk:patch": "cd packages/sdk && yarn version --patch --no-git-tag-version && cd ../.. && yarn version --patch --no-git-tag-version",
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watch",
