@@ -2,14 +2,14 @@ name: CI Pipeline
 on: [push]
 jobs:
   test-e2e:
-    name: Install & Cache, Build, Unit Test, E2E Test, Publish SDK.
+    name: Build, Test, Deploy.
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
-      - name: Install & Cache, Build, Unit Test, E2E Test, Publish SDK.
+      - name: Build and Test
         uses: cypress-io/github-action@v4
         with:
           build: yarn build
@@ -17,6 +17,6 @@ jobs:
       - name: Build JS/TS SDK
         run: yarn build:sdk
       - name: Publish JS/TS SDK
-        run: npm publish
+        run: npm publish --registry=https://npm.pkg.github.com
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
