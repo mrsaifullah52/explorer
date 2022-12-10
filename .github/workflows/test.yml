@@ -1,12 +1,16 @@
-name: CI Pipeline
+name: E2E & Unit Test
 on: [push]
 jobs:
   test-e2e:
-    name: Build, Test, Deploy.
+    name: Build & Test
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+          registry-url: https://registry.npmjs.org/
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       - name: Build and Test
@@ -14,11 +18,3 @@ jobs:
         with:
           build: yarn build
           start: yarn start
-      - name: Build JS/TS SDK
-        run: yarn build:sdk
-      - name: NPM Config
-        run: npm config ls -l
-      - name: Publish JS/TS SDK
-        run: npm publish ./dist/sdk --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
