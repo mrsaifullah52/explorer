@@ -22,22 +22,24 @@ export const SiteLayout: FC<SiteLayoutProps> = ({
           {title ? `${title} - Clockwork Explorer` : `Clockwork Explorer`}
         </title>
       </Head>
-      <div className="w-full h-screen overflow-y-auto flex flex-col space-y-4 justify-between">
-        {connected ? (
-          <>
-            <div className="w-full mx-auto">
-              <Header />
-              <div className="max-w-5xl w-full mx-auto">
-                <SearchBar />
-                <div className="px-4">{children}</div>
+      {connected ? (
+        <div className="flex flex-col h-screen">
+          <div className="w-full h-screen overflow-y-auto flex flex-col space-y-4 justify-between">
+            <>
+              <div className="w-full mx-auto">
+                <Header />
+                <div className="max-w-5xl w-full mx-auto">
+                  <SearchBar />
+                  <div className="px-4">{children}</div>
+                </div>
               </div>
-            </div>
-            <Footer />
-          </>
-        ) : (
-          <>{children}</>
-        )}
-      </div>
+              <Footer />
+            </>
+          </div>
+        </div>
+      ) : (
+        <>{children}</>
+      )}
     </>
   );
 };

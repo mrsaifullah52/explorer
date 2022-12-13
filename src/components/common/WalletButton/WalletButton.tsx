@@ -4,9 +4,13 @@ import { FC, useRef, useState } from "react";
 import { KeyIcon } from "@heroicons/react/outline";
 import { useOutsideAlerter } from "hooks/useOutsideAlerter";
 
-type WalletButtonProps = {};
+type WalletButtonProps = {
+  className?: string;
+};
 
-export const WalletButton: FC<WalletButtonProps> = () => {
+export const WalletButton: FC<WalletButtonProps> = ({
+  className,
+}: WalletButtonProps) => {
   const wallet = useWallet();
   const { visible, setVisible } = useWalletModal();
 
@@ -16,7 +20,10 @@ export const WalletButton: FC<WalletButtonProps> = () => {
   useOutsideAlerter(dropdownRef, showDropdown, () => setShowDropdown(false));
 
   return (
-    <div className="relative flex justify-end" ref={dropdownRef}>
+    <div
+      className={`${className ?? ""} relative flex justify-end`}
+      ref={dropdownRef}
+    >
       <button
         onClick={
           wallet.connected
@@ -49,7 +56,9 @@ export const WalletButton: FC<WalletButtonProps> = () => {
           }}
         >
           <div>
-            <h2 className="font-medium text-[#0E1114] dark:text-white">Disconnect</h2>
+            <h2 className="font-medium text-[#0E1114] dark:text-white">
+              Disconnect
+            </h2>
           </div>
         </li>
       </ul>

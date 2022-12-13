@@ -3,7 +3,7 @@ import { useWallet } from "@solana/wallet-adapter-react";
 
 import { Queues } from "components/common/Queues/Queues";
 import { AccountRenderer } from "components/common/AccountRenderer";
-import { WalletButton } from "components/common/WalletButton";
+import ConnectScreen from "components/common/ConnectScreen";
 
 const Home: NextPage = (props) => {
   const { connected } = useWallet();
@@ -11,7 +11,7 @@ const Home: NextPage = (props) => {
   if (!connected) {
     return (
       <>
-        <WalletButton />
+        <ConnectScreen />
       </>
     );
   }

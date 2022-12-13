@@ -3,8 +3,8 @@ import { WalletButton } from "../WalletButton";
 
 export default function ConnectScreen() {
   return (
-    <div>
-      <WalletButton />
+    <div className="w-full h-screen flex items-center justify-center">
+      <WalletButton className="justify-center"/>
     </div>
   );
 }
