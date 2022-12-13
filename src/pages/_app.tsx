@@ -20,9 +20,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
       </Head>
       <ContextProvider>
         <ThemeProvider enableSystem={false} attribute="class">
-          <div className="flex flex-col h-screen">
-            {getLayout(<Component {...pageProps} />)}
-          </div>
+          {getLayout(<Component {...pageProps} />)}
         </ThemeProvider>
       </ContextProvider>
     </>
