@@ -19,7 +19,14 @@
     "types": ["cypress", "node", "jest"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", ".next", "**/*.spec.ts"],
+  "exclude": [
+    "node_modules",
+    ".next",
+    "**/*.spec.ts",
+    "cypress/e2e/navigation",
+    "cypress/e2e/search",
+    "cypress/e2e/thread"
+  ],
   "ts-node": {
     "require": ["tsconfig-paths/register"],
     "compilerOptions": {
