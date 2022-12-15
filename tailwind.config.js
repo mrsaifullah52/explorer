@@ -18,6 +18,14 @@ module.exports = {
       dropShadow: {
         "3xl": "0 20px 20px rgba(10, 10, 10, 0.25)",
       },
+      colors: {
+        black: {
+          100: "#0E1114",
+        },
+        gray: {
+          100: "#979797",
+        },
+      },
     },
   },
   variants: {

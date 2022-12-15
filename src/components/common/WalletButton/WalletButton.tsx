@@ -20,10 +20,7 @@ export const WalletButton: FC<WalletButtonProps> = ({
   useOutsideAlerter(dropdownRef, showDropdown, () => setShowDropdown(false));
 
   return (
-    <div
-      className={`${className ?? ""} relative flex justify-end`}
-      ref={dropdownRef}
-    >
+    <div className={`${className ?? ""} relative flex`} ref={dropdownRef}>
       <button
         onClick={
           wallet.connected
@@ -32,12 +29,12 @@ export const WalletButton: FC<WalletButtonProps> = ({
               }
             : () => setVisible(!visible)
         }
-        className="border border-[#0E1114] dark:border-white text-sm text-[#0E1114] dark:text-white align-middle justify-center"
+        className="bg-black-100 dark:bg-white text-sm dark:text-black-100 text-white align-middle justify-center"
       >
         <div className="md:block hidden px-10 py-3">
           {wallet.connected
             ? `${wallet.publicKey!.toString().slice(0, 6)}...`
-            : "Connect"}
+            : "Connect wallet"}
         </div>
         <div className="md:hidden p-2">
           <KeyIcon className="h-6 w-6" />
