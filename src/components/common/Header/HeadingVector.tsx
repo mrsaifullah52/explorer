@@ -5,7 +5,7 @@ import { LogoSvg } from "./Logo";
 type HeadingVectorProps = {};
 
 export const HeadingVector: FC<HeadingVectorProps> = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
 
   // useEffect only runs on the client, so now we can safely show the UI
   const [isMounted, setIsMounted] = useState(false);

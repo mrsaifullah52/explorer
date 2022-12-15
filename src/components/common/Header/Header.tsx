@@ -2,16 +2,18 @@ import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
 import { FC } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { useTheme } from "next-themes";
 
 import { SettingsButton } from "../SettingsButton";
 import { WalletButton } from "../WalletButton";
 import { ThemeSwitch } from "../ThemeSwitch";
 import { HeadingVector } from "./HeadingVector";
-import { useTheme } from "next-themes";
 
-type HeaderProps = {};
+type HeaderProps = {
+  connected: boolean;
+};
 
-export const Header: FC<HeaderProps> = () => {
+export const Header: FC<HeaderProps> = ({ connected }) => {
   const router = useRouter();
   const { theme } = useTheme();
 
@@ -40,8 +42,12 @@ export const Header: FC<HeaderProps> = () => {
           <HeadingVector />
         </button>
         <div className="flex items-center space-x-3">
-          <SettingsButton />
-          <WalletButton />
+          {connected && (
+            <>
+              <SettingsButton />
+              <WalletButton className="justify-end"/>
+            </>
+          )}
           <ThemeSwitch />
         </div>
       </div>

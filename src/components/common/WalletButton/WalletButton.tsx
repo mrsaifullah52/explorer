@@ -20,10 +20,7 @@ export const WalletButton: FC<WalletButtonProps> = ({
   useOutsideAlerter(dropdownRef, showDropdown, () => setShowDropdown(false));
 
   return (
-    <div
-      className={`${className ?? ""} relative flex justify-end`}
-      ref={dropdownRef}
-    >
+    <div className={`${className ?? ""} relative flex`} ref={dropdownRef}>
       <button
         onClick={
           wallet.connected

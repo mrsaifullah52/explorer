@@ -22,24 +22,25 @@ export const SiteLayout: FC<SiteLayoutProps> = ({
           {title ? `${title} - Clockwork Factory` : `Clockwork Factory`}
         </title>
       </Head>
-      {connected ? (
-        <div className="flex flex-col h-screen">
-          <div className="w-full h-screen overflow-y-auto flex flex-col space-y-4 justify-between">
-            <>
-              <div className="w-full mx-auto">
-                <Header />
+
+      <div className="flex flex-col h-screen">
+        <div className="w-full h-screen overflow-y-auto flex flex-col space-y-4 justify-between">
+          <>
+            <div className="w-full mx-auto">
+              <Header connected={connected}/>
+              {connected ? (
                 <div className="max-w-5xl w-full mx-auto">
                   <SearchBar />
                   <div className="px-4">{children}</div>
                 </div>
-              </div>
-              <Footer />
-            </>
-          </div>
+              ) : (
+                <>{children}</>
+              )}
+            </div>
+            <Footer />
+          </>
         </div>
-      ) : (
-        <>{children}</>
-      )}
+      </div>
     </>
   );
 };
