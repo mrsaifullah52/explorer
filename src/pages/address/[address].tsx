@@ -14,16 +14,22 @@ import Link from "next/link";
 import { getExplorerBlockLink, getExplorerLink } from "@clockwork-xyz/sdk";
 import { useSolana } from "contexts/SolanaContext";
 import { format, formatDistanceToNowStrict } from "date-fns";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 // Write a function to use the getSignaturesForAddress RPC endpoint to display a table of the recent transactions an account has been included in. This table should be displayed on all account templates in the /address/* path. https://docs.solana.com/developing/clients/jsonrpc-api#getsignaturesforaddress
 
 export const AddressSignaturesTable = () => {
+  const { connected, connecting } = useWallet();
   const router = useRouter();
   const { cluster, customEndpoint } = useSolana();
   const { address } = router.query;
   const { data, error, loading, reset } = useAddressSignatures(
     address as string
   );
+
+  if (!connected) {
+    router.push("/");
+  }
 
   console.log({ data, error, loading, reset });
   return (
@@ -141,7 +147,6 @@ const formatTimestamp = (unixTimestamp: number) => {
 const formatSlotNumber = (num: number) => {
   return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 };
-
 
 const AddressPage = () => {
   const router = useRouter();
