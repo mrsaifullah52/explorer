@@ -1,12 +1,15 @@
 import React from "react";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 
 import { WalletButton } from "../WalletButton";
 import { Text } from "../Text";
 
 export default function ConnectScreen() {
+  const { theme } = useTheme();
+
   return (
-    <div className="w-full flex items-center justify-center">
+    <div className="w-full h-full flex items-center justify-center">
       <div className="flex items-center">
         <div className="w-6/12">
           <Text type="heading1">Welcome to the factory!</Text>
@@ -17,7 +20,11 @@ export default function ConnectScreen() {
         </div>
         <div className="w-6/12">
           <Image
-            src="/images/clockwork.svg"
+            src={
+              theme === "dark"
+                ? "/images/clockwork-dark.svg"
+                : "/images/clockwork.svg"
+            }
             width="511"
             height="511"
             alt="clockwork"
