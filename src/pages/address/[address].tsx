@@ -9,59 +9,139 @@ import { useAddressSignatures } from "hooks/useAddressSignatures";
 
 import { AccountTableTitle } from "components/common/AccountTableTitle";
 import { Loader } from "components/common/Loader";
+import { CopyButton } from "components/common/CopyButton";
+import Link from "next/link";
+import { getExplorerBlockLink, getExplorerLink } from "@clockwork-xyz/sdk";
+import { useSolana } from "contexts/SolanaContext";
+import { format, formatDistanceToNowStrict } from "date-fns";
 
 // Write a function to use the getSignaturesForAddress RPC endpoint to display a table of the recent transactions an account has been included in. This table should be displayed on all account templates in the /address/* path. https://docs.solana.com/developing/clients/jsonrpc-api#getsignaturesforaddress
 
 export const AddressSignaturesTable = () => {
   const router = useRouter();
+  const { cluster, customEndpoint } = useSolana();
   const { address } = router.query;
   const { data, error, loading, reset } = useAddressSignatures(
     address as string
   );
 
-  console.log("data", data);
+  console.log({ data, error, loading, reset });
   return (
     <div className="py-6 rounded-lg flex flex-col mb-6">
       <AccountTableTitle accountType={"Transaction History"} />
-      <DataTable>
-        <div className="flex">
-          <div className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            Signature
-          </div>
-          <div className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            Block
-          </div>
-          <div className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            Age
-          </div>
-          <div className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            Timestamp
-          </div>
-          <div className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            Result
-          </div>
-        </div>
-        {data?.map((signature) => {
-          return (
-            <div className="" key={signature.signature}>
-              <div className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {signature.signature}
-              </div>
+      <div className="bg-[#F8F9F9] dark:bg-[#393939]  dark:border-[#626262] rounded-lg">
+        <div className="overflow-x-scroll">
+          <table className="table-auto border-collapse">
+            <thead className="text-sm text-[#0E1114] dark:text-[#979797]">
+              <tr>
+                <td className="p-4 whitespace-nowrap text-sm">Signature</td>
+                <td className="p-4 whitespace-nowrap text-sm">Block</td>
+                <td className="p-4 whitespace-nowrap text-sm">Age</td>
+                <td className="p-4 whitespace-nowrap text-sm">Timestamp</td>
+                <td className="p-4 whitespace-nowrap text-sm">Result</td>
+              </tr>
+            </thead>
+            <tbody className="text-[13px] text-[#0E1114] dark:text-white">
+              {data?.map((signatureInfo) => {
+                return (
+                  <tr
+                    className="border-t border-b dark:border-[#626262] min-w-full"
+                    key={signatureInfo.signature}
+                  >
+                    <td className="whitespace-nowrap p-0">
+                      <span
+                        // rel="noopener noreferrer"
+                        className={`p-4 whitespace-nowrap flex justify-end items-center space-x-2`}
+                      >
+                        <CopyButton valueToCopy={signatureInfo.signature} />
+                        <Link
+                          href={getExplorerLink(
+                            signatureInfo.signature,
+                            cluster.network
+                          )}
+                        >
+                          <a>
+                            <div className="flex items-center space-x-2">
+                              <p className="space-x-2   hover:underline font-light font-['IBM_Plex_Mono']">
+                                {signatureInfo.signature.slice(0, 45) + "..."}
+                              </p>
+                              {/* <ArrowUpIcon className="h-4 w-4 cursor-pointer rotate-45" /> */}
+                            </div>
+                          </a>
+                        </Link>
+                      </span>
+                    </td>
+                    <td className="whitespace-nowrap p-0">
+                      <span
+                        // rel="noopener noreferrer"
+                        className={`p-4 whitespace-nowrap flex justify-end items-center space-x-2`}
+                      >
+                        <CopyButton valueToCopy={signatureInfo.slot} />
+                        <Link
+                          href={getExplorerBlockLink(
+                            signatureInfo.slot,
+                            cluster.network
+                          )}
+                        >
+                          <a>
+                            <div className="flex items-center space-x-2">
+                              <p className="space-x-2   hover:underline font-light font-['IBM_Plex_Mono']">
+                                {formatSlotNumber(signatureInfo.slot)}
+                              </p>
+                              {/* <ArrowUpIcon className="h-4 w-4 cursor-pointer rotate-45" /> */}
+                            </div>
+                          </a>
+                        </Link>
+                      </span>
+                    </td>
+                    <td className="p-4 whitespace-nowrap">
+                      <p className="space-x-2 font-light font-['IBM_Plex_Mono'] dark:text-[#979797]">
+                        {formatDistanceToNowStrict(
+                          new Date(signatureInfo.blockTime * 1000)
+                        )}
+                      </p>
+                    </td>
+                    <td className="p-4 whitespace-nowrap">
+                      <p className="space-x-2 font-light font-['IBM_Plex_Mono'] dark:text-[#979797]">
+                        {formatTimestamp(signatureInfo.blockTime)}
+                      </p>
+                    </td>
+                    <td className="p-4 whitespace-nowrap">
+                      <p className="space-x-2 font-light font-['IBM_Plex_Mono'] dark:text-[#979797]">
+                        {signatureInfo.err ? "Failed" : "Success"}
+                      </p>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          {!loading && (
+            <div className="flex self-center items-center w-full justify-center px-6 py-4">
+              <span className="whitespace-nowrap w-full text-sm text-center justify-self-center">
+                {data && data.length === 0
+                  ? "No transactions found"
+                  : "Fetched full history"}
+              </span>
             </div>
-          );
-        })}
-
-        {data && data.length === 0 && (
-          <div className="flex self-center items-center w-full justify-center px-6 py-4">
-            <span className="whitespace-nowrap text-sm text-gray-500 text-center justify-self-center">
-              No transactions found
-            </span>
-          </div>
-        )}
-      </DataTable>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
+
+const formatTimestamp = (unixTimestamp: number) => {
+  const date = new Date();
+
+  return format(unixTimestamp * 1000, "MMM d, yyyy HH:mm:ss xxxx");
+};
+
+// adds commas to every 3 numbers for readability
+const formatSlotNumber = (num: number) => {
+  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+};
+
 
 const AddressPage = () => {
   const router = useRouter();
