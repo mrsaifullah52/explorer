@@ -42,7 +42,44 @@
 /* TT Firs Neue */
 @font-face {
   font-family: "TT Firs Neue";
-  src: url("../../public/fonts/TT Firs Neue/TT-Firs-Neue-Var-Roman.ttf");
+  src: url("../../public/fonts/TT Firs Neue/TT Firs Neue Thin.ttf");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "TT Firs Neue";
+  src: url("../../public/fonts/TT Firs Neue/TT Firs Neue Light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "TT Firs Neue";
+  src: url("../../public/fonts/TT Firs Neue/TT Firs Neue Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "TT Firs Neue";
+  src: url("../../public/fonts/TT Firs Neue/TT Firs Neue Medium.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "TT Firs Neue";
+  src: url("../../public/fonts/TT Firs Neue/TT Firs Neue DemiBold.ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "TT Firs Neue";
+  src: url("../../public/fonts/TT Firs Neue/TT Firs Neue Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "TT Firs Neue";
+  src: url("../../public/fonts/TT Firs Neue/TT Firs Neue Black.ttf");
+  font-weight: 900;
 }
 
 /* IBM Plex Mono */
