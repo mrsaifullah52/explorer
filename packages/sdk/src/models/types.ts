@@ -3,10 +3,10 @@ import {
   IdlTypes,
   TypeDef,
 } from "@project-serum/anchor/dist/cjs/program/namespace/types";
-import { ClockworkCrank } from "../anchor/types/clockwork_crank";
+import { ThreadProgram } from "../anchor/types/thread_program_v1.3.15";
 
 export type EndpointTypes = "mainnet" | "devnet" | "localnet";
 
-export type Queue = ProgramAccount<TypeDef<any, IdlTypes<ClockworkCrank>>>;
+export type Thread = ProgramAccount<TypeDef<any, IdlTypes<ThreadProgram>>>;
 
-export type CrankProgram = Program<ClockworkCrank>;
+export type ClockworkProgram = Program<ThreadProgram>;

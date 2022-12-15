@@ -6,12 +6,14 @@ import uuid from "short-uuid";
 
 import { PrimaryButton } from "../Button";
 import { Input } from "../Input";
-import { HelloClockwork, IDL } from "anchor/types/hello_clockwork";
-import { ThreadProgram, IDL as ThreadIDL } from "anchor/types/thread_program";
 import {
   HELLO_CLOCKWORK_PROGRAM_ID,
   CLOCKWORK_THREAD_PROGRAM_ID,
-} from "anchor/addresses";
+  ThreadProgram,
+  ThreadProgramIDL,
+  HelloClockwork,
+  HelloClockworkIDL,
+} from "@clockwork-xyz/sdk";
 import { useAnchorProvider } from "contexts/AnchorProvider";
 
 const SEED_QUEUE = "thread";
@@ -29,10 +31,10 @@ export const HelloWorldThread = () => {
     }
 
     const helloworldProgram: anchor.Program<HelloClockwork> =
-      new anchor.Program(IDL, HELLO_CLOCKWORK_PROGRAM_ID, anchorProvider);
+      new anchor.Program(HelloClockworkIDL, HELLO_CLOCKWORK_PROGRAM_ID, anchorProvider);
 
     const threadProgram: anchor.Program<ThreadProgram> = new anchor.Program(
-      ThreadIDL,
+      ThreadProgramIDL,
       CLOCKWORK_THREAD_PROGRAM_ID,
       anchorProvider
     );

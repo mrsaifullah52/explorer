@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { AccountInfo, PublicKey } from "@solana/web3.js";
 import { useConnection } from "@solana/wallet-adapter-react";
-import { useCrankProgram } from "contexts/CrankProgramProvider";
+import { useClockworkProgram } from "contexts/ThreadProgramProvider";
 import { Program } from "@project-serum/anchor";
 import { tryIntoPubkey } from "@clockwork-xyz/sdk"
 
@@ -35,7 +35,7 @@ export const tryDecode = (program: Program<any>, data: any) => {
 
 export const useAddressAll = (address: string) => {
   const { connection } = useConnection();
-  const program = useCrankProgram();
+  const program = useClockworkProgram();
 
   const [addresssState, setAddressState] = useState<AddressHookState>({
     data: undefined,

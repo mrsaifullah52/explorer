@@ -172,8 +172,8 @@ const AddressPage = () => {
   }
 
   if (error && error?.message) {
-    const missingQueueRegExp = new RegExp("Account does not exist", "i");
-    if (error.message.match(missingQueueRegExp)) {
+    const missingThreadRegExp = new RegExp("Account does not exist", "i");
+    if (error.message.match(missingThreadRegExp)) {
       return <Custom404 title={"Address not found!"} />;
     }
     const invalidPublicKeyRegExp = new RegExp("Invalid address.", "i");
