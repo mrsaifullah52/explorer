@@ -15,10 +15,10 @@ export const useThreads = () => {
   const fetchThreadsCallback = useCallback(async () => {
     setThreadsState((prev) => ({ ...prev, data: [], loading: true, error: undefined }));
     try {
-      const queues = await program.account.thread.all();
+      const threads = await program.account.thread.all();
       setThreadsState((prev) => ({
         ...prev,
-        data: queues.sort(
+        data: threads.sort(
           (a, b) =>
             b.account.createdAt.unixTimestamp.toNumber() -
             a.account.createdAt.unixTimestamp.toNumber()
@@ -36,7 +36,7 @@ export const useThreads = () => {
     }
   }, [program]);
 
-  const [queuesState, setThreadsState] = useState<ThreadsHookState>({
+  const [threadsState, setThreadsState] = useState<ThreadsHookState>({
     data: [],
     refetch: fetchThreadsCallback,
   });
@@ -45,5 +45,5 @@ export const useThreads = () => {
     fetchThreadsCallback();
   }, [program]);
 
-  return queuesState;
+  return threadsState;
 };

@@ -22,10 +22,10 @@ export const useThread = (address: string) => {
     }));
     try {
       const account = await program.account.thread.fetch(address);
-      const queue = { publicKey: new PublicKey(address), account: account };
+      const thread = { publicKey: new PublicKey(address), account: account };
       setThreadsState((prev) => ({
         ...prev,
-        data: queue,
+        data: thread,
         error: undefined,
         loading: false,
       }));
@@ -38,7 +38,7 @@ export const useThread = (address: string) => {
     }
   }, [program, address]);
 
-  const [queuesState, setThreadsState] = useState<ThreadsHookState>({
+  const [threadsState, setThreadsState] = useState<ThreadsHookState>({
     loading: true,
     data: undefined,
     error: undefined,
@@ -49,5 +49,5 @@ export const useThread = (address: string) => {
     fetchThreadCallback();
   }, [program, address]);
 
-  return queuesState;
+  return threadsState;
 };
