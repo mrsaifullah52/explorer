@@ -10,15 +10,15 @@ export default function ConnectScreen() {
 
   return (
     <div className="w-full h-full flex items-center justify-center">
-      <div className="flex items-center">
-        <div className="w-6/12">
+      <div className="flex flex-col sm:flex-row items-center">
+        <div className="sm:w-6/12 mx-5 sm:mx-0">
           <Text type="heading1">Welcome to the factory!</Text>
           <Text type="normal" className="my-5">
             Connect your wallet to start building blockchain automations.
           </Text>
           <WalletButton className="justify-start" />
         </div>
-        <div className="w-6/12">
+        <div className="sm:w-6/12 mx-5 sm:mx-0">
           <Image
             src={
               theme === "dark"
