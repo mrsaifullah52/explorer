@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useWallet } from "@solana/wallet-adapter-react";
 
-import { Queues } from "components/common/Queues/Queues";
+import { Threads } from "components/common/Threads/Threads";
 import { AccountRenderer } from "components/common/AccountRenderer";
 import ConnectScreen from "components/common/ConnectScreen";
 
@@ -19,7 +19,7 @@ const Home: NextPage = (props) => {
   return (
     <>
       <AccountRenderer />
-      <Queues />
+      <Threads />
     </>
   );
 };
