@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from "react";
-import { HeadingVector as HeadingVectorLight } from "./HeadingVectorLight";
-import { HeadingVector as HeadingVectorDark } from "./HeadingVectorDark";
 import { useTheme } from "next-themes";
+import { LogoSvg } from "./Logo";
 
 type HeadingVectorProps = {};
 
@@ -18,11 +17,17 @@ export const HeadingVector: FC<HeadingVectorProps> = () => {
     return null;
   }
 
-  if (theme === "light") {
-    return <HeadingVectorLight />;
-  }
-
-  return <HeadingVectorDark />;
+  return (
+    <div className="flex items-center">
+      <LogoSvg theme={theme} />
+      <span className="ml-2 font-medium text-black dark:text-white leading-none">
+        CLOCKWORK
+      </span>
+      <span className="ml-2 font-light text-black dark:text-white leading-none">
+        Factory
+      </span>
+    </div>
+  );
 };
 
 export default HeadingVector;

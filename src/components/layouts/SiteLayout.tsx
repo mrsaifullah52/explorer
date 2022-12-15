@@ -19,7 +19,7 @@ export const SiteLayout: FC<SiteLayoutProps> = ({
     <>
       <Head>
         <title>
-          {title ? `${title} - Clockwork Explorer` : `Clockwork Explorer`}
+          {title ? `${title} - Clockwork Factory` : `Clockwork Factory`}
         </title>
       </Head>
       {connected ? (

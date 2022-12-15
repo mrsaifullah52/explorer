@@ -14,8 +14,8 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     <>
       <Head>
         <link rel="shortcut icon" href="/favicon.ico" />
-        <title>Clockwork Explorer</title>
-        <meta property="og:title" content={"Clockwork Explorer"} />
+        <title>Clockwork Factory</title>
+        <meta property="og:title" content={"Clockwork Factory"} />
         <meta property="og:image" content={"/opengraph-image.png"} />
       </Head>
       <ContextProvider>
