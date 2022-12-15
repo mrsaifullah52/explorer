@@ -20,12 +20,6 @@ export const HeadingVector: FC<HeadingVectorProps> = () => {
   return (
     <div className="flex items-center">
       <LogoSvg theme={theme} />
-      <span className="ml-2 font-medium text-black dark:text-white leading-none">
-        CLOCKWORK
-      </span>
-      <span className="ml-2 font-light text-black dark:text-white leading-none">
-        Factory
-      </span>
     </div>
   );
 };
