@@ -83,7 +83,7 @@ export const Queues = () => {
                 onClick={() => setOpenCreateQueueModal(true)}
                 className="pt-3 pb-3"
               >
-                Create Thread
+                New Automation
               </PrimaryButton>
             </div>
 

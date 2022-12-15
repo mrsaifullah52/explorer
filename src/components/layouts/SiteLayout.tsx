@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { FC, ReactNode } from "react";
+import { useWallet } from "@solana/wallet-adapter-react";
 import Header from "../common/Header";
 import { Footer } from "components/common/Footer/Footer";
 import { SearchBar } from "components/common/SearchBar";
@@ -13,22 +14,32 @@ export const SiteLayout: FC<SiteLayoutProps> = ({
   title,
   children,
 }: SiteLayoutProps) => {
+  const { connected } = useWallet();
   return (
     <>
       <Head>
         <title>
-          {title ? `${title} - Clockwork Explorer` : `Clockwork Explorer`}
+          {title ? `${title} - Clockwork Factory` : `Clockwork Factory`}
         </title>
       </Head>
-      <div className="w-full h-screen overflow-y-auto flex flex-col space-y-4 justify-between">
-        <div className="w-full mx-auto">
-          <Header />
-          <div className="max-w-5xl w-full mx-auto">
-            <SearchBar />
-            <div className="px-4">{children}</div>
-          </div>
+
+      <div className="flex flex-col h-screen">
+        <div className="w-full h-screen overflow-y-auto flex flex-col space-y-4 justify-between">
+          <>
+            <div className="w-full mx-auto">
+              <Header connected={connected}/>
+              {connected ? (
+                <div className="max-w-5xl w-full mx-auto">
+                  <SearchBar />
+                  <div className="px-4">{children}</div>
+                </div>
+              ) : (
+                <>{children}</>
+              )}
+            </div>
+            <Footer />
+          </>
         </div>
-        <Footer />
       </div>
     </>
   );
