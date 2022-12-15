@@ -13,6 +13,7 @@
     "build:sdk": "tsc -p packages/sdk && cp -r packages/sdk dist",
     "publish:sdk": "npm publish ./dist/sdk --access public",
     "ci:version:sdk:patch": "cd packages/sdk && yarn version --patch --no-git-tag-version && cd ../.. && yarn version --patch --no-git-tag-version",
+    "diff:sdk": "sh ./sdk-affected.sh",
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watch",
