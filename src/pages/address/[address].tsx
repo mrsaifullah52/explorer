@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
 import { ReactNode, useEffect } from "react";
-import { getLayout } from "../../components/layouts/SiteLayout";
 import Custom404 from "pages/404";
+import { getLayout } from "../../components/layouts/SiteLayout";
 import { DataTable } from "components/common/DataTable";
 import { RecursiveAccountRenderer } from "components/common/AccountRenderer";
+
 import { useAddressAll } from "hooks/useAddressAll";
 import { useAddressSignatures } from "hooks/useAddressSignatures";
-
 import { AccountTableTitle } from "components/common/AccountTableTitle";
 import { Loader } from "components/common/Loader";
 import { CopyButton } from "components/common/CopyButton";
@@ -34,7 +34,7 @@ export const AddressSignaturesTable = () => {
   console.log({ data, error, loading, reset });
   return (
     <div className="py-6 rounded-lg flex flex-col mb-6">
-      <AccountTableTitle accountType={"Transaction History"} />
+      <AccountTableTitle accountType={"Transaction History"} account={data} />
       <div className="bg-[#F8F9F9] dark:bg-[#393939]  dark:border-[#626262] rounded-lg">
         <div className="overflow-x-scroll">
           <table className="table-auto border-collapse">
@@ -163,7 +163,7 @@ const AddressPage = () => {
     return (
       <>
         <div className="py-6 rounded-lg flex flex-col mb-6">
-          <AccountTableTitle accountType={data.accountType} />
+          <AccountTableTitle accountType={data.accountType} account={data} />
           <DataTable>
             <RecursiveAccountRenderer
               account={data.account || data.accountInfo}

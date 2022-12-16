@@ -35,14 +35,12 @@ export const DataTableRowAccount = ({
         >
           <CopyButton valueToCopy={pubkey.toBase58()} />
           <Link href={link}>
-            <a>
-              <div className="flex items-center space-x-2">
-                <p className="space-x-2 text-sm text-[#0E1114] dark:text-white hover:underline font-light font-['IBM_Plex_Mono']">
-                  {pubkey.toBase58()}
-                </p>
-                <ArrowUpIcon className="h-4 w-4 cursor-pointer hover:text-[#0E1114] hover:dark:text-white rotate-45" />
-              </div>
-            </a>
+            <div className="flex items-center space-x-2">
+              <p className="space-x-2 text-sm text-[#0E1114] dark:text-white hover:underline font-light font-['IBM_Plex_Mono']">
+                {pubkey.toBase58()}
+              </p>
+              <ArrowUpIcon className="h-4 w-4 cursor-pointer hover:text-[#0E1114] hover:dark:text-white rotate-45" />
+            </div>
           </Link>
         </span>
       </div>

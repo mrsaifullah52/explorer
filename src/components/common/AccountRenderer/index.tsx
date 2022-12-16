@@ -3,7 +3,12 @@ import { PublicKey } from "@solana/web3.js";
 import { useSearch } from "contexts/SearchContext";
 import { useSolana } from "contexts/SolanaContext";
 import { FC, useMemo } from "react";
-import { getExplorerAccountLink, tryIntoPubkey, tryIsBuffer, toSentenceCase } from "@clockwork-xyz/sdk";
+import {
+  getExplorerAccountLink,
+  tryIntoPubkey,
+  tryIsBuffer,
+  toSentenceCase,
+} from "@clockwork-xyz/sdk";
 import { DataTable, DataTableRow, DataTableRowExpandable } from "../DataTable";
 import { DataTableRowAccount } from "../DataTable/DataTableRowAccount";
 import { DataTableRowBuffer } from "../DataTable/DataTableRowBuffer";
@@ -18,7 +23,7 @@ export const AccountRenderer = () => {
   console.log("data", data);
   return (
     <div className="py-6 rounded-lg flex flex-col mb-6">
-      <AccountTableTitle accountType={data.accountType} />
+      <AccountTableTitle accountType={data.accountType} account={data} />
       <DataTable>
         <RecursiveAccountRenderer
           account={data.account || data.accountInfo}
@@ -29,7 +34,11 @@ export const AccountRenderer = () => {
   );
 };
 
-const mapEntriesToComponents = (entries: [string, any][], depth = 0, clusterNetwork) => {
+const mapEntriesToComponents = (
+  entries: [string, any][],
+  depth = 0,
+  clusterNetwork
+) => {
   return entries.map(([name, value], i) => {
     const label = toSentenceCase(name);
 
@@ -146,14 +155,12 @@ const mapEntriesToComponents = (entries: [string, any][], depth = 0, clusterNetw
   });
 };
 
-
 export const RecursiveAccountRenderer: FC<{
   account: Record<any, any>;
   address: string;
 }> = ({ account, address }) => {
   const { cluster } = useSolana();
   let entries = useMemo(() => Object.entries(account), [account]);
-
 
   const addressPubkey = useMemo(() => tryIntoPubkey(address), [address]);
 
