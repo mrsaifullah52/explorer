@@ -118,7 +118,9 @@ export const Threads = () => {
                           query: router.query,
                         }}
                       >
-                        <QueueListItem thread={thread} />
+                        <a>
+                          <QueueListItem thread={thread} />
+                        </a>
                       </Link>
                     </li>
                   ))}

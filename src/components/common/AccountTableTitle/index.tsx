@@ -22,7 +22,7 @@ export const AccountTableTitle = ({
       <h2 className="text-2xl text-[#0E1114] dark:text-white font-semibold font-header leading-5">
         {renderAccountTypeTitle(accountType)}
       </h2>
-      {accountType === "queue" && <SimulateThread account={account} />}
+      {accountType === "thread" && <SimulateThread account={account} />}
     </div>
   );
 };
