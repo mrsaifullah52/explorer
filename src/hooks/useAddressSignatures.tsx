@@ -1,43 +1,21 @@
 import { useCallback, useEffect, useState } from "react";
-import { AccountInfo, PublicKey } from "@solana/web3.js";
+import { AccountInfo, ConfirmedSignatureInfo, PublicKey } from "@solana/web3.js";
 import { useConnection } from "@solana/wallet-adapter-react";
 import { useClockworkProgram } from "contexts/ThreadProgramProvider";
 import { Program } from "@project-serum/anchor";
 import { tryIntoPubkey } from "@clockwork-xyz/sdk"
 
-export type AddressHookState = {
-  data?:  { accountInfo: AccountInfo<any>, account?: any, accountType: string },
+export type AddressSignaturesHookState = {
+  data?:  ConfirmedSignatureInfo[],
   error?: Error;
   loading?: boolean;
 };
 
-export const tryDecode = (program: Program<any>, data: any) => {
-  try {
-    // get all account types in selected program
-    const accountTypes = Object.keys(program.account);
-    // try to decode into one of the program accounts
-    for (let index = 0; index < accountTypes.length; index++) {
-      const accountType = accountTypes[index];
-      try {
-        const decoded = program.coder.accounts.decode(accountType, data!);
-        return { account: decoded, accountType };
-      } catch (error) {
-        // this account type doesnt decode
-      }
-    }
-    // doesn't match any idl account
-    return { account: undefined, accountType: "Account" };
-  } catch (error) {
-    // unexpected error
-    console.error(error);
-  }
-};
-
-export const useAddressAll = (address: string) => {
+export const useAddressSignatures = (address: string) => {
   const { connection } = useConnection();
   const program = useClockworkProgram();
 
-  const [addresssState, setAddressState] = useState<AddressHookState>({
+  const [addresssState, setAddressState] = useState<AddressSignaturesHookState>({
     data: undefined,
     error: undefined,
     loading: false,
@@ -51,7 +29,7 @@ export const useAddressAll = (address: string) => {
     });
   }, []);
 
-  const fetchAddressCallback = useCallback(
+  const fetchAddressSignaturesCallback = useCallback(
     async (address: string, retry = 0) => {
       setAddressState((prev) => ({
         ...prev,
@@ -61,12 +39,12 @@ export const useAddressAll = (address: string) => {
       }));
       try {
         const publicKey = new PublicKey(address);
-        const accountInfo = await program.provider.connection.getAccountInfo(publicKey);
-        if (accountInfo) {
-          const { account, accountType } = tryDecode(program, accountInfo.data);
+        const confirmedSignatureInfo = await program.provider.connection.getSignaturesForAddress(publicKey);
+        if (confirmedSignatureInfo) {
+          // const { account, accountType } = tryDecode(program, confirmedSignatureInfo.data);
           setAddressState((prev) => ({
             ...prev,
-            data: { accountInfo, account, accountType },
+            data: confirmedSignatureInfo,
             error: undefined,
             loading: false,
           }));
@@ -114,9 +92,9 @@ export const useAddressAll = (address: string) => {
 
   useEffect(() => {
     if (program && address?.length > 0) {
-      fetchAddressCallback(address);
+      fetchAddressSignaturesCallback(address);
     }
-  }, [program, address, fetchAddressCallback]);
+  }, [program, address, fetchAddressSignaturesCallback]);
 
   useEffect(() => {
     if (address?.length === 0) {
@@ -128,5 +106,5 @@ export const useAddressAll = (address: string) => {
     }
   }, [address]);
 
-  return { ...addresssState, refetch: fetchAddressCallback, reset };
+  return { ...addresssState, refetch: fetchAddressSignaturesCallback, reset };
 };

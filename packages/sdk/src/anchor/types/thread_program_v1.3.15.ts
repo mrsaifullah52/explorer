@@ -1,8 +1,25 @@
 export type ThreadProgram = {
-  version: "1.3.5";
+  version: "1.3.15";
   name: "thread_program";
   docs: ["Program for creating transaction threads on Solana."];
   instructions: [
+    {
+      name: "getCrateInfo";
+      docs: [
+        "Return the crate information via `sol_set_return_data/sol_get_return_data`"
+      ];
+      accounts: [
+        {
+          name: "systemProgram";
+          isMut: false;
+          isSigner: false;
+        }
+      ];
+      args: [];
+      returns: {
+        defined: "CrateInfo";
+      };
+    },
     {
       name: "threadExec";
       docs: ["Executes the next instruction on thread."];
@@ -455,7 +472,7 @@ export type ThreadProgram = {
       };
     },
     {
-      name: "ExecResponse";
+      name: "ThreadResponse";
       docs: [
         "A response value target programs can return to update the thread."
       ];
@@ -640,7 +657,7 @@ export type ThreadProgram = {
   errors: [
     {
       code: 6000;
-      name: "InvalidExecResponse";
+      name: "InvalidThreadResponse";
       msg: "The exec response could not be parsed";
     },
     {
@@ -687,10 +704,27 @@ export type ThreadProgram = {
 };
 
 export const IDL: ThreadProgram = {
-  version: "1.3.5",
+  version: "1.3.15",
   name: "thread_program",
   docs: ["Program for creating transaction threads on Solana."],
   instructions: [
+    {
+      name: "getCrateInfo",
+      docs: [
+        "Return the crate information via `sol_set_return_data/sol_get_return_data`",
+      ],
+      accounts: [
+        {
+          name: "systemProgram",
+          isMut: false,
+          isSigner: false,
+        },
+      ],
+      args: [],
+      returns: {
+        defined: "CrateInfo",
+      },
+    },
     {
       name: "threadExec",
       docs: ["Executes the next instruction on thread."],
@@ -1143,7 +1177,7 @@ export const IDL: ThreadProgram = {
       },
     },
     {
-      name: "ExecResponse",
+      name: "ThreadResponse",
       docs: [
         "A response value target programs can return to update the thread.",
       ],
@@ -1328,7 +1362,7 @@ export const IDL: ThreadProgram = {
   errors: [
     {
       code: 6000,
-      name: "InvalidExecResponse",
+      name: "InvalidThreadResponse",
       msg: "The exec response could not be parsed",
     },
     {

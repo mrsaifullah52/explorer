@@ -1,5 +1,5 @@
 import { SearchIcon } from "@heroicons/react/outline";
-import { useCrankProgram } from "contexts/CrankProgramProvider";
+import { useClockworkProgram } from "contexts/ThreadProgramProvider";
 import { useAddressAll } from "hooks/useAddressAll";
 import { useRouter } from "next/router";
 import { FC, FormEvent, useState } from "react";
@@ -59,7 +59,7 @@ export const SearchBar: FC<SearchBarProps> = ({}: SearchBarProps) => {
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
-          placeholder="Thread Address"
+          placeholder="Search for threads and accounts"
           className="px-3 py-2 w-full bg-transparent focus:outline-none text-[#979797] flex-1"
           data-testid="search-thread-input"
         />

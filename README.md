@@ -1,4 +1,4 @@
-# Clockwork explorer
+# Clockwork Factory
 
 #### Anchor IDL issue with clockwork types:
 

@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+packages/sdk/node_modules
 
 # testing
 /coverage
@@ -42,3 +43,6 @@ yarn-error.log*
 # cypress
 /cypress/screenshots
 /cypress/videos
+
+# packages build output
+dist

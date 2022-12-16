@@ -1,6 +1,6 @@
 import { Console } from "console";
 import { useEffect, useState } from "react";
-import { queueFilter, queueFilterV1_2_14 } from "@clockwork-xyz/sdk";
+import { threadFilter } from "@clockwork-xyz/sdk";
 
 //crayz hook
 export const usePagination = <T>(
@@ -16,7 +16,7 @@ export const usePagination = <T>(
   useEffect(() => {
     if (data) {
       const q = new RegExp(filterString, "i");
-      setFilteredData(data.filter((row) => queueFilter(q, row)));
+      setFilteredData(data.filter((row) => threadFilter(q, row)));
     }
   }, [filterString, data]);
 

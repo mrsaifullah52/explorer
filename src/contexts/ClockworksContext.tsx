@@ -8,7 +8,7 @@ import {
   useState,
 } from "react";
 import { toast } from "react-toastify";
-import { CLOCKWORK_THREAD_PROGRAM_ID } from "anchor/addresses";
+import { CLOCKWORK_THREAD_PROGRAM_ID } from "@clockwork-xyz/sdk";
 
 type ClockworksContextType = {
   programID: PublicKey;

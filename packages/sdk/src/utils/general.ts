@@ -16,9 +16,33 @@ export function getExplorerAccountLink(
   account: PublicKey,
   cluster: ClusterType
 ): string {
-  return `/address/${account.toString()}${
+  return `/address/${account.toString()}?cluster=${
     cluster === "mainnet-beta" ? "" : "?network=" + cluster
   }`;
+}
+
+export function getExplorerBlockLink(
+  block: number,
+  cluster: ClusterType,
+  customUrl?: string
+): string {
+  const queryVar = getExplorerQueryVar(cluster, customUrl);
+  return `https://explorer.solana.com/block/${block.toString()}${queryVar}`;
+}
+
+// get solana explorer query variables by cluster
+export function getExplorerQueryVar(
+  cluster: ClusterType,
+  customUrl?: string
+): string {
+  if (cluster === "mainnet-beta") {
+    return "";
+  }
+  if (cluster === "custom") {
+    return `?cluster=custom&customUrl=${customUrl || "localhost:8899"}`;
+  }
+
+  return "?cluster=" + cluster;
 }
 
 export const formatTrigger = (trigger: any) => {

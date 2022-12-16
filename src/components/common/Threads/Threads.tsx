@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { useQueues } from "hooks/useQueues";
+import { useThreads } from "hooks/useThreads";
 import { SkeletonBox } from "../Skeleton";
 import { usePagination } from "hooks/usePagination";
 import { useRouter } from "next/router";
@@ -24,9 +24,9 @@ const exampleThreads = [
   <SerumCrankThread key={4} />,
 ];
 
-export const Queues = () => {
+export const Threads = () => {
   const router = useRouter();
-  const { data, error, loading } = useQueues();
+  const { data, error, loading } = useThreads();
 
   const [filterString, setFilterString] = useState("");
   const [openCreateQueueModal, setOpenCreateQueueModal] = useState(false);
@@ -41,20 +41,20 @@ export const Queues = () => {
     nextPage,
   } = usePagination(data, 5, filterString);
 
-  const QueueListItem = ({ queue }: { queue: any }) => {
+  const QueueListItem = ({ thread }: { thread: any }) => {
     return (
       <div className="hover:bg-[#E7EAED] dark:hover:bg-[#393939] transition-colors py-2 rounded-lg flex items-center justify-between border border-[#D7DCE1] dark:border-[#4F4F4F]">
         <div className="flex flex-col border-r dark:border-[#4F4F4F] pl-6 w-60">
           <h3 className="text-xs text-[#979797] mb-2.5">Name</h3>
           <p className="font-normal leading-relaxed text-sm text-[#0E1114] dark:text-white">
-            {queue.account.name || queue.account.id}
+            {thread.account.name || thread.account.id}
           </p>
         </div>
 
         <div className="flex-1 pl-6 flex-col">
           <h3 className="text-xs text-[#979797] mb-2.5">Address</h3>
           <p className="font-normal leading-relaxed text-sm text-[#0E1114] dark:text-white">
-            {queue.publicKey.toString()}
+            {thread.publicKey.toString()}
           </p>
         </div>
       </div>
@@ -83,7 +83,7 @@ export const Queues = () => {
                 onClick={() => setOpenCreateQueueModal(true)}
                 className="pt-3 pb-3"
               >
-                Create Thread
+                New Automation
               </PrimaryButton>
             </div>
 
@@ -106,19 +106,19 @@ export const Queues = () => {
             ) : (
               <>
                 <ul className="flex flex-col space-y-5 w-full">
-                  {pageMarkets.map((queue) => (
+                  {pageMarkets.map((thread) => (
                     <li
-                      key={queue.publicKey.toString()}
+                      key={thread.publicKey.toString()}
                       className="cursor-pointer w-full"
                     >
                       <Link
                         passHref
                         href={{
-                          pathname: `/address/${queue.publicKey.toString()}`,
+                          pathname: `/address/${thread.publicKey.toString()}`,
                           query: router.query,
                         }}
                       >
-                        <QueueListItem queue={queue} />
+                        <QueueListItem thread={thread} />
                       </Link>
                     </li>
                   ))}

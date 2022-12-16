@@ -1,6 +1,6 @@
 {
-  "name": "clockwork_explorer",
-  "version": "0.1.0",
+  "name": "clockwork-xyz",
+  "version": "0.0.2",
   "license": "MIT",
   "private": true,
   "workspaces": [
@@ -10,6 +10,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:sdk": "tsc -p packages/sdk && cp -r packages/sdk dist",
+    "publish:sdk": "npm publish ./dist/sdk --access public",
+    "ci:version:sdk:patch": "cd packages/sdk && yarn version --patch --no-git-tag-version && cd ../.. && yarn version --patch --no-git-tag-version",
+    "diff:sdk": "sh ./sdk-affected.sh",
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watch",
@@ -34,9 +38,9 @@
     "next": "^13.0.6",
     "next-compose-plugins": "^2.2.1",
     "next-themes": "^0.2.1",
-    "next-transpile-modules": "^10.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-responsive": "^9.0.2",
     "react-toastify": "^9.0.8",
     "react-tooltip": "^4.5.1",
     "short-uuid": "^4.2.2",
@@ -59,6 +63,7 @@
     "husky": "^8.0.2",
     "jest-environment-jsdom": "^29.3.1",
     "lint-staged": "^13.0.3",
+    "next-transpile-modules": "^10.0.0",
     "postcss": "^8.4.5",
     "prettier": "^2.7.1",
     "start-server-and-test": "^1.14.0",

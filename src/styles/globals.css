@@ -39,7 +39,7 @@
   font-weight: 900;
 }
 
-/* FK Grotesk Neue */
+/* TT Firs Neue */
 @font-face {
   font-family: "TT Firs Neue";
   src: url("../../public/fonts/TT Firs Neue/TT Firs Neue Thin.ttf");
@@ -62,6 +62,12 @@
   font-family: "TT Firs Neue";
   src: url("../../public/fonts/TT Firs Neue/TT Firs Neue Medium.ttf");
   font-weight: 500;
+}
+
+@font-face {
+  font-family: "TT Firs Neue";
+  src: url("../../public/fonts/TT Firs Neue/TT Firs Neue DemiBold.ttf");
+  font-weight: 600;
 }
 
 @font-face {
