@@ -10,13 +10,11 @@ import {
   SlopeWalletAdapter,
   TorusWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
-import { clusterApiUrl, Connection } from "@solana/web3.js";
+import { clusterApiUrl } from "@solana/web3.js";
 import { useRouter } from "next/router";
 import {
   createContext,
-  Dispatch,
   ReactNode,
-  SetStateAction,
   useContext,
   useEffect,
   useMemo,
@@ -53,13 +51,9 @@ export const CLUSTERS: SolanaCluster[] = [
   {
     label: "Mainnet (Solana)",
     network: "mainnet-beta",
-    endpoint: "https://rpc.helius.xyz/?api-key=3335ba9e-dad8-419d-b1e9-9deaa1f084b2",
+    endpoint:
+      "https://rpc.helius.xyz/?api-key=3335ba9e-dad8-419d-b1e9-9deaa1f084b2",
   },
-  // {
-  //   label: "Mainnet (Serum)",
-  //   network: "mainnet-beta",
-  //   endpoint: "https://solana-api.projectserum.com",
-  // },
   {
     label: "Testnet",
     network: "testnet",
@@ -78,13 +72,6 @@ export const CLUSTERS: SolanaCluster[] = [
 ];
 
 export const CUSTOM_RPC_CLUSTER = CLUSTERS[CLUSTERS.length - 1];
-
-// export const isActiveCluster = (
-//   cluster: SolanaCluster,
-//   connection: Connection
-// ) => {
-//   return connection.rpcEndpoint === cluster.endpoint;
-// };
 
 export const SolanaProvider = ({ children }: SolanaProviderProps) => {
   const router = useRouter();
