@@ -3,6 +3,7 @@ import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 import { FC, useRef, useState } from "react";
 import { KeyIcon } from "@heroicons/react/outline";
 import { useOutsideAlerter } from "hooks/useOutsideAlerter";
+import { shortenAddress } from "@clockwork-xyz/sdk";
 
 type WalletButtonProps = {
   className?: string;
@@ -33,7 +34,7 @@ export const WalletButton: FC<WalletButtonProps> = ({
       >
         <div className="md:block hidden px-10 py-3">
           {wallet.connected
-            ? `${wallet.publicKey!.toString().slice(0, 6)}...`
+            ? shortenAddress(wallet.publicKey!.toString())
             : "Connect wallet"}
         </div>
         <div className="md:hidden p-2">
